@@ -31,13 +31,16 @@ class Api::V1::WaterQualitiesController < ApplicationController
 
   def destroy
     @water_quality = WaterQuality.find(params[:id])
-    @water_quality.destroy
-    render json: "Water Quality Destroyed"
+    if @water_quality.destroy
+      render json: "Water Quality Destroyed"
+    else
+
+    end
   end
 
   private
 
   def water_quality_params
-    params.require(:water_quality).permit()
+    params.require(:water_quality).permit(:water_provider_id, :chemical_id, :chemical_amount, :unit_id)
   end
 end
