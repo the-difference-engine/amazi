@@ -1,0 +1,2 @@
+class ChemicalQuestion < ApplicationRecord
+end
