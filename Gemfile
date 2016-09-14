@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'gmaps4rails'
+gem 'geocoder'
 
 gem 'friendly_id', '~> 5.1.0'
 
