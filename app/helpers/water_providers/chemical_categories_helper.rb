@@ -1,0 +1,2 @@
+module WaterProviders::ChemicalCategoriesHelper
+end

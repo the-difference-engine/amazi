@@ -12,4 +12,10 @@ Rails.application.routes.draw do
       resources :chemical_categories
     end
   end
+
+  resources :water_providers do
+    get "/:id" => 'water_providers/chemical_categories#show'
+  end
+  resources :chemicals, only: [:show]
+
 end
