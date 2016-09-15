@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require angular
-//= require angular-google-maps
+//= require lodash/dist/lodash
+//= require angular/angular
+//= require angular-simple-logger/dist/angular-simple-logger
+//= require angular-google-maps/dist/angular-google-maps
+//= require angular-google-maps/dist/angular-google-maps
 //= require app
 //= require_tree .
