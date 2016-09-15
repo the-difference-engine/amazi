@@ -17,5 +17,6 @@ Rails.application.routes.draw do
     get "/:id" => 'water_providers/chemical_categories#show'
   end
   resources :chemicals, only: [:show]
+  resources :locations, only: [:show]
 
 end
