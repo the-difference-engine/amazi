@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       resources :location_subcategories
       resources :chemicals
       resources :chemical_categories
+      resources :chemcial_questions
+      resources :users
+      resources :saved_locations
     end
   end
 
