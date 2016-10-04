@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
 	get '/', to:'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
@@ -10,6 +11,9 @@ Rails.application.routes.draw do
       resources :location_subcategories
       resources :chemicals
       resources :chemical_categories
+      resources :chemcial_questions
+      resources :users
+      resources :saved_locations
     end
   end
 
