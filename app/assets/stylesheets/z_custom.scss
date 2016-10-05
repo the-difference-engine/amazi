@@ -3,3 +3,37 @@
 		margin-top: 50px;
 	}
 }
+
+
+#mapControls {
+	margin-bottom: 10px;
+
+	.col-xs-6, .col-xs-3 {
+		padding-left: 3px;
+		padding-right: 3px;
+
+		.btn {
+			width: 100%;
+		}
+
+		input {
+			width: 100%;
+		}
+	}
+
+	.col-xs-12 {
+		margin-top: 10px;
+		padding-left: 3px;
+		padding-right: 3px;
+	}
+
+
+
+
+}
+
+
+#mapContainer {
+	padding-left: 0px;
+	padding-right: 0px;
+}

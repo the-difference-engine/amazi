@@ -1,0 +1,44 @@
+<div class="container-fluid" id="mapControls">
+
+	<!-- Filter / Search / List -->
+	<div class="row">
+		<div class="col-xs-3">
+			<div class="btn btn-default">
+				Filter
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<input type="text" class="form-control" placeholder="Search">
+		</div>
+		<div class="col-xs-3">
+			<div class="btn btn-default">
+				List
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="btn btn-default">
+				Open Now
+			</div>
+			<div class="btn btn-default">
+				Filtered
+			</div>
+			<div class="btn btn-default">
+				Tap	
+			</div>
+			<div class="btn btn-default">
+				Natural Sources
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+<div class="container-fluid" id="mapContainer">
+	<div ng-controller="mapCtrl">
+		<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+	</div>
+</div>
