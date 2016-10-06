@@ -1,0 +1,2 @@
+module LocationSubcategoriesHelper
+end

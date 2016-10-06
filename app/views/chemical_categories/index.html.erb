@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chemical_categories.each do |cc| %>
+      <tr>
+        <td><a href="<%= edit_chemical_path(cc.id) %>"><%= cc.name %></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<a href="<%= new_chemical_category_path %>">New Chemical Category</a>

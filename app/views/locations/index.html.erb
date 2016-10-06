@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Category</th>
+      <th>Subcategory</th>
+      <th>Water Provider</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @locations.each do |l| %>
+    <a href="<%= edit_location_path(l.id) %>">
+      <tr>
+        <td><%= l.address %></td>
+        <td><%= l.city %></td>
+        <td><%= l.state %></td>
+        <td><%= l.zip %></td>
+        <td><%= l.location_subcategory.location_category.name %></td>
+        <td><%= l.location_subcategory.name %></td>
+        <td><%= l.water_provider.name %></td>
+      </tr>
+    </a>
+  <% end %>  
+  </tbody>
+</table>
+<a href="<%= new_location_path %>">New Location</a>
