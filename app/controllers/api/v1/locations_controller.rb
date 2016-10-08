@@ -1,6 +1,10 @@
 class Api::V1::LocationsController < ApplicationController
   def index
-    @locations = Location.all
+    if params[:swLat]
+      @locations = Location.where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
+    else
+      @locations = Location.all
+    end
     render json: @locations
   end
 
