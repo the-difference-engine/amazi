@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-	get '/', to:'home#index'
+	# get '/', to:'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   end
   resources :chemicals, only: [:show]
   resources :locations, only: [:show, :index]
+  root to: 'locations#map'
 
 end

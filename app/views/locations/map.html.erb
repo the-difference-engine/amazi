@@ -1,5 +1,4 @@
 <div class="container-fluid" id="mapControls">
-
 	<!-- Filter / Search / List -->
 	<div class="row">
 		<div class="col-xs-3">
@@ -11,8 +10,8 @@
 			<input type="text" class="form-control" placeholder="Search">
 		</div>
 		<div class="col-xs-3">
-			<a class="btn btn-default" href="/">
-				Map
+			<a class="btn btn-default" href="/locations">
+				List
 			</a>
 		</div>
 	</div>
@@ -32,5 +31,11 @@
 				Natural Sources
 			</div>
 		</div>
+	</div>
+</div>
+
+<div class="container-fluid" id="mapContainer">
+	<div ng-controller="mapCtrl" id="mapView">
+		<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
 	</div>
 </div>
