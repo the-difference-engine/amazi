@@ -1,7 +1,12 @@
 class LocationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:show]
+  before_action :authenticate_admin!, except: [:show, :map]
+  
   def show
     @location = Location.find(params[:id])
+  end
+
+  def map
+
   end
 
   def index

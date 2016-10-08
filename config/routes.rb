@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  get '/', to:'home#index'
 	get '/admin', to:'home#admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
@@ -21,6 +20,7 @@ Rails.application.routes.draw do
   resources :water_providers do
     get "/:id" => 'water_providers/chemical_categories#show'
   end
+  root to: 'locations#map'
   resources :chemicals
   resources :locations
   resources :water_qualities
