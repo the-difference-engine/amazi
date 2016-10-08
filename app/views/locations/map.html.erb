@@ -36,6 +36,12 @@
 
 <div class="container-fluid" id="mapContainer">
 	<div ng-controller="mapCtrl" id="mapView">
-		<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+		<ui-gmap-google-map center='map.center' zoom='map.zoom' options="options" bounds="map.bounds">
+      <ui-gmap-window coords="selectedMarker.model" show="windowOptions.show" options="windowOptions">
+      	<div><a href="/locations/{{windowOptions.id}}">{{windowOptions.title}}</div>
+      </ui-gmap-window>
+			<ui-gmap-markers models="locations" coords="'self'" icon="'icon'" click="onClick">
+      </ui-gmap-markers>
+		</ui-gmap-google-map>
 	</div>
 </div>
