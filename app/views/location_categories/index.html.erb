@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @location_categories.each do |lc| %>
+      <tr>
+        <td><a href="<%= edit_location_category_path(lc.id) %>"><%= lc.name %></a></td>
+      </tr>
+  <% end %>  
+  </tbody>
+</table>
+<a href="<%= new_location_category_path %>">New Location Category</a>
