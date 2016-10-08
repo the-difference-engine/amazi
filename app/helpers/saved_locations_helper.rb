@@ -1,0 +1,2 @@
+module SavedLocationsHelper
+end

@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Maximum Allowed</th>
+      <th>Units</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chemicals.each do |c| %>
+      <tr>
+        <td><a href="<%= edit_chemical_path(c.id) %>"><%= c.name %></a></td>
+        <td><%= c.maximum %></td>
+        <td><%= c.unit.name %></td>
+        <td><%= c.chemical_category.name %></td>
+      </tr>
+    
+    <% end %>
+  </tbody>
+</table>
+<a href="<%= new_chemical_path %>">New Chemical</a>

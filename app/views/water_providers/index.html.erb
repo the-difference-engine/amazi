@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @water_providers.each do |wp| %>
+    <tr>
+      <td><a href="<%= edit_water_provider_path(wp.id) %>"><%= wp.name %></a></td>
+    </tr>
+  <% end %>  
+  </tbody>
+</table>
+<a href="<%= new_water_provider_path %>">New Water Provider</a>

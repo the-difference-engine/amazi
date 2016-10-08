@@ -4,4 +4,7 @@ class HomeController < ApplicationController
   #   @home = Home.all
   # end
 
+  def admin
+
+  end
 end

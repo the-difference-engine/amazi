@@ -1,0 +1,24 @@
+<% data.attributes.each do |key, value| %>
+  <% if !["id", "created_at", "updated_at"].include?(key) %>
+  <div>
+    <%= f.label key.to_sym %><br>
+    <% if [:string, :float].include?(data.column_for_attribute(key).type) %>
+      <%= f.text_field key.to_sym %>
+    <% elsif [:boolean].include?(data.column_for_attribute(key).type) %>
+      <%= f.label key.to_sym, "True", value: true %>
+      <%= f.radio_button key.to_sym, true %>
+      <%= f.label key.to_sym, "False", value: false %>
+      <%= f.radio_button key.to_sym, false %>
+    <% elsif [:text].include?(data.column_for_attribute(key).type) %>
+      <%= f.text_area key.to_sym  %>
+    <% elsif [:integer].include?(data.column_for_attribute(key).type) %>
+      <%= f.collection_select key.to_sym, get_model(key[0..-4]).all, :id, :name, selected: value %>
+    <% else %>
+    ahahahahaha
+    <% end %>
+  <% end %>
+  </div>
+<% end %>
+<div>
+  <%= f.submit %>
+</div>

@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>User Email</th>
+      <th>Location Address</th>
+      <th>Location City</th>
+      <th>Location State</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @saved_locations.each do |sl| %>
+    <a href="<%= edit_saved_location_path(sl.id) %>">
+      <tr>
+        <td><%= sl.user.email %></td>
+        <td><%= sl.location.address %></td>
+        <td><%= sl.location.city %></td>
+        <td><%= sl.location.state %></td>
+      </tr>
+    </a>
+  <% end %>  
+  </tbody>
+</table>
+<a href="<%= new_saved_location_path %>">New Saved Location</a>
