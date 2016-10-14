@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   resources :chemicals
   resources :locations
   resources :water_qualities
-  resources :water_providers
   resources :location_categories
   resources :location_subcategories
   resources :chemical_questions
