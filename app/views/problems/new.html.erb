@@ -1,0 +1,8 @@
+<div>
+<%= form_tag "/problems", method: :post do %>
+  <%= label_tag "Description" %>
+  <div> <%= text_area_tag :description %></div>
+  <div><%= hidden_field_tag :location_id, params[:location_id]%></div>
+  <div><%= submit_tag "Submit" %></div>
+<% end %>
+</div>
