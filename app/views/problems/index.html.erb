@@ -1,23 +1,24 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <% @problems.each do |problem| %>
-  <tbody>
-    <tr>
-      <td><%= problem.user.email %></td>
-      <td><%= problem.location.address %></td>
-      <td><%= problem.location.city %></td>
-      <td><%= problem.location.state %></td>
-      <td><%= problem.location.zip %></td>
-      <td><%= problem.description %></td>
-    </tr>
-  </tbody> 
-  <% end %>
+<div ng-controller="problemsCtrl" ng-init="init()">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="problem in problems">
+        <td>{{problem.user.email}}</td>
+        <td>{{problem.location.address}}</td>
+        <td>{{problem.location.city}}</td>
+        <td>{{problem.location.state}}</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -8,7 +8,6 @@ class ProblemsController < ApplicationController
   end
 
   def index
-    @problems = Problem.where(active: true)
   end
 
   def destroy

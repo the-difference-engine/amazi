@@ -33,9 +33,9 @@ Rails.application.routes.draw do
   resources :saved_locations
 
 
+  get "/problems", to: "problems#index"
   get "/problems/new", to: "problems#new"
   post "/problems", to: "problems#create"
-  get "/problems", to: "problems#index"
   
 
 end
