@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <% @problems.each do |problem| %>
+  <tbody>
+    <tr>
+      <td><%= problem.user.email %></td>
+      <td><%= problem.location.address %></td>
+      <td><%= problem.location.city %></td>
+      <td><%= problem.location.state %></td>
+      <td><%= problem.location.zip %></td>
+      <td><%= problem.description %></td>
+    </tr>
+  </tbody> 
+  <% end %>
