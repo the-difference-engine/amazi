@@ -9,6 +9,18 @@
       });
     }
     
+    $scope.toggleByAttribute = function(attribute) {
+      if (attribute == $scope.orderAttribute) {
+        $scope.descending = !$scope.descending;
+      } else {
+        $scope.orderAttribute = attribute;
+      }
+    }
+    $scope.toggleActive = function(problemId, index) {
+      $http.delete("/api/v1/problems/" + problemId + ".json").then(function(response) {
+
+      });
+    }
 
   });
 }());

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :chemcial_questions
       resources :users
       resources :saved_locations
+      resources :problems
     end
   end
 

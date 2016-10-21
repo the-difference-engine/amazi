@@ -30,9 +30,9 @@ class Api::V1::ProblemsController < ApplicationController
 
   def destroy
     @problem = Problem.find(params[:id])
-
-    if @problem.destroy
-      render json: "Problem Destroyed"
+    @problem.active = !@problem.active
+    if @problem.save
+      render json: @problem.active
     else
 
     end
