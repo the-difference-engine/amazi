@@ -1,6 +1,11 @@
 <div ng-controller="problemsCtrl" ng-init="init()">
-  Filter: <input ng-model="filterProblem">
-  Show Inactive?:  <input type="checkbox" ng-model="showInactive">
+  <center>
+    <div>Filter: <input ng-model="filterProblem">
+    Show Inactive?:  <input type="checkbox" ng-model="showInactive" ng-change="toggleInactive()"></div>
+  </center>
+<br>
+<br>
+
 <div class="container">
   <div class="row">
     <div class="col-md-3"></div>

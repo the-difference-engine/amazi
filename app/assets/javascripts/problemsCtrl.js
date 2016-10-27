@@ -5,7 +5,11 @@
     window.$scope = $scope;
     $scope.init = function() {
       $http.get("api/v1/problems.json").then(function(response) {
-        $scope.problems = response.data;
+        $scope.allProblems = response.data
+        $http.get("api/v1/problems.json?active=true").then(function(response) {
+          $scope.activeProblems = response.data;
+          $scope.toggleInactive();
+        })
       });
     }
     
@@ -18,9 +22,18 @@
     }
     $scope.toggleActive = function(problemId, index) {
       $http.delete("/api/v1/problems/" + problemId + ".json").then(function(response) {
-
+        $scope.init();
       });
     }
 
+      $scope.toggleInactive = function() {
+        if ($scope.showInactive == true) {
+          $scope.problems = angular.copy($scope.allProblems);
+        } else {
+          $scope.problems = angular.copy($scope.activeProblems);
+        }
+      }
   });
 }());
+
+

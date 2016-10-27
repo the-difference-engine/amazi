@@ -33,10 +33,8 @@ Rails.application.routes.draw do
   resources :units
   resources :saved_locations
 
-
   get "/problems", to: "problems#index"
   get "/problems/new", to: "problems#new"
   post "/problems", to: "problems#create"
   
-
 end

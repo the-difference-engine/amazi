@@ -1,6 +1,10 @@
 class Api::V1::ProblemsController < ApplicationController
   def index
-    @problems = Problem.all
+    if params[:active]
+      @problems = Problem.where(active: true)
+    else
+      @problems = Problem.all
+    end
   end
 
   def show
