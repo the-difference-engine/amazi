@@ -1,0 +1,41 @@
+<div ng-controller="problemsCtrl" ng-init="init()">
+  <center>
+    <div>Filter: <input ng-model="filterProblem">
+    Show Inactive?:  <input type="checkbox" ng-model="showInactive" ng-change="toggleInactive()"></div>
+  </center>
+<br>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th ng-click="toggleByAttribute('email')">Email</th>
+            <th ng-click="toggleByAttribute('address')">Address</th>
+            <th ng-click="toggleByAttribute('city')">City</th>
+            <th ng-click="toggleByAttribute('state')">State</th>
+            <th ng-click="toggleByAttribute('zip')">Zip</th>
+            <th ng-click="toggleByAttribute('description')">Description</th>
+            <th ng-click="toggleByAttribute('active')">Active?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="problem in problems | filter: filterProblem | orderBy:orderAttribute:descending">
+            <td>{{problem.user.email}}</td>
+            <td>{{problem.location.address}}</td>
+            <td>{{problem.location.city}}</td>
+            <td>{{problem.location.state}}</td>
+            <td>{{problem.location.zip}}</td>
+            <td>{{problem.description}}</td>
+            <td><input type="checkbox" ng-model="problem.active" ng-change="toggleActive(problem.id, $index)"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
