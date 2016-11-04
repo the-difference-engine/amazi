@@ -4,11 +4,11 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
-    @c = @client.spots(@location.latitude,@location.longitude)
+    faddress = "#{@location.address}, #{@location.city}, #{@location.state}"
+    @c = @client.spots(@location.latitude, @location.longitude, :formatted_address => faddress, :radius => 1)
   end
 
   def map
-
   end
 
   def index
