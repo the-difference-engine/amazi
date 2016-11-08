@@ -5,7 +5,12 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
     faddress = "#{@location.address}, #{@location.city}, #{@location.state}"
-    @c = @client.spots(@location.latitude, @location.longitude, :formatted_address => faddress, :radius => 1)
+    @location.names.split(" ").each do |name|
+      @c = @client.spots(@location.latitude, @location.longitude, :formatted_address => faddress, :radius => 1, :name => '@location.name')
+      if @c
+        break
+      end
+    end
   end
 
   def map
