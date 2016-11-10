@@ -2,4 +2,4 @@
 <% if current_user %>
 <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
 <% end %>
-<%= @c %>
+<%= @c[0].instance_variable_get(:@place_id) %>

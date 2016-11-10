@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'geocoder'
 gem 'google_places'
+gem 'yelp', require: 'yelp'
 
 gem 'friendly_id', '~> 5.1.0'
 

@@ -11,4 +11,18 @@ class Location < ApplicationRecord
     return "#{address}, #{city}, #{state}, #{zip}"
   end
 
+  def get_google_places_id(names)
+  client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
+    names.split(" ").each do |name|
+      c = client.spots(latitude, longitude, :formatted_address => full_street_address, :radius => 1, :name => name)
+      if c
+        return c.first.instance_variable_get(:@place_id)
+      end
+    end
+    return false
+  end
+
 end
+
+
+
