@@ -8,6 +8,7 @@ class LocationsController < ApplicationController
     @location.names.split(" ").each do |name|
       @c = @client.spots(@location.latitude, @location.longitude, :formatted_address => faddress, :radius => 1, :name => '@location.name')
       if @c
+        @location.google_place = @c.place_id
         break
       end
     end
@@ -30,7 +31,6 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-
     if @location.save
       redirect_to "/admin"
     else
