@@ -1,5 +1,62 @@
-
 <% if current_user %>
-<%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
+  <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
 <% end %>
-<%= @c[0].instance_variable_get(:@place_id) %>
+<br>
+<%= image_tag(@c.instance_variable_get(:@photos)[0].fetch_url(600)) %>
+<br>
+<h1>
+<%= @c.instance_variable_get(:@name) %>
+</h1>
+
+<p><%= @c.instance_variable_get(:@types)[0] %> </p>
+<!-- Map Section -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12 text-center">
+        <h2>Location</h2>
+        <div id="map">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </center>
+
+  <br>
+  <p> <%= @c.instance_variable_get(:@formatted_address) %> </p>
+  <p> <% if @c.instance_variable_get(:@opening_hours)["open_now"] == true %>
+  Open Now
+  <%else%>
+  Closed
+  <% end %>, 
+  <%= @c.instance_variable_get(:@opening_hours)["weekday_text"].rotate(-1)[Time.now.wday] %> </p>
+  <p> <%= @c.instance_variable_get(:@formatted_phone_number) %> </p>
+  <p> <%= @c.instance_variable_get(:@website) %></p>
+  <% @c.instance_variable_get(:@reviews).each do |review| %>
+    <p> <%= review.author_name %> </p>
+    <p> <%= review.text %> </p>
+    <br>
+  <%end%>
+
+
+
+
+  <script>
+    var map;
+    function initMap() {
+      var myLatLng = {lat: <%= @location.latitude %>, lng: <%= @location.longitude %>};
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 16,
+        center: myLatLng
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCliRHoi2eYcLfew2R6fSNkFRu2W1YE7Hs&callback=initMap"
+  async defer>
+  </script>
