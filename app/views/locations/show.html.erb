@@ -5,16 +5,23 @@
 
 <div class="container">
   <div class="img-responsive" alt="Responsive image">
-    <%= image_tag(@c.instance_variable_get(:@photos)[0].fetch_url(350), style: "height: 30px; width: 30px") %>
+    <% if @c.instance_variable_get(:@photos) == true %>
+    <%= image_tag(@c.instance_variable_get(:@photos)[0].fetch_url(350)) %>
+    <% end %>
   </div>
-<h1>
-<%= @c.instance_variable_get(:@name) %>
-</h1>
-
+    <% if @c.instance_variable_get(:@name) == true %>
+      <h1>
+      <%= @c.instance_variable_get(:@name) %>
+      </h1>
+    <% else %>
+      <p>Unknown</p>
+    <% end %>
 <div>
-  <% @c.instance_variable_get(:@types)[0].split("_").each do |word| %>
+  <% if @c.instance_variable_get(:@types) == true %>
+    <% @c.instance_variable_get(:@types)[0].split("_").each do |word| %>
     <%= word %>
-  <%end%>
+    <%end%>
+  <% end %>
 </div>
 <!-- Map Section -->
   <div class="container-fluid content-sm">
@@ -29,14 +36,18 @@
       <div class="col-sm-12 col-xs-12 ">
         <br>
         <p> <%= @c.instance_variable_get(:@formatted_address) %> </p>
+        <% if @c.instance_variable_get(:@opening_hours) == true %>
         <p> <% if @c.instance_variable_get(:@opening_hours)["open_now"] == true %>
         Open Now
         <%else%>
         Closed
         <% end %>, 
         <%= @c.instance_variable_get(:@opening_hours)["weekday_text"].rotate(-1)[Time.now.wday] %> </p>
+        <% else %>
+          <p>Unknown hours</p>
       </div>
     </div>
+    <% end %>
   </div>
 </center>
 
