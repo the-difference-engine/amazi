@@ -34,6 +34,7 @@ gem 'geocoder'
 gem 'google_places'
 gem 'yelp', require: 'yelp'
 
+
 gem 'friendly_id', '~> 5.1.0'
 
 gem 'devise'
