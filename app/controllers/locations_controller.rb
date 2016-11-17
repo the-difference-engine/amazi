@@ -3,10 +3,12 @@ class LocationsController < ApplicationController
   
   def show
     @location = Location.find(params[:id])
+    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
+    # faddress = "#{@location.address}, #{@location.city}, #{@location.state}"
+    @c = @client.spot(@location.google_place)
   end
 
   def map
-
   end
 
   def index
@@ -23,7 +25,6 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-
     if @location.save
       redirect_to "/admin"
     else
