@@ -1,8 +1,12 @@
 <div>
+
 <%= form_tag "/problems", method: :post do %>
-  <%= label_tag "Description" %>
+  <div>   <%= label_tag :issue%>
+       <%= collection_select :flag_category, :flag_category_id, FlagCategory.all, :id, :category %> </div>  
+  <%= label_tag "Add additional description" %>
   <div> <%= text_area_tag :description %></div>
   <div><%= hidden_field_tag :location_id, params[:location_id]%></div>
   <div><%= submit_tag "Submit" %></div>
+
 <% end %>
 </div>
