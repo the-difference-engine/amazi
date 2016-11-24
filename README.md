@@ -7,11 +7,12 @@ Things you may want to cover:
 
 * Ruby version 2.3.1, Rails version 5.0.0
 
-* System dependencies, Devise, Geocoder
+* System dependencies, Devise, Geocoder, google_places, jbuilder
 
 * Configuration
 
 * Database creation
+  Need to run rake import:data
 
 * Database initialization
 
@@ -19,9 +20,8 @@ Things you may want to cover:
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
+* Deployment instruction see
 * ...
 
 
-Need to input a .env file with a GMAPS_API_KEY
+Need to input a .env file with a GMAPS_API_KEY, GOOGLE_PLACES_API_KEY
