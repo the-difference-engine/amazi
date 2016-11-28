@@ -45,6 +45,6 @@ class Api::V1::ProblemsController < ApplicationController
   private
 
   def problem_params
-    params.require(:problem).permit(:user_id, :location_id, :description, :active)
+    params.require(:problem).permit(:user_id, :location_id, :flag_category_id, :description, :active)
   end
 end

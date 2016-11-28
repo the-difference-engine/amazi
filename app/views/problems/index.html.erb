@@ -19,6 +19,7 @@
             <th ng-click="toggleByAttribute('state')">State</th>
             <th ng-click="toggleByAttribute('zip')">Zip</th>
             <th ng-click="toggleByAttribute('description')">Description</th>
+            <th ng-click="toggleByAttribute('flag_category_id')">Category</th>
             <th ng-click="toggleByAttribute('active')">Active?</th>
           </tr>
         </thead>
@@ -30,6 +31,7 @@
             <td>{{problem.location.state}}</td>
             <td>{{problem.location.zip}}</td>
             <td>{{problem.description}}</td>
+            <td>{{problem.flag_category.category}}</td>
             <td><input type="checkbox" ng-model="problem.active" ng-change="toggleActive(problem.id, $index)"></td>
           </tr>
         </tbody>

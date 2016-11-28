@@ -13,3 +13,8 @@ json.location do
   json.state problem.location.state
   json.zip problem.location.zip
 end
+
+json.flag_category do
+  json.id problem.flag_category.id
+  json.category problem.flag_category.category
+end
