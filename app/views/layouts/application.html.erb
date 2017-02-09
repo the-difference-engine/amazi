@@ -16,49 +16,49 @@
     
         <!-- Sidebar -->
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-            <ul class="nav sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="/">
-                        Amazi
-                    </a>
-                  <button type="button" class="hamburger is-open" data-toggle="offcanvas">
-                      <span class="hamb-top"></span>
-                      <span class="hamb-middle"></span>
-                      <span class="hamb-bottom"></span>
-                  </button>
-                </li>
-                <li>
-                    <a href="/">Refill Locations</a>
-                </li>
-                <li>
-                    <a href="#">Water Quality</a>
-                </li>
-                <li>
-                    <a href="#">Recommended Products</a>
-                </li>
-                <li>
-                    <a href="#">Saved Locations</a>
-                </li>
-                <li>
-                    <a href="#">Account settings</a>
-                </li>
-                <li>
-                    <a href="#">Feedback</a>
-                </li>
-                <div style="display:flex;justify-content:center;align-items:center;">
-                  <div class="btn btn-primary" id="addLocationButton">Add Location</div>
-                </div>
+          <ul class="nav sidebar-nav">
+            <li class="sidebar-brand">
+              <a href="/">
+                Amazi
+              </a>
+              <button type="button" class="hamburger is-open" data-toggle="offcanvas" style="display: none">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+              </button>
+            </li>
+            <li>
+              <a href="/">Refill Locations</a>
+            </li>
+            <li>
+              <a href="#">Water Quality</a>
+            </li>
+            <li>
+              <a href="#">Recommended Products</a>
+            </li>
+            <li>
+              <a href="#">Saved Locations</a>
+            </li>
+            <li>
+              <a href="#">Account settings</a>
+            </li>
+            <li>
+              <a href="#">Feedback</a>
+            </li>
+            <div style="display:flex;justify-content:center;align-items:center;">
+              <div class="btn btn-primary" id="addLocationButton">Add Location</div>
+            </div>
 
-            </ul>
+          </ul>
         </nav>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-              <span class="hamb-top"></span>
-              <span class="hamb-middle"></span>
-              <span class="hamb-bottom"></span>
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
           </button>
           <%= yield %>    
         </div>
