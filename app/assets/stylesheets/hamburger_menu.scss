@@ -44,7 +44,7 @@ html { height: 100%;}
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 220px;
+    width: 100%;
 }
 
 #page-content-wrapper {
@@ -64,7 +64,7 @@ html { height: 100%;}
 .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 220px;
+    width: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -243,7 +243,7 @@ html { height: 100%;}
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-middle,
 .hamburger.is-open .hamb-bottom {
-  background-color: #1a1a1a;
+  background-color: #fff;
 }
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-bottom {
