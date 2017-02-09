@@ -1,27 +1,17 @@
-# README
+# AMAZI README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+Describe the AMAZI App
 
-Things you may want to cover:
+## Setup
+ 1. Clone Amazi App
+ 2. Setup from Terminal
+ ```
+$ bin/bundle install
+$ bin/rails db:setup
+$ bin/rails import:data
+ ```
 
-* Ruby version 2.3.1, Rails version 5.0.0
+3. Create ENV  File ('.../.env') with a GMAPS_API_KEY, GOOGLE_PLACES_API_KEY
+4. See Team Lead for Appropriate Contents of the ENV File.
 
-* System dependencies, Devise, Geocoder, google_places, jbuilder
-
-* Configuration
-
-* Database creation
-  Need to run rake import:data
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instruction see
-* ...
-
-
-Need to input a .env file with a GMAPS_API_KEY, GOOGLE_PLACES_API_KEY
