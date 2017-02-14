@@ -4,12 +4,15 @@
   <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
 <% end %>
 <br>
+  <div class="tinted-image">
 
+  </div>
   <div class="img-responsive" alt="Responsive image">
     <% if @c.instance_variable_get(:@photos).length != 0 %>
     <%= image_tag(@c.instance_variable_get(:@photos)[0].fetch_url(350), :class => "pic") %>
     <% end %>
   </div>
+
 
   <div class ="locheader">
     <% if @c.instance_variable_get(:@name) %>
