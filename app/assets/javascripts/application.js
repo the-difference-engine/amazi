@@ -17,6 +17,6 @@
 //= require angular/angular
 //= require angular-simple-logger/dist/angular-simple-logger
 //= require angular-google-maps/dist/angular-google-maps
-//= require bootstrap-sprockets
+// require bootstrap-sprockets
 //= require app
 //= require_tree .
