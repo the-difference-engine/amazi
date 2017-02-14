@@ -183,7 +183,7 @@ html { height: 100%;}
   }
   #addLocationButton {
   font-size: 16px;
-}
+  }
 }
 
 /*-------------------------------*/
@@ -191,7 +191,7 @@ html { height: 100%;}
 /*-------------------------------*/
 
 .hamburger.is-closed{
-  position: fixed;
+  position: absolute;
   top: 20px;
   left: 15px;
   z-index: 999;
