@@ -17,8 +17,8 @@
       <h4 class="panel-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           Common Usage
+          <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
         </a>
-        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
       </h4>
     </div>
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
@@ -46,7 +46,8 @@
     <div class="panel-heading" role="tab" id="headingThree">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          More Information <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+          More Information
+          <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
         </a>
       </h4>
     </div>
@@ -66,4 +67,13 @@
     console.log("tried to hide hamburger-menu-button");
     $("#page-content-wrapper").css("padding-top","0px");
   });
+  $('.collapse').on('shown.bs.collapse',
+    function(){
+      $(this).parent().find(".glyphicon-menu-right").removeClass("glyphicon-menu-right").addClass("glyphicon-menu-down");
+    }
+  ).on('hidden.bs.collapse',
+    function(){
+      $(this).parent().find(".glyphicon-menu-down").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-right");
+    }
+  );
 </script>
