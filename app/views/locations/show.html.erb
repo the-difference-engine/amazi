@@ -1,40 +1,38 @@
+<div class="container-show ">
+
 <% if current_user %>
   <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
 <% end %>
 <br>
 
-<div class="img-responsive" alt="Responsive image">
-  <% if @c.instance_variable_get(:@photos).length != 0 %>
-  <%= image_tag(@c.instance_variable_get(:@photos)[0].fetch_url(350), :class => "pic") %>
-  <% end %>
-</div>
+  <div class="img-responsive" alt="Responsive image">
+    <% if @c.instance_variable_get(:@photos).length != 0 %>
+    <%= image_tag(@c.instance_variable_get(:@photos)[0].fetch_url(350), :class => "pic") %>
+    <% end %>
+  </div>
 
-
-<div class="container-show ">
-
-  <% if @c.instance_variable_get(:@name) %>
-    <div class ="locheader">
+  <div class ="locheader">
+    <% if @c.instance_variable_get(:@name) %>
       <h1>
       <%= @c.instance_variable_get(:@name) %>
       </h1>
-    
-  <% else %>
-    <p>Unknown</p>
-  <% end %>
-      <div class="">
-        <% if @c.instance_variable_get(:@types) %>
-          <% @c.instance_variable_get(:@types)[0].split("_").each do |word| %>
-            <h3><%= word %></h3>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-<!-- Map Section -->
+    <% else %>
+      <p>Unknown</p>
+    <% end %>
+    <% if @c.instance_variable_get(:@types) %>
+      <% @c.instance_variable_get(:@types)[0].split("_").each do |word| %>
+        <h3><%= word.capitalize %></h3>
+      <% end %>
+    <% end %>
+  </div>
+  <div class= "centered">
+    <button class="btn btn-default topbuttons"> Save </button><button class="btn btn-default topbuttons"> Add Photo </button><button class="btn btn-default topbuttons"> Share </button>
+  </div>
+  <!-- Map Section -->
   <div class="container-fluid content-sm">
     <div class="row">
       <div class="col-sm-12 col-xs-12 text-center">
         <div id="map">
-
         </div>
       </div>
     </div>
@@ -55,52 +53,53 @@
           <p>Unknown hours</p>
       </div>
     </div>
-    <% end %>
-    </button>
+        <% end %>
+        </button>
   </div>
-</center>
 
-<div class="row container-fluid content-sm">
-  <div class="col-sm-12 col-xs-12 ">
-  <div class="col-xs-6">
-    <button type="button" class="btn btn-default narrowbtnlft ">
-    <%= @c.instance_variable_get(:@formatted_phone_number) %>
-    </button>
+  <div class="row container-fluid content-sm">
+    <div class="col-sm-12 col-xs-12 ">
+      <div class="col-xs-6">
+        <button type="button" class="btn btn-default narrowbtnlft ">
+        <%= @c.instance_variable_get(:@formatted_phone_number) %>
+        </button>
+      </div>
+      <div class="col-xs-6">
+        <button type="button" class="btn btn-default narrowbtnright">
+        <%= link_to "Website", "#{@c.instance_variable_get(:@website)}" %>
+        </button>
+      </div>
     </div>
-  <div class="col-xs-6">
-    <button type="button" class="btn btn-default narrowbtnright">
-    <%= link_to "Website", "#{@c.instance_variable_get(:@website)}" %>
-    </button>
-</div>
-</div>
-</div>
-<br>
-<div class="container">
-<h4> Reviews </h4>
-  <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
-    <div class="review well"> <p> <b><%= review.author_name %></b><br>
-    <%= review.text %> </p> </div>
-    <br>
-  <%end%>
   </div>
+  <br>
+  <div class="container">
+  <h4> Reviews </h4>
+    <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
+      <div class="review well"> <p> <b><%= review.author_name %></b><br>
+      <%= review.text %> </p>
+      </div>
+      <br>
+    <%end%>
+  </div>
+</div>
 
 
-  <script>
-    var map;
-    function initMap() {
-      var myLatLng = {lat: <%= @location.latitude %>, lng: <%= @location.longitude %>};
+<script>
+  var map;
+  function initMap() {
+    var myLatLng = {lat: <%= @location.latitude %>, lng: <%= @location.longitude %>};
 
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        center: myLatLng
-      });
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 16,
+      center: myLatLng
+    });
 
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map
-      });
-    }
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCliRHoi2eYcLfew2R6fSNkFRu2W1YE7Hs&callback=initMap"
-  async defer>
-  </script>
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCliRHoi2eYcLfew2R6fSNkFRu2W1YE7Hs&callback=initMap"
+async defer>
+</script>
