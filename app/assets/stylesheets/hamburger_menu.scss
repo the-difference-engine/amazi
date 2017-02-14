@@ -72,7 +72,8 @@ html { height: 100%;}
 
 .sidebar-nav li {
     position: relative;
-    line-height: 20px;
+    font-size: 35px;
+    line-height: 55px;
     display: inline-block;
     width: 100%;
 }
@@ -84,7 +85,7 @@ html { height: 100%;}
     left: 0;
     z-index: -1;
     height: 100%;
-    width: 3px;
+    width: 10px;
     background-color: #1c1c1c;
     -webkit-transition: width .2s ease-in;
       -moz-transition:  width .2s ease-in;
@@ -127,7 +128,6 @@ html { height: 100%;}
       -moz-transition:  width .2s ease-in;
        -ms-transition:  width .2s ease-in;
             transition: width .2s ease-in;
-
 }
 
 .sidebar-nav li a {
@@ -149,9 +149,9 @@ html { height: 100%;}
 }
 
 .sidebar-nav > .sidebar-brand {
-    height: 65px;
-    font-size: 20px;
-    line-height: 44px;
+    height: 90px;
+    font-size: 60px;
+    line-height: 70px;
     text-align: center;
 }
 .sidebar-nav .dropdown-menu {
@@ -162,6 +162,28 @@ html { height: 100%;}
     border: none;
     background-color: #222;
     box-shadow: none;
+}
+
+#addLocationButton {
+  font-size: 35px;
+}
+
+@media (min-width: 768px) {
+  .sidebar-nav li {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .sidebar-nav li:before {
+    width: 3px;
+  }
+  .sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 24px;
+    line-height: 44px;
+  }
+  #addLocationButton {
+  font-size: 16px;
+}
 }
 
 /*-------------------------------*/
