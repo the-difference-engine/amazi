@@ -1,1 +1,18 @@
-<%= @chemical.name %>
+<div id='cntm-topbar-nav'>
+  <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+  <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+</div>
+<div id='cntm-topbar-header'>
+  <h1><p class="title"><strong><%= @chemical.name %></strong></p></h1>
+
+  <%= @chemical.name %>
+  <!-- description does not yet exist -->
+  <h2><p class="description"> Barium is lustrous, machinable metal which exists in nature only in ores containing mixtures of elements.</h2>
+</div>
+
+<script>
+  $(function () {
+     $('#sidebar-wrapper').addClass('hidden');
+     $("hamburger-menu-button").addClass('hidden');
+  });
+</script>
