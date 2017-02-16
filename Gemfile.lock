@@ -39,7 +39,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.1)
-    autoprefixer-rails (6.5.4)
+    autoprefixer-rails (6.6.1)
       execjs
     bcrypt (3.1.11)
     better_errors (2.1.1)
@@ -245,3 +245,4 @@ DEPENDENCIES
 
 BUNDLED WITH
    1.14.3
+

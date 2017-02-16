@@ -10,7 +10,18 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require bootstrap.min
- *= require_tree .
- *= require_self
+ * require_tree .
+ * require_self
  */
+
+
+@import "variables";
+@import "external";
+@import "hamburger_menu";
+@import "home";
+@import "locations";
+/* add your files below this line */
+
+
+/* leave this one on the bottom */
+@import "custom";
