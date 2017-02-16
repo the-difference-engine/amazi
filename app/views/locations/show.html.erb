@@ -1,6 +1,7 @@
 <% if current_user %>
   <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
 <% end %>
+
 <br>
 
 <div class="container">
@@ -41,7 +42,7 @@
         Open Now
         <% else %>
         Closed
-        <% end %>, 
+        <% end %>,
         <%= @c.instance_variable_get(:@opening_hours)["weekday_text"].rotate(-1)[Time.now.wday] %> </p>
         <% else %>
           <p>Unknown hours</p>
@@ -70,7 +71,7 @@
     <br>
   <%end%>
   </div>
-
+</div>
 
   <script>
     var map;
@@ -90,4 +91,27 @@
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCliRHoi2eYcLfew2R6fSNkFRu2W1YE7Hs&callback=initMap"
   async defer>
+  </script>
+
+<!-- add favorite button -->
+<div>
+  <button type="submit" class="my-btn-1 btn btn-primary"> <i class="material-icons">favorite_border</i> <i class="material-icons">favorite</i> </button>
+</div>
+
+  <script>
+    $(document).ready(function(){
+      $(".js-favorite-btn").click(function() {
+        $.ajax({
+         url: "<%= api_v1_saved_locations_path %>",
+         method: 'POST',
+         data: {
+           location_id: "<%= @location.id %>"
+           user_id: 
+         },
+         success: function( result ) {
+
+         }
+        });
+      });
+    })
   </script>
