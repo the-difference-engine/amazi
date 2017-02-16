@@ -34,6 +34,8 @@ gem 'geocoder'
 gem 'google_places'
 gem 'yelp', require: 'yelp'
 
+gem 'bootstrap-sass', '~> 3.3.6'
+
 
 gem 'friendly_id', '~> 5.1.0'
 

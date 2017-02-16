@@ -7,4 +7,8 @@ class HomeController < ApplicationController
   def admin
 
   end
+
+  def carousel
+  end
+  
 end
