@@ -164,8 +164,15 @@ html { height: 100%;}
     box-shadow: none;
 }
 
-#addLocationButton {
+.small-button {
   font-size: 20px;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  border-radius: 0%;
+}
+
+.medium-button {
 }
 
 @media (min-width: $sm) {
