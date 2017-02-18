@@ -88,8 +88,8 @@ html { height: 100%;}
     width: 10px;
     background-color: #1c1c1c;
     -webkit-transition: width .2s ease-in;
-      -moz-transition:  width .2s ease-in;
-       -ms-transition:  width .2s ease-in;
+       -moz-transition: width .2s ease-in;
+        -ms-transition: width .2s ease-in;
             transition: width .2s ease-in;
 
 }
@@ -164,7 +164,7 @@ html { height: 100%;}
     box-shadow: none;
 }
 
-.small-button {
+.mobile-button {
   font-size: 20px;
   position: fixed;
   bottom: 0px;
@@ -172,7 +172,10 @@ html { height: 100%;}
   border-radius: 0%;
 }
 
-.medium-button {
+.small-div {
+  display:flex;
+  justify-content:center;
+  text-align:center;
 }
 
 @media (min-width: $sm) {
