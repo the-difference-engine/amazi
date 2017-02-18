@@ -28,10 +28,12 @@ $(document).ready(function () {
     // });
 
   function checkWidth() {
-    if ($window.width() > 576) {
-      $('#addLocationButton').removeClass('small-button').addClass('medium-button');
-    } else if ($window.width() <= 575) {
-      $('#addLocationButton').removeClass('medium-button').addClass('small-button');
+    if ($window.width() > 560) {
+      $('#addLocationButton').removeClass('mobile-button');
+      $('#buttonDiv').addClass('small-div');
+    } else if ($window.width() <= 560) {
+      $('#addLocationButton').addClass('mobile-button');
+      $('#buttonDiv').removeClass('small-div');
     };
   }
 
