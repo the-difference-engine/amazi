@@ -12,22 +12,26 @@
   </div>
 
 
-  <div class ="locheader">
-    <% if @c.instance_variable_get(:@name) %>
-      <h1>
-      <%= @c.instance_variable_get(:@name) %>
-      </h1>
-    <% else %>
-      <p>Unknown</p>
-    <% end %>
-    <% if @c.instance_variable_get(:@types) %>
-      <% @c.instance_variable_get(:@types)[0].split("_").each do |word| %>
-        <h3><%= word.capitalize %></h3>
+  <div class="loc-header-buttons-container">
+    <div class ="locheader">
+      <% if @c.instance_variable_get(:@name) %>
+        <h1>
+          <%= @c.instance_variable_get(:@name) %>
+        </h1>
+      <% else %>
+        <p>Unknown</p>
       <% end %>
-    <% end %>
-  </div>
-  <div class= "centered">
-    <button class="btn btn-default topbuttons"> Save </button><button class="btn btn-default topbuttons"> Add Photo </button><button class="btn btn-default topbuttons"> Share </button>
+      <% if @c.instance_variable_get(:@types) %>
+        <% @c.instance_variable_get(:@types)[0].split("_").each do |word| %>
+          <h3><%= word.capitalize %></h3>
+        <% end %>
+      <% end %>
+    </div>
+
+
+    <div class= "centered">
+      <button class="btn btn-default topbuttons"> Save </button><button class="btn btn-default topbuttons"> Add Photo </button><button class="btn btn-default topbuttons"> Share </button>
+    </div>
   </div>
   <!-- Map Section -->
   <div class="container-fluid content-sm">

@@ -18,7 +18,6 @@ h1, h3 {
 
 .locheader {
 	margin-left: 20px;
-	margin-top: -100px;
 	color: #ffffff;
 	text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
 	.h1 {
@@ -78,13 +77,64 @@ h1, h3 {
     height: 100%;
 }
 
+
+
 .image-container {
-	width: auto;
+	position: relative;
 	height: 300px;
   overflow: hidden;
+
 }
 
 .pic {
-  min-width: 100%;
-  min-height: 100%;
+	min-height: 100%;  
+  min-width: 100%; 
+  width: auto;
+  height: auto;
+  position: absolute;  
+  top: 0;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  margin: auto;
 }
+
+.loc-header-buttons-container {
+	position: absolute;
+	width: 100%;
+	top: 200px;
+}
+
+@media (min-width: $sm) {
+	.image-container {
+		width: auto;
+		height: 200px;
+  	overflow: hidden;
+	}
+	.loc-header-buttons-container {
+		top: 100px;
+	}
+}
+
+// @media (min-width: $md) {
+// 	.image-container {
+// 		width: auto;
+// 		height: 500px;
+//   	overflow: hidden;
+// 	}
+// 		.loc-header-buttons-container {
+// 		top: 400px;
+// 	}
+// }
+
+// @media (min-width: $lg) {
+// 	.image-container {
+// 		width: auto;
+// 		height: 600px;
+//   	overflow: hidden;
+// 	}
+// 		.loc-header-buttons-container {
+// 		top: 500px;
+// 	}
+// }
+
