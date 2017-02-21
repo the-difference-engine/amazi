@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   devise_for :users
 	get '/admin', to:'home#admin'
@@ -36,7 +37,6 @@ Rails.application.routes.draw do
   get "/problems", to: "problems#index"
   get "/problems/new", to: "problems#new"
   post "/problems", to: "problems#create"
-  
-  get "/carousel", to: "home#carousel"
+
   get "/slick", to: "home#slick"
 end
