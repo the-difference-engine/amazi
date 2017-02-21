@@ -5,3 +5,15 @@
 .angular-google-map-container {
   height: 400px;
 }
+
+.fixed-section-carousel {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.carousel-item-image {
+  height: auto;
+  width: auto;
+  max-height: 200px;
+}
