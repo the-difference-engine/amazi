@@ -37,6 +37,5 @@ Rails.application.routes.draw do
   get "/problems/new", to: "problems#new"
   post "/problems", to: "problems#create"
   
-  get "/carousel", to: "home#carousel"
   get "/slick", to: "home#slick"
 end
