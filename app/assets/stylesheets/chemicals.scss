@@ -1,3 +1,36 @@
 // Place all the styles related to the chemicals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div {
+  #cntm-topbar {
+    background-color: $top-bar-color;
+    color: $top-bar-text-color;
+    font-family: $font-family;
+    padding: 0;
+    margin: 0;
+
+    #cntm-topbar-nav {
+      font-size: 5em;
+      #cntm-topbar-back {
+        color: green;
+      }
+      #cntm-topbar-menu {
+        color: yellow;
+      }
+    }
+
+    #cntm-topbar-header {
+      padding: 0.25em;
+      margin: 0;
+      .title {
+        font-size: 4.5em;
+        color: $highlight-color;
+      }
+      .description {
+        font-size: 3em;
+      }
+    }
+  }
+
+}
