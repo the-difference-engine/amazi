@@ -11,8 +11,11 @@
 </div>
 
 <script>
-  $(function () {
-     $('#sidebar-wrapper').addClass('hidden');
-     $("hamburger-menu-button").addClass('hidden');
+  $(document).ready(function(){
+    $("#sidebar-wrapper").hide();
+    console.log("tried to hide sidebar-wrapper")
+    $("#hamburger-menu-button").hide();
+    console.log("tried to hide hamburger-menu-button");
+    $("#page-content-wrapper").css("padding-top","0px");
   });
 </script>
