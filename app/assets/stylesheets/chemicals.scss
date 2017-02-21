@@ -43,7 +43,15 @@ div {
     margin: 1.5em;
 
     .panel-title {
+      color: gray;
       font-size: 1.75em;
+      a:hover, a:focus {
+        text-decoration: none;
+      }
+    }
+
+    .panel-title.selected {
+      color: black;
     }
 
     .panel-body {
