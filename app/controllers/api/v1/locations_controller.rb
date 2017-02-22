@@ -10,6 +10,7 @@ class Api::V1::LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    @favorite_id = SavedLocation.is_saved_location?(params[:id]).id
     render json: @location
   end
 

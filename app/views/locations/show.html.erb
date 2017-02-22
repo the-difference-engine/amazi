@@ -95,27 +95,35 @@
 
 <!-- add favorite button -->
 <div>
-  <button type="submit" class="my-btn-1 btn btn-primary"> <i class="material-icons">favorite_border</i> <i class="material-icons">favorite</i> </button>
+  <button type="submit" class="js-favorite-btn my-btn-1 btn btn-primary" data-favoriteId="<%= @favorite_id %>"> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </button>
 </div>
 
-<div>
-  <%= form_tag "/api/v1/saved_locations", method: :post do %>
-      <%= hidden_field_tag :location_id, @location.id %>
-      <button type="submit" class="my-btn-2 btn btn-primary">Save</button>
-  <% end %>
-</div>
 
   <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
+      var favorite = "<%= @favorite_id %>"
+
+      if(favorite) {
+        $(".js-border-heart").hide();
+      } else {
+        $(".js-filled-heart").hide();
+      }
+
       $(".js-favorite-btn").click(function() {
+
+
+
         $.ajax({
          url: "<%= api_v1_saved_locations_path %>",
          method: 'POST',
          data: {
-           location_id: "<%= @location.id %>"
+           location_id: "<%= @location.id %>",
            user_id: "<%= current_user.id %>",
          },
          success: function( result ) {
+             $(".js-border-heart").toggleClass(".js-filled-heart");
+
+
 
          }
         });
