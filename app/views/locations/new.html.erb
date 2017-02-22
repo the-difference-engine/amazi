@@ -1,3 +1,10 @@
 <%= form_for @location do |f| %>
   <%= render partial: "home/admin_form", locals: {data: @location, f: f} %>
 <% end %>
+
+<%= semantic_form_for @location do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :address %>
+    <%= f.input :water_type, :as => :select, :collection => ['Filtered', 'Tap', 'Natural Sources'], :include_blank => true %>
+  <% end %>
+<% end %>
