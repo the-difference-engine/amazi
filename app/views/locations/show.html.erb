@@ -29,6 +29,7 @@
     </div>
 
 
+
     <div class= "centered">
       <button class="btn btn-default topbuttons"> Save </button><button class="btn btn-default topbuttons"> Add Photo </button><button class="btn btn-default topbuttons"> Share </button>
     </div>
@@ -77,6 +78,13 @@
     </div>
   </div>
   <br>
+
+<!-- <input type="file" id="myFile"> -->
+  <%= form_for @image, url: "/uploaded_images/#{@location.id}", html: { multipart: true } do |form| %>
+  <%= form.file_field :image %>
+  <%= form.submit %>
+  <% end %>
+
   <div class="container">
   <h4> Reviews </h4>
     <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
@@ -107,4 +115,8 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCliRHoi2eYcLfew2R6fSNkFRu2W1YE7Hs&callback=initMap"
 async defer>
+</script>
+
+<script>
+
 </script>
