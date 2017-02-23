@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :authenticate_admin!, except: [:show, :map, :new]
-  
+
   def show
     @location = Location.find(params[:id])
     @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
