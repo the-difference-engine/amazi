@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:show, :map]
+  before_action :authenticate_admin!, except: [:show, :map, :new]
   
   def show
     @location = Location.find(params[:id])
