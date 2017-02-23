@@ -10,3 +10,6 @@ UserType.create([{name: "Admin"}, {name: "User"}])
 LocationCategory.create([{name: "Retail"},{name: "Food & Beverage"}])
 LocationSubcategory.create([{name: "Grocery/Supermarket", location_category_id: 1}, {name: "Water", location_category_id: 2}])
 WaterProvider.create([{name: "San Francisco Public Utilities Commission"}, {name: "San Jose Water Company"}, {name: "East Bay Municipal Utility District"}])
+
+# Test Data
+sample_chemical = Chemical.create(name: "Gas")
