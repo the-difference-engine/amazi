@@ -16,7 +16,19 @@ class LocationsController < ApplicationController
   end
 
   def new
-    @location = Location.new
+    @location = Location.create(
+      address: params[:address],
+      city: params[:city],
+      zip: params[:zip],
+      water_type: params[:water_type]
+      )
+    @location.save
+    if @location.save
+        flash[:success] = "Location has been added"
+      else
+        flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
+        render "/location/new"
+    end
   end
 
   def edit
