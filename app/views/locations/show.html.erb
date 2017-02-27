@@ -81,8 +81,8 @@
 
 <!-- <input type="file" id="myFile"> -->
   <%= form_for @image, url: "/uploaded_images/#{@location.id}", html: { multipart: true } do |form| %>
-  <%= form.file_field :image %>
-  <%= form.submit %>
+    <%= form.file_field :image %>
+    <%= form.submit "Upload Image"%>
   <% end %>
 
   <div class="container">

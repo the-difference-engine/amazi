@@ -15,7 +15,7 @@ class Location < ApplicationRecord
   end
 
   def get_google_places_id(names)
-  client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
+    client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
     names.split(" ").each do |name|
       c = client.spots(latitude, longitude, :formatted_address => full_street_address, :radius => 1, :name => name)
       if c

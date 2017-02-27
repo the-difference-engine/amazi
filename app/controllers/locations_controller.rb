@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :authenticate_admin!, except: [:show, :map, :create_image]
-  
+
   def show
     @location = Location.find(params[:id])
     @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
@@ -10,12 +10,6 @@ class LocationsController < ApplicationController
   end
 
   def map
-  end
-
-  def create_image
-    @image = Image.create(image_params)
-    id = params[:id]
-    redirect_to "/locations/#{params[:id]}"
   end
 
   def index
@@ -59,10 +53,6 @@ class LocationsController < ApplicationController
   end
 
   private
-
-  def image_params
-  params.require(:image).permit(:location_id, :image)
-  end
 
   def location_params
     params.require(:location).permit(:address, :city, :state, :zip, :location_subcategory_id, :water_provider_id, :latitude, :longitude)

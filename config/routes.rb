@@ -36,6 +36,6 @@ Rails.application.routes.draw do
   get "/problems", to: "problems#index"
   get "/problems/new", to: "problems#new"
   post "/problems", to: "problems#create"
-  post "/uploaded_images/:id", to: "locations#create_image"
-  
+  post "/uploaded_images/:id", to: "images#create_image"
+
 end
