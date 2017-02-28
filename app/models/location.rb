@@ -3,9 +3,9 @@ class Location < ApplicationRecord
   belongs_to :water_provider
   has_many :saved_locations
   has_many :problems
+  has_many :images
 
   geocoded_by :full_street_address   # can also be an IP address
-  has_many :images
   after_validation :geocode          # auto-fetch coordinates
 
 

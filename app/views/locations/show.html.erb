@@ -80,8 +80,10 @@
   <br>
 
 <!-- <input type="file" id="myFile"> -->
-  <%= form_for @image, url: "/uploaded_images/#{@location.id}", html: { multipart: true } do |form| %>
+  <%= form_for @image, url: "/uploaded_images", html: { multipart: true } do |form| %>
     <%= form.file_field :image %>
+    <%= form.hidden_field :location_id, :value => @location.id %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
     <%= form.submit "Upload Image"%>
   <% end %>
 
