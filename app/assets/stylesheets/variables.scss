@@ -1,4 +1,13 @@
+/**** Media Query Breakpoints ****/
 $sm: 576px;
 $md: 768px;
 $lg: 992px;
-// these are the sass media query breakpoints
+
+/**** Global Font / Color Settings ****/
+
+// Font
+$font-family: 'Roboto', sans-serif;
+// Colors
+$top-bar-color: #1D2033;
+$highlight-color: #2DD39C;
+$top-bar-text-color: white;

@@ -1,27 +1,35 @@
-# README
+# AMAZI README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+Describe the AMAZI App
 
-Things you may want to cover:
+## Setup
+ 1. Clone Amazi App
+ 2. Setup from Terminal
+ ```
+$ bin/bundle install
+$ bin/rails db:setup
+$ bin/rails import:data
+ ```
 
-* Ruby version 2.3.1, Rails version 5.0.0
+3. Create ENV  File ('.../.env') with a GMAPS_API_KEY, GOOGLE_PLACES_API_KEY
+4. See Team Lead for Appropriate Contents of the ENV File.
 
-* System dependencies, Devise, Geocoder, google_places, jbuilder
+# Finding some Data
+SF Lat Long : 37.773972, -122.431297
 
-* Configuration
+## Documentation
+https://www.waterqualitydata.us/webservices_documentation/
 
-* Database creation
-  Need to run rake import:data
+## Example
+https://www.waterqualitydata.us/Station/search?lat=37.7&long=-122.4&within=1&mimeType=xml&characteristicName=Atrazine
 
-* Database initialization
+Contaminant Categories
+https://www.waterqualitydata.us/Codes/Characteristictype?mimeType=xml
 
-* How to run the test suite
+Contaminant Names
+https://www.waterqualitydata.us/Codes/Characteristicname?mimeType=xml
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instruction see
-* ...
+https://www.waterqualitydata.us/Station/search?lat=37.7&long=-122.4&within=1&characteristicName=Bromide&mimeType=xml
 
 
-Need to input a .env file with a GMAPS_API_KEY, GOOGLE_PLACES_API_KEY
