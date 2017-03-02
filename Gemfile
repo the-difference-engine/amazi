@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -41,7 +42,8 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'devise'
 gem 'carrierwave', '~> 1.0'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
-
+gem 'aws-sdk', '~> 2.3'
+gem 'aws-ses', '~> 0.4.3', require: 'aws/ses'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
