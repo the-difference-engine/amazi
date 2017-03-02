@@ -39,4 +39,5 @@ Rails.application.routes.draw do
   post "/problems", to: "problems#create"
 
   get "/slick", to: "home#slick"
+
 end
