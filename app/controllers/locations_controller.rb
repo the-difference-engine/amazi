@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:show, :map, :new]
+  before_action :authenticate_admin!, except: [:show, :map, :create, :new]
 
   def show
     @location = Location.find(params[:id])
@@ -16,19 +16,6 @@ class LocationsController < ApplicationController
   end
 
   def new
-    @location = Location.create(
-      address: params[:address],
-      city: params[:city],
-      zip: params[:zip],
-      water_type: params[:water_type]
-      )
-    @location.save
-    if @location.save
-        flash[:success] = "Location has been added"
-      else
-        flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
-        render "/location/new"
-    end
   end
 
   def edit
@@ -38,9 +25,11 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     if @location.save
+      flash[:success] = "Location has been added"
       redirect_to "/admin"
     else
-
+      flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
+      render "/location/new"
     end
   end
 

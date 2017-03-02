@@ -10,7 +10,7 @@
     </div>
     <div class="modal-body">
     <!-- content goes here -->
-    <%= form_for @location , url: {action: "create"}, method: "post" do |f| %>
+    <%= form_for :location , url: {action: "create"}, method: "post" do |f| %>
       <div class="form-group">
         <%= f.label :address %>
         <%= f.text_field :address %><br>
