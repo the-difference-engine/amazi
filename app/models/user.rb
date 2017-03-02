@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :saved_locations
   belongs_to :user_type
   has_many :problems
+  has_many :images
 
   def admin?
     return user_type.id == 1
