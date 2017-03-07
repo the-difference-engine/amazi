@@ -10,13 +10,13 @@
   <div class="carousel-inner" role="listbox">
     <div class="image-container">
       <div class="item active">
-        <% if @c.instance_variable_get(:@photos).length != 0 %>
+        <% if @allpictures.length != 0 %>
         <%= image_tag(@c.instance_variable_get(:@photos)[0].fetch_url(350), :class => "pic") %>
         <% end %>
       </div>
       <% if @c.instance_variable_get(:@photos).length != 1 %>
         <% @c.instance_variable_get(:@photos).each do |pic| %>
-          <div class="item">
+          <div class="carousel-item">
             <%= image_tag(pic.fetch_url(350), :class => "pic") %>
           </div>
         <% end %>
