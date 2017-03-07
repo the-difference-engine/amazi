@@ -4,6 +4,7 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
+    @images = Image.where(location_id: @location.id)
     # faddress = "#{@location.address}, #{@location.city}, #{@location.state}"
     @c = @client.spot(@location.google_place)
     @image = Image.new

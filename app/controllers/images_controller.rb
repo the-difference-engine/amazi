@@ -5,8 +5,11 @@ class ImagesController < ApplicationController
     if Image.create(image_params)
       redirect_to "/locations/#{params[:location_id]}"
     else
-      redirect_to "/"
+      redirect_to "/locations/#{params[:location_id]}"
     end
+  end
+
+  def index
   end
 
   private

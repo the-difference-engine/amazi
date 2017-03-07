@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     end
   end
 
+
+
   resources :water_providers do
     get "/:id" => 'water_providers/chemical_categories#show'
   end
