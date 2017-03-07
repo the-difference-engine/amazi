@@ -9,6 +9,11 @@ class HomeController < ApplicationController
   end
 
   def carousel
+    @products = AmazonProduct.all
+  end
+
+  def slick
+    @products = AmazonProduct.all
   end
   
 end
