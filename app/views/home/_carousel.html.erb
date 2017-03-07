@@ -14,9 +14,12 @@
   <div class="carousel-inner" role="listbox">
 
   <div class="item active">
+     <center><iframe style="width:120px;height:200px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=amazi000-20&marketplace=amazon&region=US&placement=B00XIIWDAG&asins=<%=@products.first.product_id%>&linkId=2b3e3c06f9f2db6337519be6b1771ba8&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=00ffffff">
+    </iframe></center>
+
   </div>
 
-<%@products.each do |product|%>
+<%@products[1..-1].each do |product|%>
   
     <div class="item">
        <center><iframe style="width:120px;height:200px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=amazi000-20&marketplace=amazon&region=US&placement=B00XIIWDAG&asins=<%=product.product_id%>&linkId=2b3e3c06f9f2db6337519be6b1771ba8&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=00ffffff">
@@ -36,26 +39,3 @@
   </a>
 </div>
 
-
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-<!-- <script type="text/javascript">
-amzn_assoc_placement = "adunit0";
-amzn_assoc_search_bar = "true";
-amzn_assoc_tracking_id = "amazi000-20";
-amzn_assoc_ad_mode = "manual";
-amzn_assoc_ad_type = "smart";
-amzn_assoc_marketplace = "amazon";
-amzn_assoc_region = "US";
-amzn_assoc_title = "Recommended for Your Health";
-amzn_assoc_linkid = "2b3e3c06f9f2db6337519be6b1771ba8";
-amzn_assoc_asins = "B00XIIWDAG,B01C6HAVVM,B01G7SQ8GS,B00LA97I8M,B005HN1YY6,B001K72L9K,B0050TQ0OG,B011O11TSU,B011O11RR8,B004987QTC,B01HC79R8E,B00FUANGVA,B00H90PFOK,B01M3S7O5I,B00GYAWAI0,B00B2PNL0S,B005P0FZFK,B008NIHDYM,B006OJHJZK,B00BWIX1EQ";
-</script>
-<script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script> -->
-=======
-
-
->>>>>>> f1e7a34bc370151dab8cc662433ed84143ee8a01
->>>>>>> refs/remotes/origin/carousel
