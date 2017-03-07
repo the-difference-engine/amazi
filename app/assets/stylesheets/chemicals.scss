@@ -1,3 +1,68 @@
 // Place all the styles related to the chemicals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div {
+  font-family: $font-family;
+  font-size: 1.05em;
+
+  #cntm-topbar {
+    background-color: $top-bar-color;
+    color: $top-bar-text-color;
+    padding: 0;
+    margin: 0;
+
+    #cntm-topbar-nav {
+      font-size: 5em;
+      height: 1.25em;
+      margin: 0.05em;
+      padding: 0.25em;
+      #cntm-topbar-back {
+        float: left;
+      }
+      #cntm-topbar-menu {
+        float: right;
+      }
+    }
+
+    #cntm-topbar-header {
+      padding: 0.5em;
+      margin: 0.5em;
+      .title {
+        font-size: 4.5em;
+        color: $highlight-color;
+      }
+      .description {
+        font-size: 3em;
+      }
+    }
+  }
+
+  .panel-group {
+    padding: 1.5em;
+    margin: 1.5em;
+
+    .panel-title {
+      color: gray;
+      font-size: 1.75em;
+      a:hover, a:focus {
+        text-decoration: none;
+      }
+    }
+
+    .panel-title.selected {
+      color: black;
+    }
+
+    .panel-body {
+      font-size: 1.5em;
+    }
+
+    .panel-chevron {
+      float: right;
+    }
+  }
+
+}
+
+
