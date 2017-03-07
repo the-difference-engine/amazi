@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     end
   end
 
+
+
   resources :water_providers do
     get "/:id" => 'water_providers/chemical_categories#show'
   end
@@ -36,5 +38,6 @@ Rails.application.routes.draw do
   get "/problems", to: "problems#index"
   get "/problems/new", to: "problems#new"
   post "/problems", to: "problems#create"
-  
+  post "/uploaded_images", to: "images#create_image"
+
 end
