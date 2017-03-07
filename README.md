@@ -10,10 +10,12 @@ Describe the AMAZI App
 $ bin/bundle install
 $ bin/rails db:setup
 $ bin/rails import:data
+$ brew install imagemagick
  ```
 
 3. Create ENV  File ('.../.env') with a GMAPS_API_KEY, GOOGLE_PLACES_API_KEY
-4. See Team Lead for Appropriate Contents of the ENV File.
+4. Also in the ENV FILE you will need to add AWS_REGION, AWS_ACCESS_KEY_ID, S3_BUCKET_NAME, AWS_SECRET_ACCESS_KEY
+5. See Team Lead for Appropriate Contents of the ENV File.
 
 # Finding some Data
 SF Lat Long : 37.773972, -122.431297
