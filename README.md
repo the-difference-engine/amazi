@@ -10,7 +10,7 @@ Describe the AMAZI App
 $ bin/bundle install
 $ bin/rails db:setup
 $ bin/rails import:data
-$ brew install homebrew
+$ brew install imagemagick
  ```
 
 3. Create ENV  File ('.../.env') with a GMAPS_API_KEY, GOOGLE_PLACES_API_KEY
