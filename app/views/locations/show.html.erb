@@ -115,18 +115,9 @@
   <% end %>
 
 
-<% @c.instance_variable_get(:@photos).each do |pic| %>
-      <%= image_tag(pic.fetch_url(350))%>
-        <% end %>
-
-
-<% @images.each do |image| %>
-  <% a = image.image.url %>
-  <% a.slice! "thetravelapp/" %>
-  <% a.slice! "//" %>
-  <%= image_tag "http://thetravelapp." + a %>
-  <br>
-<% end %>
+<% @allpictures.each do |image| %>
+  <%= image_tag image %>
+  <% end %>
 
 
   <h4> Reviews </h4>
