@@ -1,11 +1,12 @@
 class LocationsController < ApplicationController
   before_action :authenticate_admin!, except: [:show, :map]
-  
+
   def show
     @location = Location.find(params[:id])
     @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
     # faddress = "#{@location.address}, #{@location.city}, #{@location.state}"
     @c = @client.spot(@location.google_place)
+    binding.pry
   end
 
   def map

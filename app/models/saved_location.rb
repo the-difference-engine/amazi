@@ -7,4 +7,5 @@ class SavedLocation < ApplicationRecord
     return true if location > 0;
     return false
   end
+
 end
