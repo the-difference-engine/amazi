@@ -2,13 +2,6 @@
 
 
 <div id="myCarousel" class="carousel slide fixed-section-carousel" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-    <li data-target="#myCarousel" data-slide-to="3"></li>
-  </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
@@ -20,13 +13,15 @@
   </div>
 
 <%@products[1..-1].each do |product|%>
-  
+
     <div class="item">
        <center><iframe style="width:120px;height:200px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=amazi000-20&marketplace=amazon&region=US&placement=B00XIIWDAG&asins=<%=product.product_id%>&linkId=2b3e3c06f9f2db6337519be6b1771ba8&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=00ffffff">
     </iframe></center>
     </div> 
 
 <%end%>
+
+
 
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -38,4 +33,3 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
