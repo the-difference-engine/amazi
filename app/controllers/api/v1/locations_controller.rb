@@ -36,7 +36,6 @@ class Api::V1::LocationsController < ApplicationController
 
   def destroy
     @location = Location.find(params[:id])
-
     if @location.destroy
       render json: "Location Destroyed"
     else

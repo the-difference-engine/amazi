@@ -13,7 +13,7 @@ class Api::V1::SavedLocationsController < ApplicationController
   def destroy
 
     delete_saved_location = SavedLocation.find(params[:id])
-    
+
     if delete_saved_location.destroy
       respond_to do |format|
         format.json { render :json => {:message => "Saved location deleted"} }
@@ -24,7 +24,6 @@ class Api::V1::SavedLocationsController < ApplicationController
       end
     end
 
-    # redirect_to "/locations/#{params[:location_id]}"
  end
 
 end
