@@ -1,42 +1,10 @@
 <div class="container-show ">
 
-<% if current_user %>
-  <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
-<% end %>
+  <% if current_user %>
+    <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
+  <% end %>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="image-container">
-      <div class="item active">
-        <% if @allpictures.length != 0 %>
-        <%= image_tag(@c.instance_variable_get(:@photos)[0].fetch_url(350), :class => "pic") %>
-        <% end %>
-      </div>
-      <% if @c.instance_variable_get(:@photos).length != 1 %>
-        <% @c.instance_variable_get(:@photos).each do |pic| %>
-          <div class="carousel-item">
-            <%= image_tag(pic.fetch_url(350), :class => "pic") %>
-          </div>
-        <% end %>
-    </div>
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-      <% end %>
-</div>
-
-
-
+  <%= render partial: "carousel" %>
 
   <div class="loc-header-buttons-container">
     <div class ="locheader">
@@ -113,12 +81,6 @@
       <%= form.submit "Upload Image"%>
     <% end %>
   <% end %>
-
-
-<% @allpictures.each do |image| %>
-  <%= image_tag image %>
-  <% end %>
-
 
   <h4> Reviews </h4>
     <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
