@@ -14,10 +14,7 @@ class LocationsController < ApplicationController
     @allpictures << (pic.fetch_url(350)) 
     end 
     @images.each do |image| 
-    a = image.image.url
-    a.slice! "thetravelapp/" 
-    a.slice! "//" 
-    @allpictures << ("http://thetravelapp." + a) 
+      @allpictures << image.image.url 
     end 
 
   end
