@@ -1,0 +1,8 @@
+<div class="container">
+
+<%= form_for '/amazon_products', method: :post do%>
+  <%= label_tag :product_id, "Amazon ASIN:"%>
+  <%= text_field_tag :product_id %>
+  <%= submit_tag "Save"%> 
+<%end%>
+</div>
