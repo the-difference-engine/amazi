@@ -1,6 +1,6 @@
 <div id='cntm-topbar'>
   <div id='cntm-topbar-nav'>
-    <span id='cntm-topbar-back' class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+    <span id='cntm-topbar-back' class="glyphicon glyphicon-menu-left" aria-hidden="true" onclick="window.history.back()" /></span>
     <span id='cntm-topbar-menu' class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
   </div>
   <div id='cntm-topbar-header'>
@@ -51,6 +51,7 @@
     $("#sidebar-wrapper").hide();
     console.log("tried to hide sidebar-wrapper")
     $("#hamburger-menu-button").hide();
+    $('#cntm-dropup-menu').hide();
     console.log("tried to hide hamburger-menu-button");
     $("#page-content-wrapper").css("padding-top","0px");
   });
@@ -65,4 +66,12 @@
       $(this).parent().find(".panel-title").removeClass("selected");
     }
   );
+
+  // Drop Up Functions
+  $('#cntm-topbar-menu').click(function() {
+    $('#cntm-dropup-menu').slideToggle({
+      direction: "up"
+    }, 300);
+    // $(this).toggleClass('drop-upClose');
+  }); // end click
 </script>

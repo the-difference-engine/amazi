@@ -26,7 +26,7 @@ class LocationsController < ApplicationController
     @location = Location.new(location_params)
     if @location.save
       flash[:success] = "Location has been added"
-      redirect_to "/admin"
+      redirect_to "/"
     else
       flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
       render "/location/new"

@@ -178,6 +178,11 @@ html { height: 100%;}
   text-align:center;
 }
 
+#addLocationButton a {
+  color: white;
+  text-decoration: none;
+}
+
 @media (min-width: $sm) {
   .sidebar-nav li {
     font-size: 35px;
