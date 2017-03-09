@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   devise_for :users
 	get '/admin', to:'home#admin'
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
       resources :problems
     end
   end
+
+
 
   resources :water_providers do
     get "/:id" => 'water_providers/chemical_categories#show'
@@ -38,4 +41,5 @@ Rails.application.routes.draw do
   post "/problems", to: "problems#create"
 
   get "/slick", to: "home#slick"
+  post "/uploaded_images", to: "images#create_image"
 end
