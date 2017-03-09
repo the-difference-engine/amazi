@@ -7,4 +7,13 @@ class HomeController < ApplicationController
   def admin
 
   end
+
+  def carousel
+    @products = AmazonProduct.all
+  end
+
+  def slick
+    @products = AmazonProduct.all
+  end
+  
 end
