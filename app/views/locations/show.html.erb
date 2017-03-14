@@ -107,13 +107,20 @@
 
   <% if current_user %>
     <%= form_for @image, url: "/uploaded_images", html: { multipart: true } do |form| %>
-      <%= form.file_field :image %>
+      <%= form.file_field :image, class: "js-image-upload"  %>
       <%= form.hidden_field :location_id, :value => @location.id %>
       <%= form.hidden_field :user_id, :value => current_user.id %>
-      <%= form.submit "Upload Image"%>
     <% end %>
   <% end %>
 
+<script>
+  $(document).ready(function() {
+    $(".js-image-upload").change(function() {
+      $(this).closest('form').submit();
+    });
+  });
+
+</script>
 
 <% @allpictures.each do |image| %>
   <%= image_tag image %>
