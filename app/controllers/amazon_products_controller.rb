@@ -5,7 +5,6 @@ class AmazonProductsController < ApplicationController
   end
 
   def new
-    @products = AmazonProduct.all
   end
 
   def create 
