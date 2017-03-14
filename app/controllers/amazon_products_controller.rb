@@ -5,13 +5,17 @@ class AmazonProductsController < ApplicationController
   end
 
   def new
+    @products = AmazonProduct.new(product_id: params[:product_id])
+    if @products.save
+      flash[:success] = "Item has been added"
+    end
   end
 
   def create
     @products = AmazonProduct.create(product_id: params[:product_id])
-    if @product.save
+    if @products.save
       flash[:success] = "Item has been added"
-      redirect_to "/Amazon_products"
+
     end
   end
 
