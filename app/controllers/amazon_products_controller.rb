@@ -8,14 +8,12 @@ class AmazonProductsController < ApplicationController
     @products = AmazonProduct.new(product_id: params[:product_id])
     if @products.save
       flash[:success] = "Item has been added"
-    end
   end
 
   def create
     @products = AmazonProduct.create(product_id: params[:product_id])
     if @products.save
       flash[:success] = "Item has been added"
-
     end
   end
 
