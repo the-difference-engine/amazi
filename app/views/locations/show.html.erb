@@ -57,9 +57,25 @@
 
 
     <div class= "centered">
-      <button class="btn btn-default topbuttons"> Save </button><button class="btn btn-default topbuttons"> Add Photo </button><button class="btn btn-default topbuttons"> Share </button>
+      <button class="btn btn-default topbuttons"> Save </button><button class="btn btn-default topbuttons"> Add Photo </button><button class="btn btn-default topbuttons" onclick="shareButton()"> Share </button>
+      <div class="jumbotron" id="share-jumbo" style="display:none">
+        <p>Link: <%= request.host + "/locations/#{@location.id}" %></p>
+        <button class="btn btn-default" onclick="shareButton()">Close</button>
+      </div>
     </div>
   </div>
+
+  <script>
+    function shareButton() {
+      var share = document.getElementById("share-jumbo");
+      if (share.style.display === 'none') {
+        share.style.display = '';
+      } else {
+        share.style.display = "none";
+      }
+    };
+  </script>
+
   <!-- Map Section -->
   <div class="container-fluid content-sm">
     <div class="row">
