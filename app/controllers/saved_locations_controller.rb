@@ -6,6 +6,7 @@ class SavedLocationsController < ApplicationController
 
   def show
     @saved_location = SavedLocation.find(params[:id])
+    binging.pry
   end
 
   def new

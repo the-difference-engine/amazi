@@ -6,7 +6,7 @@ body {
 }
 
 h1, h3 {
-  line-height: 10px; 
+  line-height: 10px;
 }
 
 #map {
@@ -56,16 +56,103 @@ h1, h3 {
 	box-shadow: inset 0 0 1px black, 0 0 1px black;
 }
 
-.topbuttons {
+.topbutton-add {
+	// margin-top: 7px;
+	text-align: center;
+	font-size: 12px;
+	background-color: #ffffff;
+	width: 40%;
+	height: 50px;
+	border-left: solid 2px black;
+	border-right: solid 2px black;
+	display: -ms-flexbox;
+	display: flex;
+  justify-content: center;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+}
+
+.topbutton-share {
+	// margin-top: 7px;
+	text-align: center;
+	font-size: 12px;
+	// padding-left: 10%;
+	// padding-right: 10%;
+	background-color: #ffffff;
+	width: 30%;
+	height: 50px;
+	display: -ms-flexbox;
+	display: flex;
+  justify-content: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+}
+
+.js-favorite-btn {
+	// margin-top: 7px;
+	text-align: center;
+	font-size: 12px;
+	background-color: #ffffff;
+	width: 30%;
+	height: 50px;
+	display: -ms-flexbox;
+	display: flex;
+  justify-content: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+}
+
+.btn-container {
+  display: flex;
+	flex-direction: row;
+	justify-content: center;
 	margin-top: 7px;
 	text-align: center;
 	background-color: #ffffff;
-	width: 100px;
+	width: 90%;
 	height: 50px;
+	font-size: 12px;
 }
 
-.centered {
+.btn-container-outer {
+  display: flex;
+	flex-direction: row;
+	justify-content: center;
 	text-align: center;
+	background-color: transparent;
+	width: 100%;
+}
+.spacing{
+  padding-left: 4%;
+}
+
+.btn-item {
+  display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.btn-item-icon {
+  display: flex;
+	flex-direction: row;
+	justify-content: center;
+	display: -ms-flexbox;
+	display: flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
 }
 
 .layer {
@@ -87,15 +174,15 @@ h1, h3 {
 }
 
 .pic {
-	min-height: 100%;  
-  min-width: 100%; 
+	min-height: 100%;
+  min-width: 100%;
   width: auto;
   height: auto;
-  position: absolute;  
-  top: 0;  
-  bottom: 0;  
-  left: 0;  
-  right: 0;  
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   margin: auto;
 }
 
@@ -137,4 +224,3 @@ h1, h3 {
 // 		top: 500px;
 // 	}
 // }
-
