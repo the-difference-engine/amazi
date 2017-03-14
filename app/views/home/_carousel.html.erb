@@ -1,0 +1,36 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+
+<div id="myCarousel" class="carousel slide fixed-section-carousel" data-ride="carousel">
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+
+  <div class="item active">
+     <center><iframe style="width:120px;height:200px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=amazi000-20&marketplace=amazon&region=US&placement=B00XIIWDAG&asins=<%=@products.first.product_id%>&linkId=2b3e3c06f9f2db6337519be6b1771ba8&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0">
+     <center><iframe style="width:120px;height:200px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=amazi000-20&marketplace=amazon&region=US&placement=B00XIIWDAG&asins=<%=@products.first.product_id%>&linkId=2b3e3c06f9f2db6337519be6b1771ba8&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=00ffffff">
+    </iframe></center>
+
+  </div>
+
+<%@products[1..-1].each do |product|%>
+
+    <div class="item">
+       <center><iframe style="width:120px;height:200px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=amazi000-20&marketplace=amazon&region=US&placement=B00XIIWDAG&asins=<%=product.product_id%>&linkId=2b3e3c06f9f2db6337519be6b1771ba8&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=00ffffff">
+    </iframe></center>
+    </div>
+
+<%end%>
+
+
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
