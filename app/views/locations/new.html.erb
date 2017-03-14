@@ -22,8 +22,10 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :water_type %>
-      <%= f.select :water_type, ['Filtered', 'Tap', 'Natural Sources'], :include_blank => true %>
+    Water Type: <br>
+     tap <%= f.check_box :tap %>
+     fountain <%= f.check_box :fountain %>
+     eco <%= f.check_box :eco %>
     </div>
 
     <div class="form-group">

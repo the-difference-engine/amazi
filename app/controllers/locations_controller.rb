@@ -30,6 +30,8 @@ class LocationsController < ApplicationController
   end
 
   def new
+    @water_type = water_type.new
+    
   end
 
   def edit
