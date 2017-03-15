@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307024525) do
+ActiveRecord::Schema.define(version: 20170314021322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +166,12 @@ ActiveRecord::Schema.define(version: 20170307024525) do
     t.integer  "unit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "water_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
