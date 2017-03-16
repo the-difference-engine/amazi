@@ -1,13 +1,6 @@
 (function() {
   "use strict";
 
-  angular.module("app", ['uiGmapgoogle-maps'])
-  .config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApi) {
-    uiGmapGoogleMapApi.configure({
-        key: "<%= ENV['GMAPS_API_KEY'] %>",
-        // v: '3.20', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization'
-    });
-	}]);
+  angular.module("app", [])
 
 }());

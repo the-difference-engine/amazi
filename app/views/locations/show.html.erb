@@ -4,39 +4,9 @@
   <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
 <% end %>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<br>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="image-container">
-      <div class="item active">
-        <% if @c.instance_variable_get(:@photos).length != 0 %>
-        <%= image_tag(@c.instance_variable_get(:@photos)[0].fetch_url(350), :class => "pic") %>
-        <% end %>
-      </div>
-      <% if @c.instance_variable_get(:@photos).length != 1 %>
-        <% @c.instance_variable_get(:@photos).each do |pic| %>
-          <div class="item">
-            <%= image_tag(pic.fetch_url(350), :class => "pic") %>
-          </div>
-        <% end %>
-    </div>
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-      <% end %>
-</div>
-
-
-
+  <%= render partial: "carousel" %>
 
   <div class="loc-header-buttons-container">
     <div class ="locheader">
@@ -55,11 +25,63 @@
     </div>
 
 
-
-    <div class= "centered">
-      <button class="btn btn-default topbuttons"> Save </button><button class="btn btn-default topbuttons"> Add Photo </button><button class="btn btn-default topbuttons"> Share </button>
+   <div class= "btn-container-outer">
+    <div class= "btn-container">
+      <div class="js-favorite-btn"> <div class="btn-item-icon topbutton-save" data-favoriteId="<%= @favorite_id %>"> <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> <div class="spacing"> SAVE</div></div></div>
+      <div class="topbutton-add"> <div> <i class="material-icons">wallpaper</i> </div> <div class="spacing"> ADD PHOTO </div> </div>
+      <div class="topbutton-share"> <div> <i class="material-icons">group_add</i> </div> <div class="spacing"> SHARE </div> </div>
     </div>
   </div>
+</div>
+
+  <!-- add favorite button -->
+  <!-- <div>
+    <button type="submit" class="btn-style js-favorite-btn my-btn-1 btn btn-primary" data-favoriteId="<%= @favorite_id %>">Save <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </button>
+  </div> -->
+
+    <script>
+      $(document).ready(function() {
+        var favorite = "<%=@favorite_id %>"
+
+        if(favorite) {
+          $(".js-border-heart").hide();
+        } else {
+          $(".js-filled-heart").hide();
+        }
+
+        $(".js-favorite-btn").click(function() {
+          if($(".js-border-heart").is(":visible")) {
+            $.ajax({
+             url: "<%= api_v1_saved_locations_path %>",
+             method: 'POST',
+             data: {
+               location_id: "<%= @location.id %>",
+               user_id: "<%= current_user.id %>",
+             },
+             success: function( result ) {
+                $(".js-favorite-btn").data("favoriteId", result.id);
+                $(".js-border-heart").hide();
+                $(".js-filled-heart").show();
+             }
+            });
+          } else {
+            var favId = $(".js-favorite-btn").data("favoriteId");
+            $.ajax({
+             url: "/api/v1/saved_locations/" + favId,
+             method: 'DELETE',
+             success: function( result ) {
+                $(".js-favorite-btn").data("favoriteId", "");
+                $(".js-filled-heart").hide();
+                $(".js-border-heart").show();
+             }
+            });
+          }
+        });
+
+
+      })
+    </script>
+
   <!-- Map Section -->
   <div class="container-fluid content-sm">
     <div class="row">
@@ -103,6 +125,9 @@
       </div>
     </div>
   </div>
+
+</div>
+
   <br>
 
   <% if current_user %>
@@ -113,12 +138,6 @@
       <%= form.submit "Upload Image"%>
     <% end %>
   <% end %>
-
-
-<% @allpictures.each do |image| %>
-  <%= image_tag image %>
-  <% end %>
-
 
   <h4> Reviews </h4>
     <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
