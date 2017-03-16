@@ -27,12 +27,31 @@
 
    <div class= "btn-container-outer">
     <div class= "btn-container">
-      <div class="js-favorite-btn"> <div class="btn-item-icon topbutton-save" data-favoriteId="<%= @favorite_id %>"> <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> <div class="spacing"> SAVE</div></div></div>
-      <div class="topbutton-add"> <div> <i class="material-icons">wallpaper</i> </div> <div class="spacing"> ADD PHOTO </div> </div>
-      <div class="topbutton-share"> <div> <i class="material-icons">group_add</i> </div> <div class="spacing"> SHARE </div> </div>
+      <div class="js-favorite-btn"> 
+        <div class="btn-item-icon topbutton-save" data-favoriteId="<%= @favorite_id %>"> 
+          <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> 
+          <div class="spacing"> SAVE </div>
+        </div>
+      </div>
+      <div class="topbutton-add addimage"> 
+        <div> <i class="material-icons">wallpaper</i> </div> 
+        <div class="spacing"> ADD PHOTO </div> 
+      </div>
+      <div class="topbutton-share"> 
+        <div> <i class="material-icons">group_add</i> </div> 
+        <div class="spacing"> SHARE </div> 
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $(".addimage").on("click", function() {
+      $(".js-image-upload").click();
+    });
+  });
+</script>
 
   <!-- add favorite button -->
   <!-- <div>
@@ -132,12 +151,22 @@
 
   <% if current_user %>
     <%= form_for @image, url: "/uploaded_images", html: { multipart: true } do |form| %>
-      <%= form.file_field :image %>
+      <%= form.file_field :image, class: "js-image-upload", style: "display:none;"  %>
       <%= form.hidden_field :location_id, :value => @location.id %>
       <%= form.hidden_field :user_id, :value => current_user.id %>
-      <%= form.submit "Upload Image"%>
     <% end %>
   <% end %>
+
+
+<script>
+  $(document).ready(function() {
+    $(".js-image-upload").change(function() {
+      $(this).closest('form').submit();
+    });
+  });
+
+</script>
+
 
   <h4> Reviews </h4>
     <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>

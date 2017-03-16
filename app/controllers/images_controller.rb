@@ -3,9 +3,9 @@ class ImagesController < ApplicationController
   def create_image
     @image = Image.new
     if Image.create(image_params)
-      redirect_to "/locations/#{params[:location_id]}"
+      redirect_to "/locations/#{params[:image][:location_id]}"
     else
-      redirect_to "/locations/#{params[:location_id]}"
+      redirect_to "/locations/#{params[:image][:location_id]}"
     end
   end
 
