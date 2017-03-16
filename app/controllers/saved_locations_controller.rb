@@ -1,12 +1,12 @@
 class SavedLocationsController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, :only => :index
   def index
     @saved_locations = SavedLocation.all
   end
 
   def show
     @saved_location = SavedLocation.find(params[:id])
-    binging.pry
+
   end
 
   def new

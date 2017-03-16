@@ -81,35 +81,37 @@
           $(".js-filled-heart").hide();
         }
 
-        $(".js-favorite-btn").click(function() {
-          if($(".js-border-heart").is(":visible")) {
-            $.ajax({
-             url: "<%= api_v1_saved_locations_path %>",
-             method: 'POST',
-             data: {
-               location_id: "<%= @location.id %>",
-               user_id: "<%= current_user.id %>",
-             },
-             success: function( result ) {
-                $(".js-favorite-btn").data("favoriteId", result.id);
-                $(".js-border-heart").hide();
-                $(".js-filled-heart").show();
-             }
-            });
-          } else {
-            var favId = $(".js-favorite-btn").data("favoriteId");
-            $.ajax({
-             url: "/api/v1/saved_locations/" + favId,
-             method: 'DELETE',
-             success: function( result ) {
-                $(".js-favorite-btn").data("favoriteId", "");
-                $(".js-filled-heart").hide();
-                $(".js-border-heart").show();
-             }
-            });
-          }
-        });
+        <% if current_user %>
 
+          $(".js-favorite-btn").click(function() {
+            if($(".js-border-heart").is(":visible")) {
+              $.ajax({
+               url: "<%= api_v1_saved_locations_path %>",
+               method: 'POST',
+               data: {
+                 location_id: "<%= @location.id %>",
+                 user_id: "<%= current_user.id %>",
+               },
+               success: function( result ) {
+                  $(".js-favorite-btn").data("favoriteId", result.id);
+                  $(".js-border-heart").hide();
+                  $(".js-filled-heart").show();
+               }
+              });
+            } else {
+              var favId = $(".js-favorite-btn").data("favoriteId");
+              $.ajax({
+               url: "/api/v1/saved_locations/" + favId,
+               method: 'DELETE',
+               success: function( result ) {
+                  $(".js-favorite-btn").data("favoriteId", "");
+                  $(".js-filled-heart").hide();
+                  $(".js-border-heart").show();
+               }
+              });
+            }
+          });
+        <% end %>
 
       })
     </script>
