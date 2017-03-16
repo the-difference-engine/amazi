@@ -175,39 +175,39 @@ h1, h3 {
     height: 100%;
 }
 
-
-
 .image-container {
 	position: relative;
 	height: 300px;
   overflow: hidden;
+}
 
+.carousel-button {
+  z-index: -1;
+}
+
+.carousel-front {
+  z-index: 1;
+  opacity: 0;
 }
 
 .pic {
-	min-height: 100%;
-  min-width: 100%;
   width: auto;
-  height: auto;
-  position: absolute;
+  max-height: 200px;
   top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
 }
 
 .loc-header-buttons-container {
 	position: absolute;
 	width: 100%;
 	top: 200px;
+  z-index: 0;
 }
 
 @media (min-width: $sm) {
 	.image-container {
 		width: auto;
 		height: 200px;
-  	overflow: hidden;
+    overflow: hidden;
 	}
 	.loc-header-buttons-container {
 		top: 100px;
