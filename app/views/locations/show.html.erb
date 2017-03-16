@@ -32,10 +32,12 @@
       <div class="topbutton-share" onclick="shareButton()"> <div> <i class="material-icons">group_add</i> </div> <div class="spacing"> SHARE </div> </div>
     </div>
   </div>
-  <div class="jumbotron" id="share-jumbo" style="display:none">
-    <p>Link: <%= request.host + "/locations/#{@location.id}" %></p>
-    <button class="btn btn-default" onclick="shareButton()">Close</button>
-  </div>
+  <div class= "jumbo-wrapper">
+    <div class="jumbotron" id="share-jumbo" style="display:none">
+      <p>LINK: <%= request.host + "/locations/#{@location.id}" %></p>
+      <button class="btn btn-default" onclick="shareButton()">Close</button>
+    </div>
+  <div>
 
   <!-- add favorite button -->
   <!-- <div>
