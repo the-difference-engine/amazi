@@ -1,84 +1,54 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller("mapCtrl", function($scope, uiGmapGoogleMapApi, $http, $q) {
-  	window.$scope = $scope;
+  angular.module("app").controller("mapCtrl", function($scope, $http) {
 
-    $scope.map = {
-      center: {
-        latitude: 37.7877,
-        longitude: -122.4048
-      },
-      zoom: 16,
-      bounds: {}
+    $scope.setUp = function() {
+      initMap();
     };
 
-    $scope.options = {
-      scrollwheel: false
+    function initMap() {
+      $scope.map = new google.maps.Map(document.getElementById('mapView'), {
+        center: {lat: 37.7877, lng: -122.4048},
+        zoom: 16
+      });
+      google.maps.event.addListener($scope.map, 'bounds_changed', function() {
+        $scope.bounds = $scope.map.getBounds();
+        getLocations($scope.bounds);
+      });
+    };
+    function getLocations(bounds) {
+      var swLat  = bounds.getSouthWest().lat();
+      var swLong = bounds.getSouthWest().lng();
+      var neLat  = bounds.getNorthEast().lat();
+      var neLong = bounds.getNorthEast().lng();
+      $http.get('/api/v1/locations.json/?swLat=' + swLat + '&swLong=' + swLong + '&neLat=' + neLat + '&neLong=' + neLong).then(function(response) {
+        $scope.locations = response.data;
+        createMarkers($scope.locations);
+      });
     };
 
-    $scope.locations = [];
-    var getLocations = function(bounds) {
-    	var swLat  = bounds.southwest.latitude;
-    	var swLong = bounds.southwest.longitude;
-    	var neLat  = bounds.northeast.latitude;
-    	var neLong = bounds.northeast.longitude;
-    	$http.get('/api/v1/locations.json/?swLat=' + swLat + '&swLong=' + swLong + '&neLat=' + neLat + '&neLong=' + neLong).then(function(response) {
-    		
-    		$scope.locations = response.data;
+    function createMarkers(locations) {
+      var infowindow = new google.maps.InfoWindow();
+      google.maps.event.addListener($scope.map, "click", function(event) {
+        infowindow.close();
+      });
+      locations.forEach(function(location) {
+        var marker = new google.maps.Marker({
+          position: {lat: location.latitude, lng: location.longitude},
+          map: $scope.map,
+          title: location.address
+        });
+        marker.addListener('click', function() {
+        var content = "<a href=/locations/" + location.id +'>' + location.address + "</a>";
+        infowindow.setContent(content);
+        infowindow.open($scope.map, marker);
 
-				angular.forEach($scope.locations, function(obj){
-				  //Using bracket notation
-				  // obj["show"] = false;
-				});
-
-    		console.log($scope.locations);
-    	});
-    }
-    $scope.windowOptions = {
-    	show: false,
-    	pixelOffset: {width: 0, height: -40},
-    	title: "",
-    	id: null
+        });
+      });
     };
-
-
-		$scope.selectMarker = function(marker) {
-		  var deferred = $q.defer();
-		  deferred.resolve('res');
-
-		  $scope.selectedMarker = marker;
-
-		  // We return a promise
-		  return deferred.promise;
-		}
-
-    $scope.onClick = function(marker, eventName, model) {
-			$scope.selectMarker(marker).then(function(res) {
-			   // Success callback
-					$scope.windowOptions.title = model["address"];
-					$scope.windowOptions.id = model["id"];
-					$scope.windowOptions.show = true;
-			},null);
-				// angular.forEach($scope.locations, function(obj){
-				//    //Using bracket notation
-				//    // obj["show"] = false;
-				// });
- 				// $scope.windowLink = '<a href="/locations/' + model["id"] + '">' + model["address"] + '</a>';
-        // model.show = !model.show;
-    };
-
-    // Get the bounds from the map once it's loaded
-    $scope.$watch(function() {
-      return $scope.map.bounds;
-    }, function(nv, ov) {
-      // Only need to regenerate once
-      if (nv.southwest) {
-      	getLocations($scope.map.bounds);
-      	$scope.windowOptions.show = false;
-      }
-    }, true);
 
 
   });
-}());
+})();
+
