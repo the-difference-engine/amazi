@@ -9,10 +9,10 @@ class AmazonProductsController < ApplicationController
 
   def create
     @products = AmazonProduct.create(product_id: params[:product_id])
-    if @products.save
+    if @product.save
       flash[:success] = "Item has been added"
+      redirect_to "/Amazon_products"
     end
-    redirect_to "/amazon_products/"
   end
 
   def destroy
