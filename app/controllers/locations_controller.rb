@@ -7,13 +7,12 @@ class LocationsController < ApplicationController
     @images = Image.where(location_id: @location.id)
     # faddress = "#{@location.address}, #{@location.city}, #{@location.state}"
     @c = @client.spot(@location.google_place)
-
     @image = Image.new
 
     @allpictures = []
 
     @c.instance_variable_get(:@photos).each do |pic|
-    @allpictures << (pic.fetch_url(350))
+      @allpictures << (pic.fetch_url(350))
     end
     @images.each do |image|
       @allpictures << image.image.url
