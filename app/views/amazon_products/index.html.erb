@@ -1,11 +1,11 @@
 
-<div class="container" style="padding-bottom: 20px; padding-top: 20px;"><center><%= link_to "Add Products", "/amazon_products/new", class: "btn btn-success btn-lg"%></center></div>
-<div class="row">
+<%= button_to "Add", "/amazon_products/new"%>
+
 <% @products.each do |product|%>
-  <div class="col-sm-2">
+
    <iframe style="width:120px;height:200px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=amazi000-20&marketplace=amazon&region=US&placement=B00XIIWDAG&asins=<%=product.product_id%>&linkId=2b3e3c06f9f2db6337519be6b1771ba8&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=00ffffff">
   </iframe>
-  <%= button_to "delete", {:controller => :amazon_products, :action => 'destroy', :id => product.id}, :method => :delete, class: "btn btn-danger" %>
-  </div>
+
+  <%= button_to "delete", {:controller => :amazon_products, :action => 'destroy', :id => product.id}, :method => :delete %>
+
 <%end%>
-</div>
