@@ -4,6 +4,8 @@
   <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
 <% end %>
 
+<br>
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
   <!-- Wrapper for slides -->
@@ -54,27 +56,75 @@
       <% end %>
     </div>
 
-
-
-    <div class= "centered">
-      <button class="btn btn-default topbuttons"> Save </button><button class="btn btn-default topbuttons"> Add Photo </button><button class="btn btn-default topbuttons" onclick="shareButton()"> Share </button>
-      <div class="jumbotron" id="share-jumbo" style="display:none">
-        <p>Link: <%= request.host + "/locations/#{@location.id}" %></p>
-        <button class="btn btn-default" onclick="shareButton()">Close</button>
+    <div class= "btn-container-outer">
+      <div class= "btn-container">
+        <div class="js-favorite-btn"> <div class="btn-item-icon topbutton-save" data-favoriteId="<%= @favorite_id %>"> <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> <div class="spacing"> SAVE</div></div></div>
+        <div class="topbutton-add"> <div> <i class="material-icons">wallpaper</i> </div> <div class="spacing"> ADD PHOTO </div> </div>
+        <div class="topbutton-share" onclick="shareButton()"> <div> <i class="material-icons">group_add</i> </div> <div class="spacing"> SHARE </div> </div>
       </div>
+    </div>
+    <div class="jumbotron" id="share-jumbo" style="display:none">
+      <p>Link: <%= request.host + "/locations/#{@location.id}" %></p>
+      <button class="btn btn-default" onclick="shareButton()">Close</button>
     </div>
   </div>
 
-  <script>
-    function shareButton() {
-      var share = document.getElementById("share-jumbo");
-      if (share.style.display === 'none') {
-        share.style.display = '';
-      } else {
-        share.style.display = "none";
-      }
-    };
-  </script>
+  <!-- add favorite button -->
+  <!-- <div>
+    <button type="submit" class="btn-style js-favorite-btn my-btn-1 btn btn-primary" data-favoriteId="<%= @favorite_id %>">Save <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </button>
+  </div> -->
+
+    <script>
+      $(document).ready(function() {
+        var favorite = "<%=@favorite_id %>"
+
+        if(favorite) {
+          $(".js-border-heart").hide();
+        } else {
+          $(".js-filled-heart").hide();
+        }
+
+        $(".js-favorite-btn").click(function() {
+          if($(".js-border-heart").is(":visible")) {
+            $.ajax({
+             url: "<%= api_v1_saved_locations_path %>",
+             method: 'POST',
+             data: {
+               location_id: "<%= @location.id %>",
+               user_id: "<%= current_user.id %>",
+             },
+             success: function( result ) {
+                $(".js-favorite-btn").data("favoriteId", result.id);
+                $(".js-border-heart").hide();
+                $(".js-filled-heart").show();
+             }
+            });
+          } else {
+            var favId = $(".js-favorite-btn").data("favoriteId");
+            $.ajax({
+             url: "/api/v1/saved_locations/" + favId,
+             method: 'DELETE',
+             success: function( result ) {
+                $(".js-favorite-btn").data("favoriteId", "");
+                $(".js-filled-heart").hide();
+                $(".js-border-heart").show();
+             }
+            });
+          }
+        });
+
+
+      })
+
+      function shareButton() {
+        var share = document.getElementById("share-jumbo");
+        if (share.style.display === 'none') {
+          share.style.display = '';
+        } else {
+          share.style.display = "none";
+        }
+      };
+    </script>
 
   <!-- Map Section -->
   <div class="container-fluid content-sm">
@@ -119,6 +169,9 @@
       </div>
     </div>
   </div>
+
+</div>
+
   <br>
 
   <% if current_user %>
