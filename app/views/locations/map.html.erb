@@ -1,3 +1,5 @@
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GMAPS_API_KEY']%>">
+</script>
 <div class="container-fluid" id="mapControls">
 	<!-- Filter / Search / List -->
 	<div class="row">
@@ -25,7 +27,7 @@
 				Filtered
 			</div>
 			<div class="btn btn-default">
-				Tap	
+				Tap
 			</div>
 			<div class="btn btn-default">
 				Natural Sources
@@ -34,14 +36,7 @@
 	</div>
 </div>
 
-<div class="container-fluid" id="mapContainer">
-	<div ng-controller="mapCtrl" id="mapView">
-		<ui-gmap-google-map center='map.center' zoom='map.zoom' options="options" bounds="map.bounds">
-      <ui-gmap-window coords="selectedMarker.model" show="windowOptions.show" options="windowOptions">
-      	<div><a href="/locations/{{windowOptions.id}}">{{windowOptions.title}}</div>
-      </ui-gmap-window>
-			<ui-gmap-markers models="locations" coords="'self'" icon="'icon'" click="onClick">
-      </ui-gmap-markers>
-		</ui-gmap-google-map>
+<div ng-controller="mapCtrl"  ng-init="setUp()" class="container-fluid" id="mapContainer">
+	<div id="mapView">
 	</div>
 </div>
