@@ -14,7 +14,6 @@ class AmazonProductsController < ApplicationController
       flash[:success] = "Item has been added"
       redirect_to "/amazon_products"
     end
-    redirect_to "/amazon_products"
   end
 
   def destroy
