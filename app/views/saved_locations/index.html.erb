@@ -1,7 +1,16 @@
-<% @saved_locations.each do |sl| %>
-  <%= sl.user_id %>
-  <%= sl.location.address %>
-  <%= sl.location.city %>
-  <%= sl.location.state %>
-  <%= sl.location.image_file_name %>
-<% end %>
+<div class="container-fluid overall-page">
+  
+  <div class="overall-page">
+    <% @saved_locations.each do |sl| %>
+
+      <div class="saved-address-row">
+        <%= sl.location.address %>
+        <%= sl.location.city %>
+        <%= sl.location.state %>
+      </div>
+      <div class="saved-image-row">
+        <%= sl.location.image_file_name %>
+      </div>
+    <% end %>
+  </div>
+</div>
