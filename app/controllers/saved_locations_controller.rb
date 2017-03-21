@@ -1,7 +1,8 @@
 class SavedLocationsController < ApplicationController
-  before_action :authenticate_admin!, :only => :index
+  # before_action :authenticate_admin!, :only => :index
   def index
-    @saved_locations = SavedLocation.all
+    @saved_locations = SavedLocation.where(user_id: current_user.id)
+
   end
 
   def show
