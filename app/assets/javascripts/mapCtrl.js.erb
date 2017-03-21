@@ -1,17 +1,36 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller("mapCtrl", function($scope, $http) {
+  angular.module("app").controller("mapCtrl", function($scope, $http, $q) {
 
     $scope.setUp = function() {
       initMap();
     };
 
+
     function initMap() {
+      $scope.mapCenter = {
+        lat: 39.7877,
+        lng: -122.4048
+      };
       $scope.map = new google.maps.Map(document.getElementById('mapView'), {
-        center: {lat: 37.7877, lng: -122.4048},
+        center: {lat: $scope.mapCenter.lat, lng: $scope.mapCenter.lng},
         zoom: 16
       });
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          $scope.mapCenter = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          $scope.map.setCenter($scope.mapCenter)
+        }, function() {
+            handleLocationError(true, $scope.map.getCenter());
+          });
+      } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, $scope.map.getCenter());
+      }
       google.maps.event.addListener($scope.map, 'bounds_changed', function() {
         $scope.bounds = $scope.map.getBounds();
         getLocations($scope.bounds);
@@ -40,14 +59,13 @@
           title: location.address
         });
         marker.addListener('click', function() {
-        var content = "<a href=/locations/" + location.id +'>' + location.address + "</a>";
+        var content = "<a href=/locations/" + location.id + '>' + location.address + "</a>";
         infowindow.setContent(content);
         infowindow.open($scope.map, marker);
 
         });
       });
     };
-
 
   });
 })();
