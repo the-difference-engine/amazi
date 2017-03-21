@@ -40,7 +40,7 @@
     <div class= "btn-container">
       <div class="js-favorite-btn"> <div class="btn-item-icon topbutton-save" data-favoriteId="<%= @favorite_id %>"> <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> <div class="spacing"> SAVE</div></div></div>
       <div class="topbutton-add addimage"> <div> <i class="material-icons">wallpaper</i> </div> <div class="spacing"> ADD PHOTO </div> </div>
-      <div class="topbutton-share" onclick="shareButton()"> <div> <i class="material-icons">group_add</i> </div> <div class="spacing"> SHARE </div> </div>
+      <div class="topbutton-share shareButton"> <div> <i class="material-icons">group_add</i> </div> <div class="spacing"> SHARE </div> </div>
     </div>
   </div>
   <div class= "jumbo-wrapper">
@@ -56,7 +56,7 @@
         <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
         <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
-      <button class="btn btn-default" onclick="shareButton()">Close</button>
+      <button class="btn btn-default shareButton">Close</button>
     </div>
   <div>
 
@@ -75,50 +75,56 @@
         $(".js-filled-heart").hide();
       }
 
-      $(".js-favorite-btn").click(function() {
-        if($(".js-border-heart").is(":visible")) {
-          $.ajax({
-           url: "<%= api_v1_saved_locations_path %>",
-           method: 'POST',
-           data: {
-             location_id: "<%= @location.id %>",
-             user_id: "<%= current_user.id %>",
-           },
-           success: function( result ) {
-              $(".js-favorite-btn").data("favoriteId", result.id);
-              $(".js-border-heart").hide();
-              $(".js-filled-heart").show();
-           }
+      <% if current_user %>
+
+        $(document).ready(function() {
+          $(".addimage").on("click", function() {
+            $(".js-image-upload").click();
           });
-        } else {
-          var favId = $(".js-favorite-btn").data("favoriteId");
-          $.ajax({
-           url: "/api/v1/saved_locations/" + favId,
-           method: 'DELETE',
-           success: function( result ) {
-              $(".js-favorite-btn").data("favoriteId", "");
-              $(".js-filled-heart").hide();
-              $(".js-border-heart").show();
-           }
-          });
-        }
-      });
+        });
+
+        $(".js-favorite-btn").click(function() {
+          if($(".js-border-heart").is(":visible")) {
+            $.ajax({
+             url: "<%= api_v1_saved_locations_path %>",
+             method: 'POST',
+             data: {
+               location_id: "<%= @location.id %>",
+               user_id: "<%= current_user.id %>",
+             },
+             success: function( result ) {
+                $(".js-favorite-btn").data("favoriteId", result.id);
+                $(".js-border-heart").hide();
+                $(".js-filled-heart").show();
+             }
+            });
+          } else {
+            var favId = $(".js-favorite-btn").data("favoriteId");
+            $.ajax({
+             url: "/api/v1/saved_locations/" + favId,
+             method: 'DELETE',
+             success: function( result ) {
+                $(".js-favorite-btn").data("favoriteId", "");
+                $(".js-filled-heart").hide();
+                $(".js-border-heart").show();
+             }
+            });
+          }
+        });
+      <% end %>
+
+      $(document).ready(function() {
+        $(".shareButton").on("click", function() {
+          var share = document.getElementById("share-jumbo");
+          if (share.style.display === 'none') {
+            share.style.display = '';
+          } else {
+            share.style.display = "none";
+          }
+        })
+      })
+
     })
-
-    $(document).ready(function() {
-      $(".addimage").on("click", function() {
-        $(".js-image-upload").click();
-      });
-    });
-
-    function shareButton() {
-      var share = document.getElementById("share-jumbo");
-      if (share.style.display === 'none') {
-        share.style.display = '';
-      } else {
-        share.style.display = "none";
-      }
-    };
   </script>
 
   <!-- Map Section -->
@@ -205,7 +211,10 @@
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 16,
-      center: myLatLng
+      center: myLatLng,
+      zoomControl: false,
+      scaleControl: false,
+      draggable: false
     });
 
     var marker = new google.maps.Marker({
