@@ -1,3 +1,14 @@
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <div class="container-show ">
 
 <% if current_user %>
@@ -18,9 +29,9 @@
         <p>Unknown</p>
       <% end %>
       <% if @c.instance_variable_get(:@types) %>
-        <% @c.instance_variable_get(:@types)[0].split("_").each do |word| %>
-          <h3><%= word.capitalize %></h3>
-        <% end %>
+        <h3><% @c.instance_variable_get(:@types)[0].split("_").each do |word| %>
+          <%= word.capitalize %>
+        <% end %></h3>
       <% end %>
     </div>
   </div>
@@ -34,7 +45,17 @@
   </div>
   <div class= "jumbo-wrapper">
     <div class="jumbotron" id="share-jumbo" style="display:none">
-      <p>LINK: <%= request.host + "/locations/#{@location.id}" %></p>
+      <p>LINK:</p>
+      <p><%= request.original_url %></p>
+      <div class="col-sm-6 col-xs-12">
+        <div class="fb-share-button" data-href="http://localhost:3000/locations/1" data-layout="button" data-size="large" data-mobile-iframe="true">
+          <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2Flocations%2F1&amp;src=sdkpreparse">Share</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
       <button class="btn btn-default" onclick="shareButton()">Close</button>
     </div>
   <div>

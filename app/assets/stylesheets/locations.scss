@@ -30,10 +30,15 @@ h1, h3 {
   display: inline-block;
   padding-right: 40px;
   padding-left: 40px;
-  top: 260px;
+  top: 200px;
   left: 50%;
   transform: translate(-50%, 0);
   max-width: 60%;
+  min-width: 300px;
+  padding: 3px;
+  width: 130px;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .locheader {
