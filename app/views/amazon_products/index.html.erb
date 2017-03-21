@@ -3,7 +3,7 @@
  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p> <%= message %> </p>
  </div>
 <% end %>
-  
+
 <div class="container" style="padding-bottom: 20px; padding-top: 20px;"><center><%= link_to "Add Products", "/amazon_products/new", class: "btn btn-success btn-lg"%></center></div>
 <div class="row">
 <% @products.each do |product|%>

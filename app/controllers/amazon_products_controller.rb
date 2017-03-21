@@ -17,7 +17,7 @@ class AmazonProductsController < ApplicationController
   end
 
   def destroy
-    @products = Amazonproduct.find_by(:id)
+    @products = AmazonProduct.find_by(id: params[:id])
     if @products.destroy
       flash[:warning] = "Item has been removed"
       redirect_to "/amazon_products"
