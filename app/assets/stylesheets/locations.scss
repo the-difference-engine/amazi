@@ -12,8 +12,33 @@ h1, h3 {
 #map {
    height: 250px;
    width: 100%;
-   position: relative;
+   position: fixed;
    margin-top: 30px;
+}
+
+.jumbo-wrapper {
+  text-align: center;
+}
+
+#share-jumbo {
+  z-index: 4;
+  position: fixed;
+  border: solid 2px black;
+  background-color: #ffffff;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+  padding-right: 40px;
+  padding-left: 40px;
+  top: 200px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: 60%;
+  min-width: 300px;
+  padding: 3px;
+  width: 130px;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .locheader {
@@ -122,6 +147,7 @@ h1, h3 {
 	width: 90%;
 	height: 50px;
 	font-size: 12px;
+  z-index: 3;
 }
 
 .btn-container-outer {
@@ -131,6 +157,8 @@ h1, h3 {
 	text-align: center;
 	background-color: transparent;
 	width: 100%;
+  top: 180px;
+  position: absolute;
 }
 .spacing{
   padding-left: 4%;
@@ -164,18 +192,18 @@ h1, h3 {
     height: 100%;
 }
 
-.image-container {
-	position: relative;
-	height: 300px;
-  overflow: hidden;
-}
+// .image-container {
+// 	position: relative;
+// 	height: 300px;
+//   overflow: hidden;
+// }
 
 .carousel-button {
-  z-index: -1;
+  z-index: 0;
 }
 
 .carousel-front {
-  z-index: 1;
+  z-index: 2;
   opacity: 0;
 }
 
@@ -188,20 +216,20 @@ h1, h3 {
 .loc-header-buttons-container {
 	position: absolute;
 	width: 100%;
-	top: 200px;
-  z-index: 0;
+	top: 100px;
+  z-index: 1;
 }
 
-@media (min-width: $sm) {
-	.image-container {
-		width: auto;
-		height: 200px;
-    overflow: hidden;
-	}
-	.loc-header-buttons-container {
-		top: 100px;
-	}
-}
+// @media (min-width: $sm) {
+// 	.image-container {
+// 		width: auto;
+// 		height: 200px;
+//     overflow: hidden;
+// 	}
+// 	.loc-header-buttons-container {
+// 		top: 100px;
+// 	}
+// }
 
 // @media (min-width: $md) {
 // 	.image-container {
