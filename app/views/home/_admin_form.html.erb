@@ -22,10 +22,3 @@
 <div>
   <%= f.submit %>
 </div>
-
-
-<% flash.each do |name, message| %>
- <div class="alert alert-<%= name %> alert-dismissable"  role="alert">
- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p> <%= message %> </p>
- </div>
-<% end %>
