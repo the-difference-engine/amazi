@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314021322) do
+ActiveRecord::Schema.define(version: 20170323013206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,13 @@ ActiveRecord::Schema.define(version: 20170314021322) do
     t.datetime "updated_at"
   end
 
+  create_table "location_water_types", force: :cascade do |t|
+    t.integer  "location_id"
+    t.integer  "water_type_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string   "address"
     t.string   "city"
@@ -100,11 +107,11 @@ ActiveRecord::Schema.define(version: 20170314021322) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "google_place"
-    t.string   "water_type"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "water_type"
   end
 
   create_table "problems", force: :cascade do |t|
