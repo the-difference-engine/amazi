@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :users
   resources :units
   resources :saved_locations
+  resources :amazon_products
 
   get "/problems", to: "problems#index"
   get "/problems/new", to: "problems#new"
