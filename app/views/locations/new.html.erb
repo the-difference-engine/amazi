@@ -1,3 +1,82 @@
-<%= form_for @location do |f| %>
-  <%= render partial: "home/admin_form", locals: {data: @location, f: f} %>
-<% end %>
+<div id='cntm-topbar'>
+  <div id='cntm-topbar-nav'>
+    <span id='cntm-topbar-back' class="glyphicon glyphicon-menu-left" aria-hidden="true" onclick="window.history.back()" /></span>
+    <span id='cntm-topbar-menu' class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+  </div>
+  <div id='cntm-topbar-header'>
+    <p class="title"><strong>Add Location</strong></p>
+    <!-- description does not yet exist -->
+    <p class="description">Add a Water Source Location that you have found in the area.</p>
+  </div>
+</div>
+
+<div class="new-location-form">
+  <%= form_for :location , url: {action: "create"}, method: "post" do |f| %>
+    <div class="form-group">
+      <%= f.label :address %>
+      <%= f.text_field :address %><br>
+      <%= f.label :city %>
+      <%= f.text_field :city %><br>
+      <%= f.label :zip %>
+      <%= f.text_field :zip %><br>
+    </div>
+
+    <div class="form-group">
+    Water Type: <br>
+      <%= f.label :tap %>
+      <%= f.check_box :tap %>
+      <%= f.label :fountain %>
+      <%= f.check_box :fountain %>
+      <%= f.label :eco %>
+      <%= f.check_box :eco %>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputFile">Image (upload):</label>
+      <input type="file" id="exampleInputFile">
+      <p class="help-block">Uploaded Image Above</p>
+    </div>
+
+    <center>
+      <%= f.submit 'Add location' %>
+    </center>
+  <% end %>
+</div>
+
+<div id=cntm-dropup-menu class="menu-closed">
+  <ul>
+    <li class="cntm-dropup-item"><a href="#">Share this</a></li>
+    <li class="cntm-dropup-item"><a href="#">Recommended Products</a></li>
+    <li id="cntm-dropup-menu-close"><a href="#">Cancel</a></li>
+  </ul>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $("#sidebar-wrapper").hide();
+    console.log("tried to hide sidebar-wrapper")
+    $("#hamburger-menu-button").hide();
+    $('#cntm-dropup-menu').hide();
+    console.log("tried to hide hamburger-menu-button");
+    $("#page-content-wrapper").css("padding-top","0px");
+  });
+  $('.collapse').on('shown.bs.collapse',
+    function(){
+      $(this).parent().find(".glyphicon-menu-right").removeClass("glyphicon-menu-right").addClass("glyphicon-menu-down");
+      $(this).parent().find(".panel-title").addClass("selected");
+    }
+  ).on('hidden.bs.collapse',
+    function(){
+      $(this).parent().find(".glyphicon-menu-down").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-right");
+      $(this).parent().find(".panel-title").removeClass("selected");
+    }
+  );
+
+  // Drop Up Functions
+  $('#cntm-topbar-menu').click(function() {
+    $('#cntm-dropup-menu').slideToggle({
+      direction: "up"
+    }, 300);
+    // $(this).toggleClass('drop-upClose');
+  }); // end click
+</script>
