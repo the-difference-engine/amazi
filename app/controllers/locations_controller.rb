@@ -36,6 +36,15 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     if @location.save
+      if params[:tap]
+        @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 1)
+      end
+      if params[:fountain]
+        @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 2)
+      end
+      if params[:eco]
+        @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 3)
+      end
       flash[:success] = "Location has been added"
       redirect_to "/"
     else
