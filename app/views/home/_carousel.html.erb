@@ -1,6 +1,5 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
-
 <div id="myCarousel" class="carousel slide fixed-section-carousel" data-ride="carousel">
 
   <!-- Wrapper for slides -->
@@ -22,8 +21,6 @@
 
 <%end%>
 
-
-
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -34,3 +31,16 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+<script src=”jquery.mobile.custom.min.js”></script>
+
+<script>
+$(document).ready(function() {
+   $("#myCarousel").swiperight(function() {
+      $("#myCarousel").carousel('prev');
+    });
+   $("#myCarousel").swipeleft(function() {
+      $("#myCarousel").carousel('next');
+   });
+});
+</script>
