@@ -51,7 +51,7 @@ div {
       padding: 0.5vh;
       margin: 0.5vh;
       .title {
-        font-size: 3.5vh;
+        font-size: 6vh;
         color: $highlight-color;
       }
       .description {
@@ -118,10 +118,18 @@ div {
 
   .new-location-form {
     padding: 0 2em;
-    font-size: 2vh;
+    // font-size: 2vh;
     input[type="text"] {
       width : 100%;
     }
+  }
+  .location-form-text {
+    font-size: 2vh;
+  }
+  .location-form-btn {
+    width: 40%;
+    max-width: 200px;
+    font-size: 2vh;
   }
 }
 

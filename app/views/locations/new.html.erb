@@ -13,32 +13,37 @@
 <div class="new-location-form">
   <%= form_for :location , url: {action: "create"}, method: "post" do |f| %>
     <div class="form-group">
-      <%= f.label :address %>
-      <%= f.text_field :address %><br>
+      <p class="location-form-text"><%= f.label :address %>
+      <%= f.text_field :address %><br><br>
       <%= f.label :city %>
-      <%= f.text_field :city %><br>
+      <%= f.text_field :city %><br><br>
       <%= f.label :zip %>
-      <%= f.text_field :zip %><br>
+      <%= f.text_field :zip %></p>
     </div>
 
     <div class="form-group">
-    Water Type: <br>
+      <p class="location-form-text">State:
+      <%= f.collection_select :state, @us_states, :to_s, :to_s, :prompt => true %></p>
+    </div>
+
+    <div class="form-group">
+      <p class="location-form-text">Water Type:<br>
       <%= f.label :filtered %>
       <%= f.check_box :filtered %>
       <%= f.label :fountain %>
       <%= f.check_box :fountain %>
       <%= f.label :eco_alternative %>
-      <%= f.check_box :eco_alternative %>
+      <%= f.check_box :eco_alternative %></p>
     </div>
 
     <div class="form-group">
-      <label for="exampleInputFile">Image (upload):</label>
+      <p class="location-form-text"><label for="exampleInputFile">Image (upload):</label></p>
       <input type="file" id="exampleInputFile">
       <p class="help-block">Uploaded Image Above</p>
     </div>
 
     <center>
-      <%= f.submit 'Add location' %>
+      <%= f.submit 'Add location', class:"location-form-btn" %>
     </center>
   <% end %>
 </div>
