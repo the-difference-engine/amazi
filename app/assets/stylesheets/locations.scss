@@ -41,9 +41,11 @@ div {
 
       #cntm-topbar-back {
         float: left;
+        cursor:pointer;
       }
       #cntm-topbar-menu {
         float: right;
+        cursor:pointer;
       }
     }
 
@@ -127,7 +129,7 @@ div {
     font-size: 2vh;
   }
   .location-form-btn {
-    width: 40%;
+    width: 40vw;
     max-width: 200px;
     font-size: 2vh;
   }
