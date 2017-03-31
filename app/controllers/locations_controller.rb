@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:show, :map]
+  before_action :authenticate_admin!, except: [:show, :map, :create, :new]
 
   def show
     @location = Location.find(params[:id])
@@ -10,7 +10,6 @@ class LocationsController < ApplicationController
     @image = Image.new
 
     @allpictures = []
-
     @c.instance_variable_get(:@photos).each do |pic|
       @allpictures << (pic.fetch_url(350))
     end
@@ -28,7 +27,7 @@ class LocationsController < ApplicationController
   end
 
   def new
-    @location = Location.new
+    @us_states = ['AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','PR','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']
   end
 
   def edit
@@ -38,9 +37,20 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     if @location.save
-      redirect_to "/admin"
+      if params[:location][:filtered]
+        @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 2)
+      end
+      if params[:location][:fountain]
+        @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 1)
+      end
+      if params[:location][:eco_alternative]
+        @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 3)
+      end
+      flash[:success] = "Location has been added"
+      redirect_to "/"
     else
-
+      flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
+      render "/location/new"
     end
   end
 

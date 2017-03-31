@@ -12,8 +12,148 @@ h1, h3 {
 #map {
    height: 250px;
    width: 100%;
-   position: relative;
+   position: fixed;
    margin-top: 30px;
+}
+
+.jumbo-wrapper {
+  text-align: center;
+}
+
+div {
+  font-family: $font-family;
+  font-size: 1.05vh;
+
+  #cntm-topbar {
+    background-color: $top-bar-color;
+    color: $top-bar-text-color;
+    padding: 0;
+    margin: 0;
+
+    #cntm-topbar-nav {
+      font-size: 4vh;
+      height: 7vh;
+      margin-left: 1vw;
+      margin-right: 1vw;
+      padding-top: 2vh;
+      padding-left: 0.25vw;
+      padding-right: 0.25vw;
+
+      #cntm-topbar-back {
+        float: left;
+        cursor:pointer;
+      }
+      #cntm-topbar-menu {
+        float: right;
+        cursor:pointer;
+      }
+    }
+
+    #cntm-topbar-header {
+      padding: 0.5vh;
+      margin: 0.5vh;
+      .title {
+        font-size: 6vh;
+        color: $highlight-color;
+      }
+      .description {
+        font-size: 2vh;
+      }
+    }
+  }
+
+  .panel-group {
+    padding: 1.5vh;
+    margin: 1.5vh;
+
+    .panel-title {
+      color: gray;
+      font-size: 2.25vh;
+      a:hover, a:focus {
+        text-decoration: none;
+      }
+    }
+
+    .panel-title.selected {
+      color: black;
+    }
+
+    .panel-body {
+      font-size: 2vh;
+    }
+
+    .panel-chevron {
+      float: right;
+    }
+  }
+
+  #cntm-dropup-menu {
+    ul {
+      list-style: none;
+      padding: 1.5em;
+
+      li {
+        border-bottom: thick grey;
+      }
+      .cntm-dropup-item {
+        a {
+          color: white;
+          font-size: 4.5vh;
+          text-align: left;
+        }
+      }
+
+      li#cntm-dropup-menu-close {
+        text-align: center;
+        a {
+          font-size: 3vh;
+          color: #2CCF9A;
+        }
+      }
+    }
+
+    background-color : $top-bar-color;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+
+  .new-location-form {
+    padding: 0 2em;
+    // font-size: 2vh;
+    input[type="text"] {
+      width : 100%;
+    }
+  }
+  .location-form-text {
+    font-size: 2vh;
+  }
+  .location-form-btn {
+    width: 40vw;
+    max-width: 200px;
+    font-size: 2vh;
+  }
+}
+
+#share-jumbo {
+  z-index: 4;
+  position: fixed;
+  border: solid 2px black;
+  background-color: #ffffff;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+  padding-right: 40px;
+  padding-left: 40px;
+  top: 200px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: 60%;
+  min-width: 300px;
+  padding: 3px;
+  width: 130px;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .locheader {
@@ -122,6 +262,7 @@ h1, h3 {
 	width: 90%;
 	height: 50px;
 	font-size: 12px;
+  z-index: 3;
 }
 
 .btn-container-outer {
@@ -131,6 +272,8 @@ h1, h3 {
 	text-align: center;
 	background-color: transparent;
 	width: 100%;
+  top: 180px;
+  position: absolute;
 }
 .spacing{
   padding-left: 4%;
@@ -164,18 +307,18 @@ h1, h3 {
     height: 100%;
 }
 
-.image-container {
-	position: relative;
-	height: 300px;
-  overflow: hidden;
-}
+// .image-container {
+// 	position: relative;
+// 	height: 300px;
+//   overflow: hidden;
+// }
 
 .carousel-button {
-  z-index: -1;
+  z-index: 0;
 }
 
 .carousel-front {
-  z-index: 1;
+  z-index: 2;
   opacity: 0;
 }
 
@@ -188,20 +331,20 @@ h1, h3 {
 .loc-header-buttons-container {
 	position: absolute;
 	width: 100%;
-	top: 200px;
-  z-index: 0;
+	top: 100px;
+  z-index: 1;
 }
 
-@media (min-width: $sm) {
-	.image-container {
-		width: auto;
-		height: 200px;
-    overflow: hidden;
-	}
-	.loc-header-buttons-container {
-		top: 100px;
-	}
-}
+// @media (min-width: $sm) {
+// 	.image-container {
+// 		width: auto;
+// 		height: 200px;
+//     overflow: hidden;
+// 	}
+// 	.loc-header-buttons-container {
+// 		top: 100px;
+// 	}
+// }
 
 // @media (min-width: $md) {
 // 	.image-container {

@@ -1,3 +1,14 @@
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <div class="container-show ">
 
 <% if current_user %>
@@ -18,94 +29,103 @@
         <p>Unknown</p>
       <% end %>
       <% if @c.instance_variable_get(:@types) %>
-        <% @c.instance_variable_get(:@types)[0].split("_").each do |word| %>
-          <h3><%= word.capitalize %></h3>
-        <% end %>
+        <h3><% @c.instance_variable_get(:@types)[0].split("_").each do |word| %>
+          <%= word.capitalize %>
+        <% end %></h3>
       <% end %>
     </div>
+  </div>
 
-
-   <div class= "btn-container-outer">
+  <div class= "btn-container-outer">
     <div class= "btn-container">
-      <div class="js-favorite-btn"> 
-        <div class="btn-item-icon topbutton-save" data-favoriteId="<%= @favorite_id %>"> 
-<!--           <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div>  -->
-        <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> 
-
-
-
-          <div class="spacing"> SAVE </div>
-        </div>
-      </div>
-      <div class="topbutton-add addimage"> 
-        <div> <i class="material-icons">wallpaper</i> </div> 
-        <div class="spacing"> ADD PHOTO </div> 
-      </div>
-      <div class="topbutton-share"> 
-        <div> <i class="material-icons">group_add</i> </div> 
-        <div class="spacing"> SHARE </div> 
-      </div>
+      <div class="js-favorite-btn"> <div class="btn-item-icon topbutton-save" data-favoriteId="<%= @favorite_id %>"> <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> <div class="spacing"> SAVE</div></div></div>
+      <div class="topbutton-add addimage"> <div> <i class="material-icons">wallpaper</i> </div> <div class="spacing"> ADD PHOTO </div> </div>
+      <div class="topbutton-share shareButton"> <div> <i class="material-icons">group_add</i> </div> <div class="spacing"> SHARE </div> </div>
     </div>
   </div>
-</div>
-
-<script>
-  $(document).ready(function() {
-    $(".addimage").on("click", function() {
-      $(".js-image-upload").click();
-    });
-  });
-</script>
+  <div class= "jumbo-wrapper">
+    <div class="jumbotron" id="share-jumbo" style="display:none">
+      <p>LINK:</p>
+      <p><%= request.original_url %></p>
+      <div class="col-sm-6 col-xs-12">
+        <div class="fb-share-button" data-href="http://localhost:3000/locations/1" data-layout="button" data-size="large" data-mobile-iframe="true">
+          <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2Flocations%2F1&amp;src=sdkpreparse">Share</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+      <button class="btn btn-default shareButton">Close</button>
+    </div>
+  <div>
 
   <!-- add favorite button -->
   <!-- <div>
     <button type="submit" class="btn-style js-favorite-btn my-btn-1 btn btn-primary" data-favoriteId="<%= @favorite_id %>">Save <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </button>
   </div> -->
 
-    <script>
-      $(document).ready(function() {
-        var favorite = "<%=@favorite_id %>"
+  <script>
+    $(document).ready(function() {
+      var favorite = "<%=@favorite_id %>"
 
-        if(favorite) {
-          $(".js-border-heart").hide();
-        } else {
-          $(".js-filled-heart").hide();
-        }
+      if(favorite) {
+        $(".js-border-heart").hide();
+      } else {
+        $(".js-filled-heart").hide();
+      }
 
-        <% if current_user %>
+      <% if current_user %>
 
-          $(".js-favorite-btn").click(function() {
-            if($(".js-border-heart").is(":visible")) {
-              $.ajax({
-               url: "<%= api_v1_saved_locations_path %>",
-               method: 'POST',
-               data: {
-                 location_id: "<%= @location.id %>",
-                 user_id: "<%= current_user.id %>",
-               },
-               success: function( result ) {
-                  $(".js-favorite-btn").data("favoriteId", result.id);
-                  $(".js-border-heart").hide();
-                  $(".js-filled-heart").show();
-               }
-              });
-            } else {
-              var favId = $(".js-favorite-btn").data("favoriteId");
-              $.ajax({
-               url: "/api/v1/saved_locations/" + favId,
-               method: 'DELETE',
-               success: function( result ) {
-                  $(".js-favorite-btn").data("favoriteId", "");
-                  $(".js-filled-heart").hide();
-                  $(".js-border-heart").show();
-               }
-              });
-            }
+        $(document).ready(function() {
+          $(".addimage").on("click", function() {
+            $(".js-image-upload").click();
           });
-        <% end %>
+        });
 
+        $(".js-favorite-btn").click(function() {
+          if($(".js-border-heart").is(":visible")) {
+            $.ajax({
+             url: "<%= api_v1_saved_locations_path %>",
+             method: 'POST',
+             data: {
+               location_id: "<%= @location.id %>",
+               user_id: "<%= current_user.id %>",
+             },
+             success: function( result ) {
+                $(".js-favorite-btn").data("favoriteId", result.id);
+                $(".js-border-heart").hide();
+                $(".js-filled-heart").show();
+             }
+            });
+          } else {
+            var favId = $(".js-favorite-btn").data("favoriteId");
+            $.ajax({
+             url: "/api/v1/saved_locations/" + favId,
+             method: 'DELETE',
+             success: function( result ) {
+                $(".js-favorite-btn").data("favoriteId", "");
+                $(".js-filled-heart").hide();
+                $(".js-border-heart").show();
+             }
+            });
+          }
+        });
+      <% end %>
+
+      $(document).ready(function() {
+        $(".shareButton").on("click", function() {
+          var share = document.getElementById("share-jumbo");
+          if (share.style.display === 'none') {
+            share.style.display = '';
+          } else {
+            share.style.display = "none";
+          }
+        })
       })
-    </script>
+
+    })
+  </script>
 
   <!-- Map Section -->
   <div class="container-fluid content-sm">
@@ -178,7 +198,6 @@
       $(this).closest('form').submit();
     });
   });
-
 </script>
 
 
@@ -200,7 +219,10 @@
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 16,
-      center: myLatLng
+      center: myLatLng,
+      zoomControl: false,
+      scaleControl: false,
+      draggable: false
     });
 
     var marker = new google.maps.Marker({
@@ -211,8 +233,4 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCliRHoi2eYcLfew2R6fSNkFRu2W1YE7Hs&callback=initMap"
 async defer>
-</script>
-
-<script>
-
 </script>

@@ -35,13 +35,13 @@ Rails.application.routes.draw do
   resources :users
   resources :units
   resources :saved_locations
+  resources :amazon_products
 
   get "/problems", to: "problems#index"
   get "/problems/new", to: "problems#new"
   post "/problems", to: "problems#create"
 
   get "/slick", to: "home#slick"
-
   post "/uploaded_images", to: "images#create_image"
   post "/feedback", to: "mailers#send_feedback"
 

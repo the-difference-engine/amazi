@@ -4,6 +4,8 @@ class Location < ApplicationRecord
   has_many :saved_locations
   has_many :problems
   has_many :images
+  has_many :location_water_types
+  has_many :water_types, through: :location_water_types
 
   geocoded_by :full_street_address   # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
