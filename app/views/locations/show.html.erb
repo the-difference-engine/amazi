@@ -29,7 +29,11 @@
     <div class= "btn-container">
       <div class="js-favorite-btn"> 
         <div class="btn-item-icon topbutton-save" data-favoriteId="<%= @favorite_id %>"> 
-          <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> 
+<!--           <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div>  -->
+        <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> 
+
+
+
           <div class="spacing"> SAVE </div>
         </div>
       </div>
@@ -158,6 +162,14 @@
       <%= form.hidden_field :user_id, :value => current_user.id %>
     <% end %>
   <% end %>
+
+  <% if current_user %>
+  <%= form_tag("/feedback", method: "post") do %>
+    <%= label_tag(:message, "Enter your message here:") %>
+    <%= text_field_tag(:message) %>
+    <%= submit_tag ("Send") %>
+  <% end %>
+<% end %>
 
 
 <script>

@@ -4,6 +4,7 @@
   angular.module("app").controller("mapCtrl", function($scope, $http) {
 
     $scope.setUp = function() {
+      $scope.markers = [];
       initMap();
     };
 
@@ -17,6 +18,7 @@
         getLocations($scope.bounds);
       });
     };
+
     function getLocations(bounds) {
       var swLat  = bounds.getSouthWest().lat();
       var swLong = bounds.getSouthWest().lng();
@@ -28,6 +30,8 @@
       });
     };
 
+
+
     function createMarkers(locations) {
       var infowindow = new google.maps.InfoWindow();
       google.maps.event.addListener($scope.map, "click", function(event) {
@@ -37,8 +41,10 @@
         var marker = new google.maps.Marker({
           position: {lat: location.latitude, lng: location.longitude},
           map: $scope.map,
-          title: location.address
+          title: location.address,
+          water_type: location.type
         });
+        $scope.markers.push(marker)
         marker.addListener('click', function() {
         var content = "<a href=/locations/" + location.id +'>' + location.address + "</a>";
         infowindow.setContent(content);
