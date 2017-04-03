@@ -109,11 +109,6 @@ ActiveRecord::Schema.define(version: 20170324230819) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "google_place"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-
   end
 
   create_table "problems", force: :cascade do |t|
