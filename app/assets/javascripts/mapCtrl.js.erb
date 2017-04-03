@@ -78,7 +78,7 @@
           position: {lat: location.latitude, lng: location.longitude},
           map: $scope.map,
           title: location.address,
-          water_type: location.type
+          water_types: location.water_types
         });
         $scope.markers.push(marker)
         marker.addListener('click', function() {
@@ -89,7 +89,7 @@
         });
       });
     };
-
+    window.$scope = $scope;
   });
 })();
 

@@ -1,4 +1,4 @@
 class LocationWaterType < ApplicationRecord
-  has_many :locations
-  has_many :water_types
+  belongs_to :location
+  belongs_to :water_type
 end

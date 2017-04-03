@@ -1,11 +1,12 @@
 class Api::V1::LocationsController < ApplicationController
+
   def index
     if params[:swLat]
-      @locations = Location.where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
+      @locations = Location.includes(:water_types).where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
     else
       @locations = Location.all
     end
-    render json: @locations
+    render json: @locations.as_json(include: :water_types)
   end
 
   def show

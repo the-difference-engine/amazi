@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'geocoder'
 gem 'google_places'
 gem 'yelp', require: 'yelp'
-
+gem 'unirest'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 
