@@ -1,15 +1,17 @@
 class Api::V1::LocationsController < ApplicationController
+
   def index
     if params[:swLat]
-      @locations = Location.where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
+      @locations = Location.includes(:water_types).where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
     else
       @locations = Location.all
     end
-    render json: @locations
+    render json: @locations.as_json(include: :water_types)
   end
 
   def show
     @location = Location.find(params[:id])
+    @favorite_id = SavedLocation.is_saved_location?(params[:id]).id
     render json: @location
   end
 
@@ -35,7 +37,6 @@ class Api::V1::LocationsController < ApplicationController
 
   def destroy
     @location = Location.find(params[:id])
-
     if @location.destroy
       render json: "Location Destroyed"
     else

@@ -15,5 +15,5 @@ class HomeController < ApplicationController
   def slick
     @products = AmazonProduct.all
   end
-  
+
 end
