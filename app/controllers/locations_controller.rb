@@ -36,6 +36,7 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
+    if (params[:location][:filtered] || params[:location][:fountain] || params[:location][:eco_alternative])
     if @location.save
       if @location.latitude && location.longitude
         place_id = @location.get_google_places_id(row_hash["Location Name"])
