@@ -28,9 +28,6 @@ class LocationsController < ApplicationController
   end
 
   def new
-    @address = params[:address]
-    @state = params[:state]
-    @city = params[:city]
   end
 
   def edit
@@ -77,7 +74,7 @@ class LocationsController < ApplicationController
   def select
     @place = params[:location][:place]
     @results = Unirest.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=#{@place}&types=geocode&key=#{ENV['GOOGLE_PLACES_API_KEY']}").body["predictions"]
-    render :new
+    render :search
   end
 
   def new_image
@@ -107,6 +104,6 @@ class LocationsController < ApplicationController
   private
 
   def location_params
-    params.require(:location).permit(:address, :city, :state, :zip, :location_subcategory_id, :water_provider_id, :latitude, :longitude)
+    params.require(:location).permit(:address, :city, :state, :zip, :location_subcategory_id, :water_provider_id, :latitude, :longitude, :google_place)
   end
 end

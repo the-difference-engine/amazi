@@ -11,16 +11,25 @@
   <br>
   <br>
 
+  <% count = 0 %>
   <% @results.each do |result| %>
-    <p><%= result["description"] %></p>
     <% description = result["description"].split(", ") %>
-
-    <%= form_tag "/locations/new", method: :get do %>
-      <%= hidden_field_tag :address, description[0] %>
-      <%= hidden_field_tag :city, description[1] %>
-      <%= hidden_field_tag :state, description[2] %>
-      <%= text_field_tag :google_place, result["place_id"] %>
-      <%= submit_tag "Add Location" %>
+    <% address = result["description"].split(" ") %>
+    <% if (address[0].to_i != 0) %>
+      <p><%= result["description"] %></p>
+      <% count += 1 %>
+      <%= form_tag "/locations/new", method: :get do %>
+        <%= hidden_field_tag :address, description[0] %>
+        <%= hidden_field_tag :city, description[1] %>
+        <%= hidden_field_tag :state, description[2] %>
+        <%= hidden_field_tag :google_place, result["place_id"] %>
+        <%= submit_tag "Add Location" %>
+      <% end %>
     <% end %>
   <% end %>
+  <% if count == 0 %>
+    <p>Your search didn't return any acceptable address, please try to be more specific.</p>
+  <% end %>
 <% end %>
+
+

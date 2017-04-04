@@ -15,14 +15,13 @@
     <%= form_for :location , url: {action: "create"}, method: "post" do |f| %>
       <div class="form-group">
         <p class="location-form-text"><%= f.label :address %>
-        <%= f.text_field :address, @address %><br><br>
+        <%= f.text_field :address, :value => params[:address] %><br><br>
         <%= f.label :city %>
-        <%= f.text_field :city, @city %><br><br>
+        <%= f.text_field :city, :value => params[:city] %><br><br>
         <%= f.label :state %>
-        <%= f.text_field :state, @state %></p>
+        <%= f.text_field :state, :value => params[:state] %></p>
+        <%= f.hidden_field :google_place, :value => params[:google_place] %>
       </div>
-
-      <h1>Save Google Place somehow</h1>
 
       <div class="form-group">
         <p class="location-form-text">Water Type:<br>
@@ -34,20 +33,15 @@
         <%= f.check_box :eco_alternative %></p>
       </div>
 
-  <!--     <div class="form-group">
+      <div class="form-group">
         <p class="location-form-text"><label for="exampleInputFile">Image (upload):</label></p>
         <input type="file" id="exampleInputFile">
         <p class="help-block">Uploaded Image Above</p>
-      </div> -->
+      </div>
 
       <center>
         <%= f.submit 'Add location', class:"location-form-btn" %>
       </center>
-    <% end %>
-
-    <%= form_for :location , url: {action: "search"}, method: "post" do |f| %>
-      <%= f.label :search_google_for_a_place %>
-      <%= f.text_field :place %>
     <% end %>
   </div>
 
