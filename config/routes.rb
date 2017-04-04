@@ -42,8 +42,5 @@ Rails.application.routes.draw do
   post "/problems", to: "problems#create"
 
   get "/slick", to: "home#slick"
-
   post "/uploaded_images", to: "images#create_image"
-
-
 end

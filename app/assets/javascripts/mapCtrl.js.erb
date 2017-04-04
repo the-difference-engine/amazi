@@ -4,20 +4,10 @@
   angular.module("app").controller("mapCtrl", function($scope, $http, $q) {
 
     $scope.setUp = function() {
-      initMap();
-    };
-
-
-    function initMap() {
-      $scope.mapCenter = {
-        lat: 39.7877,
-        lng: -122.4048
-      };
-      $scope.map = new google.maps.Map(document.getElementById('mapView'), {
-        center: {lat: $scope.mapCenter.lat, lng: $scope.mapCenter.lng},
-        zoom: 16
-      });
-      if (navigator.geolocation) {
+      function geoLocation() {
+        var deferred = $q.defer();
+        $scope.map = {};
+        if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
           $scope.mapCenter = {
             lat: position.coords.latitude,
@@ -27,14 +17,38 @@
         }, function() {
             handleLocationError(true, $scope.map.getCenter());
           });
-      } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, $scope.map.getCenter());
-      }
-      google.maps.event.addListener($scope.map, 'bounds_changed', function() {
-        $scope.bounds = $scope.map.getBounds();
-        getLocations($scope.bounds);
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, $scope.map.getCenter());
+        }
+        deferred.resolve();
+        return deferred.promise;
+      };
+        geoLocation().then( function(response){
+          initMap().then( function(map) {
+            $scope.map = map;
+            google.maps.event.addListener($scope.map, 'bounds_changed', function() {
+            $scope.bounds = $scope.map.getBounds();
+            getLocations($scope.bounds);
+            });
+          });
+        });
+    };
+
+
+    function initMap() {
+      var deferred = $q.defer();
+
+      $scope.mapCenter = {
+        lat: 39.7877,
+        lng: -122.4048
+      };
+      var map = new google.maps.Map(document.getElementById('mapView'), {
+        center: {lat: $scope.mapCenter.lat, lng: $scope.mapCenter.lng},
+        zoom: 16
       });
+      deferred.resolve(map);
+      return deferred.promise;
     };
     function getLocations(bounds) {
       var swLat  = bounds.getSouthWest().lat();
