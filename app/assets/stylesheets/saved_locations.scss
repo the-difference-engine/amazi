@@ -2,10 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  background-color: $top-bar-color;
+  color: $top-bar-text-color;
+}
+
 .saved-address-row {
   margin-left: 50px;
 }
 
 .overall-page {
   // margin: 500px;
+}
+
+.location-name{
+  margin: 20px;
+  color: white;
+  font-size: 40px;
+
+}
+
+.top-banner{
+  background-color: $top-bar-color;
+  color: $top-bar-text-color;
+  padding-bottom: 60px;
+  margin-bottom: 60px;
+}
+.photo-container{
+  width: 60%;
+  height: 40%;
+  border: solid 2px white;
+  text-align:center;
+}
+
+.test {
+  min-width: 100%;
+  max-width: 100%;
 }
