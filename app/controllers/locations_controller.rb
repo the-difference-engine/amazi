@@ -37,12 +37,8 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     if (params[:location][:filtered] || params[:location][:fountain] || params[:location][:eco_alternative])
-    if @location.save
-      if @location.latitude && location.longitude
-        place_id = @location.get_google_places_id(row_hash["Location Name"])
-        if place_id
-          @location.google_place = place_id
-          @location.save
+      if @location.save
+        if @location.latitude && @location.longitude
           if params[:location][:filtered]
             @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 2)
           end
@@ -59,11 +55,10 @@ class LocationsController < ApplicationController
           # flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
           render "/location/new"
         end
-      else
-        @location.destroy
-        # flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
-        render "/location/new"
       end
+    else
+      # flash[:danger] = "You need to select at least one water type"
+      render "/location/new"
     end
   end
 
