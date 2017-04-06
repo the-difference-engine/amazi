@@ -39,17 +39,26 @@ class LocationsController < ApplicationController
     if (params[:location][:filtered] || params[:location][:fountain] || params[:location][:eco_alternative])
       if @location.save
         if @location.latitude && @location.longitude
-          if params[:location][:filtered]
-            @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 2)
+          place_id = @location.get_google_places_id(params[:location][:name_of_business])
+          if place_id
+            @location.google_place = place_id
+            @location.save
+            if params[:location][:filtered] == "1"
+              @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 2)
+            end
+            if params[:location][:fountain] == "1"
+              @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 1)
+            end
+            if params[:location][:eco_alternative] == "1"
+              @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 3)
+            end
+            # flash[:success] = "Location has been added"
+            redirect_to "/locations/#{@location.id}/new_image"
+          else
+            @location.destroy
+            # flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
+            render "/location/new"
           end
-          if params[:location][:fountain]
-            @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 1)
-          end
-          if params[:location][:eco_alternative]
-            @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 3)
-          end
-          # flash[:success] = "Location has been added"
-          redirect_to "/locations/#{@location.id}/new_image"
         else
           @location.destroy
           # flash[:danger] = @location.errors.full_messages.join("<br>").html_safe

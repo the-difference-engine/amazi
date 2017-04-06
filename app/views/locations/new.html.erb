@@ -14,12 +14,16 @@
   <div class="new-location-form">
     <%= form_for :location , url: {action: "create"}, method: "post" do |f| %>
       <div class="form-group">
-        <p class="location-form-text"><%= f.label :address %>
+        <p class="location-form-text"><%= f.label :name_of_business %>
+        <%= f.text_field :name_of_business %>
+        <%= f.label :address %>
         <%= f.text_field :address, :value => params[:address] %><br><br>
         <%= f.label :city %>
         <%= f.text_field :city, :value => params[:city] %><br><br>
         <%= f.label :state %>
-        <%= f.text_field :state, :value => params[:state] %></p>
+        <%= f.text_field :state, :value => params[:state] %>
+        <%= f.label :zip %>
+        <%= f.text_field :zip, :value => params[:zip] %></p>
         <%= f.hidden_field :google_place, :value => params[:google_place] %>
       </div>
 
