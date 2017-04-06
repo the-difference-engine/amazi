@@ -10,21 +10,19 @@
   <div class="new-location-form">
     <%= form_for :location , url: {action: "create"}, method: "post" do |f| %>
       <div class="form-group">
-        <p class="location-form-text"><%= f.label :name_of_business %>
-        <%= f.text_field :name_of_business %>
-        <%= f.label :address %>
-        <%= f.text_field :address, :value => params[:address] %><br><br>
-        <%= f.label :city %>
-        <%= f.text_field :city, :value => params[:city] %><br><br>
-        <%= f.label :state %>
-        <%= f.text_field :state, :value => params[:state] %>
-        <%= f.label :zip %>
-        <%= f.text_field :zip, :value => params[:zip] %></p>
+        <p class="location-form-text" style="color:white;"><%= f.label :name_of_business %></p>
+        <p class="location-form-text"><%= f.text_field :name_of_business %><br><br></p>
+        <p class="location-form-text" style="color:white;"><%= f.label :address %></p>
+        <p class="location-form-text"><%= f.text_field :address, :value => params[:address] %><br><br></p>
+        <p class="location-form-text" style="color:white;"><%= f.label :city %></p>
+        <p class="location-form-text"><%= f.text_field :city, :value => params[:city] %><br><br></p>
+        <p class="location-form-text" style="color:white;"><%= f.label :state %></p>
+        <p class="location-form-text"><%= f.text_field :state, :value => params[:state] %></p>
         <%= f.hidden_field :google_place, :value => params[:google_place] %>
       </div>
 
       <div class="form-group">
-        <p class="location-form-text">Water Type:<br>
+        <p class="location-form-text" style="color:white;">Water Type:<br>
         <%= f.label :filtered %>
         <%= f.check_box :filtered %>
         <%= f.label :fountain %>
