@@ -4,6 +4,9 @@
   angular.module("app").controller("mapCtrl", function($scope, $http, $q) {
 
     $scope.setUp = function() {
+      $scope.markers = [];
+      initMap();
+
       function geoLocation() {
         var deferred = $q.defer();
         $scope.map = {};
@@ -33,6 +36,7 @@
             });
           });
         });
+
     };
 
 
@@ -50,6 +54,7 @@
       deferred.resolve(map);
       return deferred.promise;
     };
+
     function getLocations(bounds) {
       var swLat  = bounds.getSouthWest().lat();
       var swLong = bounds.getSouthWest().lng();
@@ -61,6 +66,8 @@
       });
     };
 
+
+
     function createMarkers(locations) {
       var infowindow = new google.maps.InfoWindow();
       google.maps.event.addListener($scope.map, "click", function(event) {
@@ -70,8 +77,10 @@
         var marker = new google.maps.Marker({
           position: {lat: location.latitude, lng: location.longitude},
           map: $scope.map,
-          title: location.address
+          title: location.address,
+          water_types: location.water_types
         });
+        $scope.markers.push(marker)
         marker.addListener('click', function() {
         var content = "<a href=/locations/" + location.id + '>' + location.address + "</a>";
         infowindow.setContent(content);
@@ -81,6 +90,17 @@
       });
     };
 
+    $scope.filterByWaterType = function(type) {
+      console.log("hi")
+      $scope.markers.forEach(function(marker) {
+        if (marker.type != type) {
+          marker.setVisible(false);
+        }
+      }
+    )};
+
+
+
+    window.$scope = $scope;
   });
 })();
-
