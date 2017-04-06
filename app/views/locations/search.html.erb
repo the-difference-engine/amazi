@@ -1,35 +1,42 @@
-<br><br><br><br>
-<%= form_for :location , url: {action: "select"}, method: "post" do |f| %>
-  <p>Search Google for a place:
-  <%= f.text_field :place %></p>
-  <%= f.submit 'Search' %>
-<% end %>
+<div class="title" style="left: 30%;"><p style="font-size: 6vh;">Add Location</p></div>
 
-<% if @place %>
-  <br><br>
-  Your search results for: "<%= @place %>"
-  <br>
-  <br>
+<div style="margin-left:10px;">
+  <div>
+    <%= form_for :location , url: {action: "select"}, method: "post" do |f| %>
+      <p style="color:white;display:inline;">Search Google for a place:</p>
+      <p style="display:inline;"><%= f.text_field :place %></p>
+      <%= f.submit 'Search', class:"location-form-btn" %>
+    <% end %>
+  </div>
 
-  <% count = 0 %>
-  <% @results.each do |result| %>
-    <% description = result["description"].split(", ") %>
-    <% address = result["description"].split(" ") %>
-    <% if (address[0].to_i != 0) %>
-      <p><%= result["description"] %></p>
-      <% count += 1 %>
-      <%= form_tag "/locations/new", method: :get do %>
-        <%= hidden_field_tag :address, description[0] %>
-        <%= hidden_field_tag :city, description[1] %>
-        <%= hidden_field_tag :state, description[2] %>
-        <%= hidden_field_tag :google_place, result["place_id"] %>
-        <%= submit_tag "Add Location" %>
+  <% if @place %>
+    <br><br>
+    <p style="color:white;">Your search results for: "<%= @place %>"</p>
+    <br>
+    <br>
+
+    <% count = 0 %>
+    <% @results.each do |result| %>
+      <% description = result["description"].split(", ") %>
+      <% address = result["description"].split(" ") %>
+      <% if (address[0].to_i != 0) %>
+        <div>
+          <p style="color:white;"><%= result["description"] %></p>
+          <% count += 1 %>
+          <%= form_tag "/locations/new", method: :get do %>
+            <%= hidden_field_tag :address, description[0] %>
+            <%= hidden_field_tag :city, description[1] %>
+            <%= hidden_field_tag :state, description[2] %>
+            <%= hidden_field_tag :google_place, result["place_id"] %>
+            <%= submit_tag "Add Location", class:"location-form-btn" %>
+          <% end %>
+          <br>
+        </div>
       <% end %>
     <% end %>
+    <% if count == 0 %>
+      <p style="color:white;">Your search didn't return any acceptable address, please try to be more specific.</p>
+    <% end %>
   <% end %>
-  <% if count == 0 %>
-    <p>Your search didn't return any acceptable address, please try to be more specific.</p>
-  <% end %>
-<% end %>
-
+</div>
 
