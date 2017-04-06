@@ -1,31 +1,27 @@
 <div class="container-fluid overall-page">
   <div class="top-banner">
     <div class="cntm-topbar-header">
-      Saved Locations
+      My Saved Locations
     </div>
   </div>
     <div class="overall-page">
       <% @saved_locations.each do |saved_location| %>
+    <a class="saved-image-row" href="/locations/<%=saved_location.location_id%>">
+      <% @spot = @client.spot(saved_location.location.google_place) %>
+        <div class="location-name">
+          <%= @spot.name || "(Name Unknown)"%>
+        </div>
 
+        <div class="saved-address-row">
+          <%= saved_location.location.address %>
+          <%= saved_location.location.city %>
+          <%= saved_location.location.state %>
+        </div>
 
-
-        <div class="saved-image-row">
-          <%= saved_location.location.image_file_name %>
-          <% @spot = @client.spot(saved_location.location.google_place) %>
-            <div class="location-name">
-              <%= @spot.name || "(Name Unknown)"%>
-            </div>
-            <div class="photo-container">
-                <%= image_tag(@spot.photos[0].fetch_url(800), class: 'test') %>
-              </div>
-            </div>
-
-
-              <div class="saved-address-row">
-                <%= saved_location.location.address %>
-                <%= saved_location.location.city %>
-                <%= saved_location.location.state %>
-              </div>
+        <div class="photo-container">
+            <%= image_tag(@spot.photos[0].fetch_url(800), class: 'test') %>
+        </div>
+      </a>
 
         </br>
       <% end %>

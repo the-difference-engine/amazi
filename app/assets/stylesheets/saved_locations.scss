@@ -5,35 +5,42 @@
 body {
   background-color: $top-bar-color;
   color: $top-bar-text-color;
+
 }
 
 .saved-address-row {
-  margin-left: 50px;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .overall-page {
-  // margin: 500px;
+  padding: 2%;
 }
 
 .location-name{
-  margin: 20px;
+  margin-top: 20px;
   color: white;
-  font-size: 32px;
+  font-size: 26px;
   text-align: center;
-
 }
 
 .top-banner{
   background-color: $top-bar-color;
   color: $top-bar-text-color;
-  padding-bottom: 60px;
-  margin-bottom: 60px;
 }
+
+.cntm-topbar-header {
+  font-size: 36px;
+  text-align: center;
+  padding-top: 36px;
+}
+
 .photo-container{
-  width: 60%;
+  width: 80%;
   height: 40%;
   border: solid 2px white;
-  text-align: center;
+  margin: 0 auto;
 }
 
 .test {
