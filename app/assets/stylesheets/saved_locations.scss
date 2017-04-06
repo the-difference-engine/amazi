@@ -1,3 +1,49 @@
 // Place all the styles related to the saved_locations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  background-color: $top-bar-color;
+  color: $top-bar-text-color;
+
+}
+
+.saved-address-row {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.overall-page {
+  padding: 2%;
+}
+
+.location-name{
+  margin-top: 20px;
+  color: white;
+  font-size: 26px;
+  text-align: center;
+}
+
+.top-banner{
+  background-color: $top-bar-color;
+  color: $top-bar-text-color;
+}
+
+.cntm-topbar-header {
+  font-size: 36px;
+  text-align: center;
+  padding-top: 36px;
+}
+
+.photo-container{
+  width: 80%;
+  height: 40%;
+  border: solid 2px white;
+  margin: 0 auto;
+}
+
+.test {
+  min-width: 100%;
+  max-width: 100%;
+}
