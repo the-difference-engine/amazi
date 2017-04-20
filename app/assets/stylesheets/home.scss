@@ -18,3 +18,16 @@
   width: auto;
   max-height: 200px;
 }
+
+.filter-buttons {
+  height: 34px;
+  width: 360px;
+  margin-top: 10px;
+}
+
+@media (max-width: 374px) {
+  .homepage-buttons {
+    overflow-x: scroll;
+    padding-bottom: 5px;
+  }
+}
