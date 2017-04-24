@@ -1,47 +1,47 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GMAPS_API_KEY']%>">
 </script>
-<div class="title">
-	<h1><u>AMAZI</u></h1>
-</div>
-<div class="container-fluid" id="mapControls">
-	<!-- Filter / Search / List -->
-	<div class="row">
-		<div class="col-xs-3">
-			<div class="btn btn-default">
-				Filter
+<div ng-controller="mapCtrl" ng-init="setUp()" class="container-fluid" id="mapContainer">
+	<div class="title">
+		<h1><u>AMAZI</u></h1>
+	</div>
+	<div class="container-fluid" id="mapControls">
+		<!-- Filter / Search / List -->
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="btn btn-default">
+					Filter
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+			<div class="col-xs-3">
+				<a class="btn btn-default" href="/locations">
+					List
+				</a>
 			</div>
 		</div>
-		<div class="col-xs-6">
-			<input type="text" class="form-control" placeholder="Search">
-		</div>
-		<div class="col-xs-3">
-			<a class="btn btn-default" href="/locations">
-				List
-			</a>
+	<row>
+		<div class="row" class="homepage-buttons">
+			<div class="col-xs-12">
+				<div class="btn btn-default">
+					Open Now
+				</div>
+				<div class="btn btn-default" ng-click="filterByWaterType('filtered')">
+					Filtered
+				</div>
+				<div class="btn btn-default" ng-click="filterByWaterType('tap')">
+					Tap
+				</div>
+				<div class="btn btn-default" ng-click="filterByWaterType('eco_alternative')">
+					Eco Alternative
+				</div>
+				<input type="checkbox" ng-model="filterer" ng-click="filterByWaterType('filtered')">
+				<button ng-click="testDelete()"> Delete </button> 
+			</div>
 		</div>
 	</div>
-<row>
-	<div class="row" class="homepage-buttons">
-		<div class="col-xs-12">
-			<div class="btn btn-default">
-				Open Now
-			</div>
-			<div class="btn btn-default">
-				Filtered
-			</div>
-			<div class="btn btn-default">
-				Tap
-			</div>
-			<div class="btn btn-default">
-				Natural Sources
-			</div>
-			<input type="checkbox" ng-model="filterer"
-     ng-checked="alert ('hi'); filterByWaterType('filtered')">
-		</div>
-	</div>
-</div>
 
-<div ng-controller="mapCtrl"  ng-init="setUp()" class="container-fluid" id="mapContainer">
-	<div id="mapView">
-	</div>
+		<div id="mapView">
+		</div>
 </div>
