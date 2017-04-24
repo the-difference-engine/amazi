@@ -100,13 +100,19 @@
 
     $scope.filterByWaterType = function(type) {
       var showing = []
-      $scope.locations.forEach(function(location) {
-        location["water_types"].forEach(function(water_type){
-          if (water_type["name"] === type) {
-            showing.push(location)
-          }
+      if (type === "all") {
+        $scope.locations.forEach(function(location) {
+          showing.push(location)
+        });
+      } else {
+        $scope.locations.forEach(function(location) {
+          location["water_types"].forEach(function(water_type){
+            if (water_type["name"] === type) {
+              showing.push(location)
+            }
+          })
         })
-      })
+      };
       createMarkers(showing);
 
     };
