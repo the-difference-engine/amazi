@@ -23,27 +23,6 @@
 				</a>
 			</div>
 		</div>
-	<row>
-
-		<div class="row" class="homepage-buttons">
-			<div class="col-xs-12">
-				<div class="btn btn-default">
-					Open Now
-				</div>
-				<div class="btn btn-default" ng-click="filterByWaterType('all')">
-				Show All
-				</div>
-				<div class="btn btn-default" ng-click="filterByWaterType('filtered')">
-					Filtered
-				</div>
-				<div class="btn btn-default" ng-click="filterByWaterType('tap')">
-					Tap
-				</div>
-				<div class="btn btn-default" ng-click="filterByWaterType('eco_alternative')">
-					Eco Alternative
-				</div>
-				<input type="checkbox" ng-model="filterer" ng-click="filterByWaterType('filtered')">
-				<button ng-click="testDelete()"> Delete </button> 
 
 		<div class="row homepage-buttons">
 			<div class="filter-buttons">
@@ -51,15 +30,17 @@
 					Open Now
 				</div>
 				<% @water_types.each do |water_type| %>
-					<div class="btn btn-default">
+					<div class="btn btn-default" ng-click="filterByWaterType('<%=water_type.name%>')">
 						<%= water_type.name.capitalize %>
 					</div>
 				<% end %>
-
 			</div>
 		</div>
 	</div>
 
+
+		<div id="mapView">
+		</div>
 
 <!-- this div is for when people filter for but there are no markers near to display -->
 <!-- 	<div class="no-marker jumbotron" style="display:none;">
@@ -67,6 +48,4 @@
 		<div class="btn btn-default">Close</div>
 	</div> -->
 
-	<div id="mapView">
-	</div>
 </div>
