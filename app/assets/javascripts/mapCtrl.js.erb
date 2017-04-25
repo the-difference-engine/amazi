@@ -66,9 +66,17 @@
       });
     };
 
-
+    $scope.testDelete = function() {
+        for (var i = 0; i < $scope.markers.length; i++) {
+        $scope.markers[i].setMap(null)
+      }
+    }
 
     function createMarkers(locations) {
+      for (var i = 0; i < $scope.markers.length; i++) {
+        $scope.markers[i].setMap(null)
+      }
+      $scope.markers = []
       var infowindow = new google.maps.InfoWindow();
       google.maps.event.addListener($scope.map, "click", function(event) {
         infowindow.close();
@@ -89,7 +97,28 @@
         });
       });
     };
+
+    $scope.filterByWaterType = function(type) {
+      var showing = []
+      if (type === "all") {
+        $scope.locations.forEach(function(location) {
+          showing.push(location)
+        });
+      } else {
+        $scope.locations.forEach(function(location) {
+          location["water_types"].forEach(function(water_type){
+            if (water_type["name"] === type) {
+              showing.push(location)
+            }
+          })
+        })
+      };
+      createMarkers(showing);
+
+    };
+
+
+
     window.$scope = $scope;
   });
 })();
-
