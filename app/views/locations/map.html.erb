@@ -29,19 +29,20 @@
 				<div class="btn btn-default">
 					Open Now
 				</div>
-				<div class="btn btn-default">
-					Filtered
-				</div>
-				<div class="btn btn-default">
-					Tap
-				</div>
-				<div class="btn btn-default">
-					Natural Sources
-				</div>
-				<input type="checkbox" ng-model="filterer" ng-checked="alert ('hi'); filterByWaterType('filtered')">
+				<% @water_types.each do |water_type| %>
+					<div class="btn btn-default">
+						<%= water_type.name.capitalize %>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
+
+<!-- this div is for when people filter for but there are no markers near to display -->
+<!-- 	<div class="no-marker jumbotron" style="display:none;">
+		<h4>There are no locations near with that kind of water</h4>
+		<div class="btn btn-default">Close</div>
+	</div> -->
 
 	<div id="mapView">
 	</div>

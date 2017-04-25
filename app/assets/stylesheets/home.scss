@@ -21,8 +21,9 @@
 
 .filter-buttons {
   height: 34px;
-  width: 360px;
+  width: 370px;
   margin-top: 10px;
+  margin-left: 3px;
 }
 
 @media (max-width: 374px) {
@@ -30,4 +31,15 @@
     overflow-x: scroll;
     padding-bottom: 5px;
   }
+}
+
+.no-marker {
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  z-index: 100000;
+  height: 120px;
+  border: 2px solid black;
+  text-align: center;
+  padding: 20px;
 }
