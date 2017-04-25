@@ -1,6 +1,8 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GMAPS_API_KEY']%>">
 </script>
-<div ng-controller="mapCtrl" ng-init="setUp()" class="container-fluid" id="mapContainer">
+
+<div ng-controller="mapCtrl"  ng-init="setUp()" class="container-fluid" id="mapContainer">
+
 	<div class="title">
 		<h1><u>AMAZI</u></h1>
 	</div>
@@ -22,6 +24,7 @@
 			</div>
 		</div>
 	<row>
+
 		<div class="row" class="homepage-buttons">
 			<div class="col-xs-12">
 				<div class="btn btn-default">
@@ -41,10 +44,29 @@
 				</div>
 				<input type="checkbox" ng-model="filterer" ng-click="filterByWaterType('filtered')">
 				<button ng-click="testDelete()"> Delete </button> 
+
+		<div class="row homepage-buttons">
+			<div class="filter-buttons">
+				<div class="btn btn-default">
+					Open Now
+				</div>
+				<% @water_types.each do |water_type| %>
+					<div class="btn btn-default">
+						<%= water_type.name.capitalize %>
+					</div>
+				<% end %>
+
 			</div>
 		</div>
 	</div>
 
-		<div id="mapView">
-		</div>
+
+<!-- this div is for when people filter for but there are no markers near to display -->
+<!-- 	<div class="no-marker jumbotron" style="display:none;">
+		<h4>There are no locations near with that kind of water</h4>
+		<div class="btn btn-default">Close</div>
+	</div> -->
+
+	<div id="mapView">
+	</div>
 </div>
