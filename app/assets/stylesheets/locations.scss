@@ -20,7 +20,7 @@ h1, h3 {
   text-align: center;
 }
 
-div {
+.new-location-page {
   font-family: $font-family;
   font-size: auto;
 
@@ -53,8 +53,9 @@ div {
       padding: 0.5vh;
       margin: 0.5vh;
       .title {
+        left: 30%;
         font-size: 6vh;
-        color: $highlight-color;
+        color: white;
       }
       .description {
         font-size: 2vh;

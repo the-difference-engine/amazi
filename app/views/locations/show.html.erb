@@ -17,7 +17,11 @@
 
 <br>
 
-  <%= render partial: "carousel" %>
+  <% if @all_pictures %>
+    <%= render partial: "carousel" %>
+  <% else %>
+    <div style="height:160px;color:white;"><center>No Image Provided</center></div>
+  <% end %>
 
   <div class="loc-header-buttons-container">
     <div class ="locheader">

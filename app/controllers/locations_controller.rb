@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:show, :map, :create, :new]
+  before_action :authenticate_admin!, except: [:show, :map, :create, :new, :new_image, :search, :select]
+  before_action :authenticate_user!, only:[:new, :create, :new_image, :search, :select]
 
   def show
     @location = Location.find(params[:id])
@@ -27,7 +28,6 @@ class LocationsController < ApplicationController
   end
 
   def new
-    @us_states = ['AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','PR','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']
   end
 
   def edit
@@ -36,22 +36,55 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-    if @location.save
-      if params[:location][:filtered]
-        @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 2)
+    if (params[:location][:filtered] || params[:location][:fountain] || params[:location][:eco_alternative])
+      if @location.save
+        if @location.latitude && @location.longitude
+          place_id = @location.get_google_places_id(params[:location][:name_of_business])
+          if place_id
+            @location.google_place = place_id
+            @location.save
+            if params[:location][:filtered] == "1"
+              @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 2)
+            end
+            if params[:location][:fountain] == "1"
+              @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 1)
+            end
+            if params[:location][:eco_alternative] == "1"
+              @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 3)
+            end
+            # flash[:success] = "Location has been added"
+            redirect_to "/locations/#{@location.id}/new_image"
+          else
+            @location.destroy
+            # flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
+            render "/location/new"
+          end
+        else
+          @location.destroy
+          # flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
+          render "/location/new"
+        end
       end
-      if params[:location][:fountain]
-        @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 1)
-      end
-      if params[:location][:eco_alternative]
-        @location_water_types = LocationWaterType.create(location_id: @location.id, water_type_id: 3)
-      end
-      flash[:success] = "Location has been added"
-      redirect_to "/"
     else
-      flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
+      # flash[:danger] = "You need to select at least one water type"
       render "/location/new"
     end
+  end
+
+  def search
+    @place = nil
+    @results = nil
+  end
+
+  def select
+    @place = params[:location][:place]
+    @results = Unirest.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=#{@place}&types=geocode&key=#{ENV['GOOGLE_PLACES_API_KEY']}").body["predictions"]
+    render :search
+  end
+
+  def new_image
+    @location = Location.find(params[:id])
+    @image = Image.new
   end
 
   def update
@@ -76,6 +109,6 @@ class LocationsController < ApplicationController
   private
 
   def location_params
-    params.require(:location).permit(:address, :city, :state, :zip, :location_subcategory_id, :water_provider_id, :latitude, :longitude)
+    params.require(:location).permit(:address, :city, :state, :zip, :location_subcategory_id, :water_provider_id, :latitude, :longitude, :google_place)
   end
 end
