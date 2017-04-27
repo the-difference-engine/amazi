@@ -30,10 +30,13 @@
 					Open Now
 				</div>
 				<% @water_types.each do |water_type| %>
-					<div class="btn btn-default" ng-click="filterByWaterType('<%=water_type.name%>')">
+					<div class="btn btn-default" ng-click="filterByWaterType('<%=water_type.id%>')">
 						<%= water_type.name.capitalize %>
 					</div>
 				<% end %>
+				<div class="btn btn-default" ng-click="filterByWaterType('')">
+					Reset
+				</div>
 			</div>
 		</div>
 	</div>

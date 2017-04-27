@@ -1,7 +1,9 @@
 class Api::V1::LocationsController < ApplicationController
 
   def index
-    if params[:swLat]
+    if params[:swLat] && (params[:water_type] != "")
+      @locations = WaterType.find(params[:water_type]).locations.where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
+    elsif params[:swLat]
       @locations = Location.includes(:water_types).where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
     else
       @locations = Location.all
