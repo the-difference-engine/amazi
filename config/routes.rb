@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   resources :location_subcategories
   resources :chemical_questions
   resources :chemical_categories
-  resources :users
+
   resources :units
   resources :saved_locations
   resources :amazon_products
