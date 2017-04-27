@@ -1,0 +1,14 @@
+<br><br><br><br>
+
+<h2>Do you want to upload an image for this location?</h2>
+
+<div class="form-group">
+  <%= form_for @image, url: "/uploaded_images", html: { multipart: true } do |form| %>
+    <%= form.file_field :image %>
+    <%= form.hidden_field :location_id, :value => @location.id %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+    <%= form.submit "Save Image" %>
+  <% end %>
+</div>
+
+<%= link_to "No Thanks", "/locations/#{@location.id}", class:"location-form-btn"%>
