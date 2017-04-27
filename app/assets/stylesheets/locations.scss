@@ -20,9 +20,9 @@ h1, h3 {
   text-align: center;
 }
 
-div {
+.new-location-page {
   font-family: $font-family;
-  font-size: 1.05vh;
+  font-size: auto;
 
   #cntm-topbar {
     background-color: $top-bar-color;
@@ -33,7 +33,7 @@ div {
     #cntm-topbar-nav {
       font-size: 4vh;
       height: 7vh;
-      margin-left: 1vw;
+      margin-left: 1v w;
       margin-right: 1vw;
       padding-top: 2vh;
       padding-left: 0.25vw;
@@ -53,8 +53,9 @@ div {
       padding: 0.5vh;
       margin: 0.5vh;
       .title {
+        left: 30%;
         font-size: 6vh;
-        color: $highlight-color;
+        color: white;
       }
       .description {
         font-size: 2vh;

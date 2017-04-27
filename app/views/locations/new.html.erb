@@ -1,87 +1,40 @@
-<div id='cntm-topbar'>
-  <div id='cntm-topbar-nav'>
-    <span id='cntm-topbar-back' class="glyphicon glyphicon-menu-left" aria-hidden="true" onclick="window.history.back()" /></span>
-    <span id='cntm-topbar-menu' class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+<div class="new-location-page">
+  <div id='cntm-topbar'>
+    <div id='cntm-topbar-header'>
+      <p class="title"><strong>Add Location</strong></p>
+      <!-- description does not yet exist -->
+      <p class="description">Add a Water Source Location that you have found in the area.</p>
+    </div>
   </div>
-  <div id='cntm-topbar-header'>
-    <p class="title"><strong>Add Location</strong></p>
-    <!-- description does not yet exist -->
-    <p class="description">Add a Water Source Location that you have found in the area.</p>
+
+  <div class="new-location-form">
+    <%= form_for :location , url: {action: "create"}, method: "post" do |f| %>
+      <div class="form-group">
+        <p class="location-form-text" style="color:white;"><%= f.label :name_of_business %></p>
+        <p class="location-form-text"><%= f.text_field :name_of_business %><br><br></p>
+        <p class="location-form-text" style="color:white;"><%= f.label :address %></p>
+        <p class="location-form-text"><%= f.text_field :address, :value => params[:address] %><br><br></p>
+        <p class="location-form-text" style="color:white;"><%= f.label :city %></p>
+        <p class="location-form-text"><%= f.text_field :city, :value => params[:city] %><br><br></p>
+        <p class="location-form-text" style="color:white;"><%= f.label :state %></p>
+        <p class="location-form-text"><%= f.text_field :state, :value => params[:state] %></p>
+        <%= f.hidden_field :google_place, :value => params[:google_place] %>
+      </div>
+
+      <div class="form-group">
+        <p class="location-form-text" style="color:white;">Water Type: (must select at least one)<br>
+        <%= f.label :filtered %>
+        <%= f.check_box :filtered %>
+        <%= f.label :fountain %>
+        <%= f.check_box :fountain %>
+        <%= f.label :eco_alternative %>
+        <%= f.check_box :eco_alternative %></p>
+      </div>
+
+      <center>
+        <%= f.submit 'Add location', class:"location-form-btn" %>
+      </center>
+    <% end %>
   </div>
+
 </div>
-
-<div class="new-location-form">
-  <%= form_for :location , url: {action: "create"}, method: "post" do |f| %>
-    <div class="form-group">
-      <p class="location-form-text"><%= f.label :address %>
-      <%= f.text_field :address %><br><br>
-      <%= f.label :city %>
-      <%= f.text_field :city %><br><br>
-      <%= f.label :zip %>
-      <%= f.text_field :zip %></p>
-    </div>
-
-    <div class="form-group">
-      <p class="location-form-text">State:
-      <%= f.collection_select :state, @us_states, :to_s, :to_s, :prompt => true %></p>
-    </div>
-
-    <div class="form-group">
-      <p class="location-form-text">Water Type:<br>
-      <%= f.label :filtered %>
-      <%= f.check_box :filtered %>
-      <%= f.label :fountain %>
-      <%= f.check_box :fountain %>
-      <%= f.label :eco_alternative %>
-      <%= f.check_box :eco_alternative %></p>
-    </div>
-
-    <div class="form-group">
-      <p class="location-form-text"><label for="exampleInputFile">Image (upload):</label></p>
-      <input type="file" id="exampleInputFile">
-      <p class="help-block">Uploaded Image Above</p>
-    </div>
-
-    <center>
-      <%= f.submit 'Add location', class:"location-form-btn" %>
-    </center>
-  <% end %>
-</div>
-
-<div id=cntm-dropup-menu class="menu-closed">
-  <ul>
-    <li class="cntm-dropup-item"><a href="#">Share this</a></li>
-    <li class="cntm-dropup-item"><a href="#">Recommended Products</a></li>
-    <li id="cntm-dropup-menu-close"><a href="#">Cancel</a></li>
-  </ul>
-</div>
-
-<script>
-  $(document).ready(function(){
-    $("#sidebar-wrapper").hide();
-    console.log("tried to hide sidebar-wrapper")
-    $("#hamburger-menu-button").hide();
-    $('#cntm-dropup-menu').hide();
-    console.log("tried to hide hamburger-menu-button");
-    $("#page-content-wrapper").css("padding-top","0px");
-  });
-  $('.collapse').on('shown.bs.collapse',
-    function(){
-      $(this).parent().find(".glyphicon-menu-right").removeClass("glyphicon-menu-right").addClass("glyphicon-menu-down");
-      $(this).parent().find(".panel-title").addClass("selected");
-    }
-  ).on('hidden.bs.collapse',
-    function(){
-      $(this).parent().find(".glyphicon-menu-down").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-right");
-      $(this).parent().find(".panel-title").removeClass("selected");
-    }
-  );
-
-  // Drop Up Functions
-  $('#cntm-topbar-menu').click(function() {
-    $('#cntm-dropup-menu').slideToggle({
-      direction: "up"
-    }, 300);
-    // $(this).toggleClass('drop-upClose');
-  }); // end click
-</script>
