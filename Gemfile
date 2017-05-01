@@ -38,6 +38,7 @@ gem 'google_places'
 gem 'yelp', require: 'yelp'
 gem 'unirest'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'unirest'
 
 
 gem 'friendly_id', '~> 5.1.0'

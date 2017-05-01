@@ -26,16 +26,16 @@
 
 		<div class="row homepage-buttons">
 			<div class="filter-buttons">
-				<div class="btn btn-default">
-					Open Now
+				<div class="btn butn butn-open">
+					OPEN NOW
 				</div>
 				<% @water_types.each do |water_type| %>
-					<div class="btn btn-default" ng-click="filterByWaterType('<%=water_type.id%>')">
-						<%= water_type.name.capitalize %>
+					<div class="btn butn butn-<%= water_type.name %>" ng-click="filterByWaterType('<%=water_type.id%>')">
+						<%= water_type.name.upcase %>
 					</div>
 				<% end %>
-				<div class="btn btn-default" ng-click="filterByWaterType('')">
-					Reset
+				<div class="btn butn butn-reset" ng-click="filterByWaterType('')">
+					RESET
 				</div>
 			</div>
 		</div>

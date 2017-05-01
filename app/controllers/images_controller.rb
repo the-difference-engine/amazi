@@ -4,7 +4,9 @@ class ImagesController < ApplicationController
     @image = Image.new
     if Image.create(image_params)
       redirect_to "/locations/#{params[:image][:location_id]}"
+      flash[:success] = "Location has been added"
     else
+      flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
       redirect_to "/locations/#{params[:image][:location_id]}"
     end
   end

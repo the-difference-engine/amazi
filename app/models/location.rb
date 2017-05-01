@@ -13,7 +13,7 @@ class Location < ApplicationRecord
 
 
   def full_street_address
-    return "#{address}, #{city}, #{state}, #{zip}"
+    return "#{address}, #{city}, #{state}"
   end
 
   def get_google_places_id(names)
