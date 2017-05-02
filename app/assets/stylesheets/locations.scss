@@ -26,7 +26,7 @@ h1, h3 {
   text-align: center;
 }
 
-div {
+.new-location-page {
   font-family: $font-family;
   font-size: auto;
 
@@ -61,8 +61,9 @@ div {
       .title {
         margin: 0;
         text-align: center;
+        left: 30%;
         font-size: 6vh;
-        color: $highlight-color;
+        color: white;
       }
       .description {
         font-size: 2vh;
@@ -162,6 +163,11 @@ div {
   width: 130px;
   word-break: break-all;
   word-wrap: break-word;
+}
+
+.no-carousel {
+  height: 160px;
+  color: white;
 }
 
 .locheader {
@@ -273,6 +279,7 @@ div {
 	height: 50px;
 	font-size: 12px;
   z-index: 3;
+  cursor: pointer;
 }
 
 .btn-container-outer {

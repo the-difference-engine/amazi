@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   end
   root to: 'locations#map'
   resources :chemicals
+  get "/locations/:id/new_image", to: "locations#new_image"
+  get "/locations/search", to: "locations#search"
+  post "/locations/select", to: "locations#select"
   resources :locations
   resources :water_qualities
   resources :location_categories
@@ -43,4 +46,6 @@ Rails.application.routes.draw do
 
   get "/slick", to: "home#slick"
   post "/uploaded_images", to: "images#create_image"
+  post "/feedback", to: "mailers#send_feedback"
+
 end

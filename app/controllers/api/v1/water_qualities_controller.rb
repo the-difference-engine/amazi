@@ -1,4 +1,4 @@
-class Api::V1::WaterQualitiesController < ApplicationController
+rclass Api::V1::WaterQualitiesController < ApplicationController
   def index
     @water_qualities = WaterQuality.all
     render json: @water_qualities
