@@ -2,8 +2,7 @@ class SavedLocationsController < ApplicationController
   # before_action :authenticate_admin!, :only => :index
   def index
     @saved_locations = SavedLocation.where(user_id: current_user.id)
-    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
-    
+    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])``
   end
 
   def show

@@ -3,6 +3,7 @@ class LocationsController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create, :new_image, :search, :select]
 
   def show
+
     @location = Location.find(params[:id])
     @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_API_KEY'])
     @images = Image.where(location_id: @location.id)
