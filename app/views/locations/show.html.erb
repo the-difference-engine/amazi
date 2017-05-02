@@ -205,7 +205,7 @@
 </script>
 
 
-  <h4> Reviews </h4>
+  <h4 class="reviewtitle"> Reviews </h4>
     <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
       <div class="review well"> <p> <b><%= review.author_name %></b><br>
       <%= review.text %> </p>
@@ -228,7 +228,8 @@
       scaleControl: false,
       draggable: false,
       scaleControl: false,
-      scrollwheel: false
+      scrollwheel: false,
+      streetViewControl: false
     });
 
     var marker = new google.maps.Marker({

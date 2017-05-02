@@ -57,6 +57,7 @@
       var map = new google.maps.Map(document.getElementById('mapView'), {
         center: {lat: $scope.mapCenter.lat, lng: $scope.mapCenter.lng},
         zoom: 16,
+        streetViewControl: false
       });
       deferred.resolve(map);
       return deferred.promise;
