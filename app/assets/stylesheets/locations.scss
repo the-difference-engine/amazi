@@ -157,6 +157,11 @@ h1, h3 {
   word-wrap: break-word;
 }
 
+.no-carousel {
+  height: 160px;
+  color: white;
+}
+
 .locheader {
 	margin-left: 20px;
 	color: #ffffff;
@@ -252,32 +257,6 @@ h1, h3 {
 
 	align-items: center;
 }
-.homepage-buttons {
-  min-width: 100%;
-  margin: auto;
-}
-.butn {
-  color: white;
-  border-radius: 0;
-  height: 35px;
-  margin: 5px;
-}
-.butn-open {
-  background-color: #080916;
-}
-
-.butn-filtered {
-  background-color: #ff0064;
-}
-
-.butn-tap {
-  background-color: #0082ff;
-}
-
-.butn-eco {
-  background-color: #00c785;
-  float: left;
-}
 
 .btn-container {
   display: flex;
@@ -290,6 +269,7 @@ h1, h3 {
 	height: 50px;
 	font-size: 12px;
   z-index: 3;
+  cursor: pointer;
 }
 
 .btn-container-outer {

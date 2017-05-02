@@ -46,4 +46,6 @@ Rails.application.routes.draw do
 
   get "/slick", to: "home#slick"
   post "/uploaded_images", to: "images#create_image"
+  post "/feedback", to: "mailers#send_feedback"
+
 end

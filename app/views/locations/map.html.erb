@@ -1,45 +1,54 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GMAPS_API_KEY']%>">
 </script>
-<div class="title">
-	<h1><u>AMAZI</u></h1>
-</div>
-<div class="container-fluid" id="mapControls">
-	<!-- Filter / Search / List -->
-	<div class="row">
-		<div class="col-xs-3">
-			<div class="btn btn-default">
-				Filter
-			</div>
-		</div>
-		<div class="col-xs-6">
-			<input type="text" class="form-control" placeholder="Search">
-		</div>
-		<div class="col-xs-3">
-			<a class="btn btn-default" href="/locations">
-				List
-			</a>
-		</div>
-	</div>
-<row>
-	<div class="row" class="container homepage-buttons">
-		<div class="col-xs-12">
-			<div class="btn butn butn-open">
-				OPEN NOW
-			</div>
-			<div class="btn butn butn-filtered">
-				FILTERED
-			</div>
-			<div class="btn butn butn-tap">
-				TAP
-			</div>
-			<div class="btn butn butn-eco">
-				ECO-ALTERNATIVE
-			</div>
-		</div>
-	</div>
-</div>
 
 <div ng-controller="mapCtrl"  ng-init="setUp()" class="container-fluid" id="mapContainer">
-	<div id="mapView">
+
+	<div class="title">
+		<h1><u>AMAZI</u></h1>
 	</div>
+	<div class="container-fluid" id="mapControls">
+		<!-- Filter / Search / List -->
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="btn btn-default">
+					Filter
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+			<div class="col-xs-3">
+				<a class="btn btn-default" href="/locations">
+					List
+				</a>
+			</div>
+		</div>
+
+		<div class="row homepage-buttons">
+			<div class="filter-buttons">
+				<div class="btn butn butn-open">
+					OPEN NOW
+				</div>
+				<% @water_types.each do |water_type| %>
+					<div class="btn butn butn-<%= water_type.name %>" ng-click="filterByWaterType('<%=water_type.id%>')">
+						<%= water_type.name.upcase %>
+					</div>
+				<% end %>
+				<div class="btn butn butn-reset" ng-click="filterByWaterType('')">
+					RESET
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+		<div id="mapView">
+		</div>
+
+<!-- this div is for when people filter for but there are no markers near to display -->
+<!-- 	<div class="no-marker jumbotron" style="display:none;">
+		<h4>There are no locations near with that kind of water</h4>
+		<div class="btn btn-default">Close</div>
+	</div> -->
+
 </div>

@@ -4,6 +4,10 @@
   angular.module("app").controller("mapCtrl", function($scope, $http, $q) {
 
     $scope.setUp = function() {
+      $scope.markers = [];
+      initMap();
+      $scope.mapFilter = "";
+
       function geoLocation() {
         var deferred = $q.defer();
         $scope.map = {};
@@ -27,12 +31,19 @@
         geoLocation().then( function(response){
           initMap().then( function(map) {
             $scope.map = map;
-            google.maps.event.addListener($scope.map, 'bounds_changed', function() {
+            google.maps.event.addListener($scope.map, 'zoom_changed', function() {
             $scope.bounds = $scope.map.getBounds();
+
+            getLocations($scope.bounds);
+            });
+            google.maps.event.addListener($scope.map, 'dragend', function() {
+            $scope.bounds = $scope.map.getBounds();
+
             getLocations($scope.bounds);
             });
           });
         });
+
     };
 
 
@@ -50,18 +61,29 @@
       deferred.resolve(map);
       return deferred.promise;
     };
+
     function getLocations(bounds) {
       var swLat  = bounds.getSouthWest().lat();
       var swLong = bounds.getSouthWest().lng();
       var neLat  = bounds.getNorthEast().lat();
       var neLong = bounds.getNorthEast().lng();
-      $http.get('/api/v1/locations.json/?swLat=' + swLat + '&swLong=' + swLong + '&neLat=' + neLat + '&neLong=' + neLong).then(function(response) {
+      $http.get('/api/v1/locations.json/?swLat=' + swLat + '&swLong=' + swLong + '&neLat=' + neLat + '&neLong=' + neLong + "&water_type=" + $scope.mapFilter).then(function(response) {
         $scope.locations = response.data;
         createMarkers($scope.locations);
       });
     };
 
+    $scope.testDelete = function() {
+        for (var i = 0; i < $scope.markers.length; i++) {
+        $scope.markers[i].setMap(null)
+      }
+    }
+
     function createMarkers(locations) {
+      for (var i = 0; i < $scope.markers.length; i++) {
+        $scope.markers[i].setMap(null)
+      }
+      $scope.markers = []
       var infowindow = new google.maps.InfoWindow();
       google.maps.event.addListener($scope.map, "click", function(event) {
         infowindow.close();
@@ -70,8 +92,10 @@
         var marker = new google.maps.Marker({
           position: {lat: location.latitude, lng: location.longitude},
           map: $scope.map,
-          title: location.address
+          title: location.address,
+          water_types: location.water_types
         });
+        $scope.markers.push(marker)
         marker.addListener('click', function() {
         var content = "<a href=/locations/" + location.id + '>' + location.address + "</a>";
         infowindow.setContent(content);
@@ -81,6 +105,28 @@
       });
     };
 
+    $scope.filterByWaterType = function(type) {
+      var showing = []
+      $scope.mapFilter = type
+      // if (type === "all") {
+      //   $scope.locations.forEach(function(location) {
+      //     showing.push(location)
+      //   });
+      // } else {
+      //   $scope.locations.forEach(function(location) {
+      //     location["water_types"].forEach(function(water_type){
+      //       if (water_type["name"] === type) {
+      //         showing.push(location)
+      //       }
+      //     })
+      //   })
+      // };
+      // createMarkers(showing);
+      getLocations($scope.bounds)
+    };
+
+
+
+    window.$scope = $scope;
   });
 })();
-

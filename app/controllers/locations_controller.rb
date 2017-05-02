@@ -21,6 +21,7 @@ class LocationsController < ApplicationController
   end
 
   def map
+    @water_types = WaterType.all
   end
 
   def index
