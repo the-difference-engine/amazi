@@ -9,7 +9,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="container-show ">
+<div class="container-show">
 
 <% if current_user %>
   <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
@@ -17,10 +17,10 @@
 
 <br>
 
-  <% if @all_pictures %>
+  <% if @allpictures %>
     <%= render partial: "carousel" %>
   <% else %>
-    <div style="height:160px;color:white;"><center>No Image Provided</center></div>
+    <center><div class="no-carousel">No Image Provided</div></center>
   <% end %>
 
   <div class="loc-header-buttons-container">
