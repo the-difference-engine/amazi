@@ -22,11 +22,11 @@
 #   new_product.save
 # end
 
-water_types = ["fountain", "filtered", "eco-alternative"]
-water_types.each do |watertype|
-  new_water = WaterType.new(name: watertype)
-  new_water.save
-end
+# water_types = ["fountain", "filtered", "eco-alternative"]
+# water_types.each do |watertype|
+#   new_water = WaterType.new(name: watertype)
+#   new_water.save
+# end
 
 locations = Location.all
 locations.each do |location|
