@@ -106,9 +106,17 @@
       });
     };
 
+    var showing = [0, 0, 0, 0];
+
     $scope.filterByWaterType = function(type) {
-      var showing = []
-      $scope.mapFilter = type
+
+      if (showing[type] === type) {
+        showing[type] = 0;
+      } else {
+        showing[type] = type;
+      }
+
+      $scope.mapFilter = showing;
       // if (type === "all") {
       //   $scope.locations.forEach(function(location) {
       //     showing.push(location)
