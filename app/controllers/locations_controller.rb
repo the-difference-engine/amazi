@@ -59,17 +59,17 @@ class LocationsController < ApplicationController
           else
             @location.destroy
             # flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
-            render "/location/new"
+            render "/locations/new"
           end
         else
           @location.destroy
           # flash[:danger] = @location.errors.full_messages.join("<br>").html_safe
-          render "/location/new"
+          render "/locations/new"
         end
       end
     else
       # flash[:danger] = "You need to select at least one water type"
-      render "/location/new"
+      render "/locations/new"
     end
   end
 
