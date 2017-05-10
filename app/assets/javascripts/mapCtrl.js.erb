@@ -109,12 +109,13 @@
     var showing = [0, 0, 0, 0];
 
     $scope.filterByWaterType = function(type) {
-
-      if (showing[type] === type) {
-        showing[type] = 0;
+      var waterType = parseInt(type);
+      if (showing[waterType] === waterType) {
+        showing[waterType] = 0;
       } else {
-        showing[type] = type;
+        showing[waterType] = waterType;
       }
+      
 
       $scope.mapFilter = showing;
       // if (type === "all") {
