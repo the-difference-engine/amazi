@@ -6,15 +6,35 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
 
+  <% count = 0 %>
+
   <div class="item active">
-    <center><img class="d-block img-fluid pic" src=<%= @allpictures.first %>></center>
+    <center><img class="d-block img-fluid pic" id="image<%=count%>" src=<%= @allpictures.first %>></center>
   </div>
+
+  <script>
+    $(document).ready(function() {
+      $("#image<%=count%>").on("click", function() {
+        var image = $("#image<%=count%>")
+      })
+    })
+  </script>
 
 <% @allpictures[1..-1].each do |picture| %>
 
-    <div class="item">
-      <center><img class="d-block img-fluid pic" src=<%= picture %>></center>
-    </div>
+  <% count += 1 %>
+
+  <div class="item">
+    <center><img class="d-block img-fluid pic" src=<%= picture %>></center>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $("#image<%=count%>").on("click", function() {
+        var image = $("#image<%=count%>")
+      })
+    })
+  </script>
 
 <%end%>
 
