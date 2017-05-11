@@ -33,23 +33,33 @@
 .butn-open {
   background-color: #080916;
 }
-.butn-fountain-on {
-  background-color: black;
-}
 .butn-fountain {
   background-color: #79aefe;
 }
-.butn-filtered-on {
-  background-color: black;
+.butn-fountain-on {
+  background-color: #3f649b;
+  border: solid white 1px;
 }
 .butn-filtered {
   background-color: #ec1b5a;
 }
-.butn-eco-alternative-on {
-  background-color: black;
+.butn-filtered-on {
+  background-color: #a0113c;
+  border: solid white 1px;
 }
 .butn-eco-alternative {
   background-color: #279636;
+}
+.butn-eco-alternative-on {
+  background-color: #175920;
+  border: solid white 1px;
+}
+.butn-natural {
+  background-color: #a937dd;
+}
+.butn-natural-on {
+  background-color: #441659;
+  border: solid white 1px;
 }
 @media (max-width: 465px) {
   .homepage-buttons {
