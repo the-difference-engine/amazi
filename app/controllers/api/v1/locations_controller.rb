@@ -13,6 +13,7 @@ class Api::V1::LocationsController < ApplicationController
           end
         end
       end
+      @locations = Location.where(id: locations)
     elsif params[:swLat]
       @locations = Location.includes(:water_types).where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
     else

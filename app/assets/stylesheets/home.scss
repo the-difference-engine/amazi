@@ -17,7 +17,7 @@
 
 .filter-buttons {
   height: 34px;
-  width: 570px;
+  width: 450px;
   margin-top: 10px;
   margin-left: -12px;
 }
@@ -51,10 +51,7 @@
 .butn-eco-alternative {
   background-color: #279636;
 }
-.butn-reset {
-  background-color: #7d5d81;
-}
-@media (max-width: 570px) {
+@media (max-width: 465px) {
   .homepage-buttons {
     overflow-x: scroll;
     padding-bottom: 5px;
