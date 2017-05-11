@@ -9,7 +9,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="container-show ">
+<div class="container-show">
 
 <% if current_user %>
   <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
@@ -17,10 +17,10 @@
 
 <br>
 
-  <% if @all_pictures %>
+  <% if @allpictures %>
     <%= render partial: "carousel" %>
   <% else %>
-    <div style="height:160px;color:white;"><center>No Image Provided</center></div>
+    <center><div class="no-carousel">No Image Provided</div></center>
   <% end %>
 
   <div class="loc-header-buttons-container">
@@ -187,6 +187,14 @@
     <% end %>
   <% end %>
 
+  <% if current_user %>
+  <%= form_tag("/feedback", method: "post") do %>
+    <%= label_tag(:message, "Enter your message here:") %>
+    <%= text_field_tag(:message) %>
+    <%= submit_tag ("Send") %>
+  <% end %>
+<% end %>
+
 
 <script>
   $(document).ready(function() {
@@ -197,7 +205,7 @@
 </script>
 
 
-  <h4> Reviews </h4>
+  <h4 class="reviewtitle"> Reviews </h4>
     <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
       <div class="review well"> <p> <b><%= review.author_name %></b><br>
       <%= review.text %> </p>
@@ -220,7 +228,8 @@
       scaleControl: false,
       draggable: false,
       scaleControl: false,
-      scrollwheel: false
+      scrollwheel: false,
+      streetViewControl: false
     });
 
     var marker = new google.maps.Marker({

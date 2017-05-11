@@ -1,8 +1,6 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-<div id="myCarousel" class="carousel slide fixed-section-carousel" >
+<div id="myCarousel" class="carousel slide fixed-section-carousel" data-ride="carousel">
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
@@ -34,15 +32,15 @@
   </a>
 </div>
 
+<script src=”jquery.mobile.custom.min.js”></script>
+
 <script>
 $(document).ready(function() {
-   $("#myCarousel").carousel();
-   $(".item").on("swiperight", function() {
-      $("#myCarousel").carousel("prev");
+   $("#myCarousel").swiperight(function() {
+      $("#myCarousel").carousel('prev');
     });
-   $(".item").on("swipeleft",function() {
-      console.log("this is happening2");
-      $("#myCarousel").carousel("next");
+   $("#myCarousel").swipeleft(function() {
+      $("#myCarousel").carousel('next');
    });
 });
 </script>

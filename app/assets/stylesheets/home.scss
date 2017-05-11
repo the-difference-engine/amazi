@@ -14,3 +14,51 @@
   width: auto;
   max-height: 200px;
 }
+
+.filter-buttons {
+  height: 34px;
+  width: 570px;
+  margin-top: 10px;
+  margin-left: -12px;
+}
+.homepage-buttons {
+  min-width: 100%;
+  margin: auto;
+}
+.butn {
+  color: white;
+  border-radius: 0;
+  height: 35px;
+}
+.butn-open {
+  background-color: #080916;
+}
+.butn-fountain {
+  background-color: #79aefe;
+}
+.butn-filtered {
+  background-color: #ec1b5a;
+}
+.butn-eco-alternative {
+  background-color: #279636;
+}
+.butn-reset {
+  background-color: #7d5d81;
+}
+@media (max-width: 570px) {
+  .homepage-buttons {
+    overflow-x: scroll;
+    padding-bottom: 5px;
+  }
+}
+
+.no-marker {
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  z-index: 100000;
+  height: 120px;
+  border: 2px solid black;
+  text-align: center;
+  padding: 20px;
+}
