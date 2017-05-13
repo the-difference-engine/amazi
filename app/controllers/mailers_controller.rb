@@ -5,4 +5,8 @@ class MailersController < ApplicationController
 		FeedbackMailer.feedback_email(message).deliver_now
 		redirect_to "#"
 	end
+
+	def feedback_form
+	end
+	
 end
