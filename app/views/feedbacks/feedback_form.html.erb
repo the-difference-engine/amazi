@@ -1,9 +1,8 @@
   <% if current_user %>
 	  <div id="feedback_form">
 		  <%= form_tag("/feedback", method: "post") do %>
-		    <%= label_tag(:message, "") %>
-		    <%= text_area :message, cols: "30", rows: "10", class: "fieldtag" %>
-		    <%= hidden_field_tag "email", current_user.email %>
+		    <%= label_tag(:message, "Enter your message here:") %>
+		    <%= text_field_tag(:message) %>
 		    <%= submit_tag ("Send") %>
 		  <% end %>
 	  </div>

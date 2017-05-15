@@ -6,7 +6,7 @@ class FeedbackMailer < ApplicationMailer
 	  mail(to: "jakerabeck@gmail.com", subject: 'Amazi User Feedback') do |format|
 			format.html { render 'feedback_email.html.erb' }
 			end
-			
+
   end
 
   def feedback_form
