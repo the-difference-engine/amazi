@@ -187,14 +187,6 @@
     <% end %>
   <% end %>
 
-  <% if current_user %>
-  <%= form_tag("/feedback", method: "post") do %>
-    <%= label_tag(:message, "Enter your message here:") %>
-    <%= text_field_tag(:message) %>
-    <%= submit_tag ("Send") %>
-  <% end %>
-<% end %>
-
 
 <script>
   $(document).ready(function() {

@@ -1,10 +1,14 @@
   <% if current_user %>
 	  <div id="feedback_form">
 		  <%= form_tag("/feedback", method: "post") do %>
-		    <%= label_tag(:message, "Enter your message here:") %>
-		    <%= text_field_tag(:message) %>
-		    <%= submit_tag ("Send") %>
+		    <%= label_tag(:message, "Tell us what you think!") %>
+		    <br>
+		    <%= text_area_tag(:message, nil, class: "fieldtag") %>
+		    <br>
+		    <%=hidden_field_tag "email", current_user.email %>
+		    <div class="login-btn"><%= submit_tag ("Send") %></div>
 		  <% end %>
+		  
 	  </div>
   <% else %>
   <h2> You must be logged in to send us feedback! </h2>
