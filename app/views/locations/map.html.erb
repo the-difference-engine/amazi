@@ -30,13 +30,17 @@
 					OPEN NOW
 				</div>
 				<% @water_types.each do |water_type| %>
-					<div class="btn butn butn-<%= water_type.name %>" ng-click="filterByWaterType('<%=water_type.id%>')">
+					<div class="btn butn butn-<%= water_type.name %>" id="btn<%= water_type.name.capitalize %>" ng-click="filterByWaterType('<%=water_type.id%>')">
 						<%= water_type.name.upcase %>
 					</div>
+					<script>
+						$(document).ready(function() {
+				      $(".butn-<%= water_type.name %>").on("click", function() {
+				      	$("#btn<%= water_type.name.capitalize %>").toggleClass('butn-<%= water_type.name %>-on')
+				      })
+				    })
+					</script>
 				<% end %>
-				<div class="btn butn butn-reset" ng-click="filterByWaterType('')">
-					RESET
-				</div>
 			</div>
 		</div>
 	</div>

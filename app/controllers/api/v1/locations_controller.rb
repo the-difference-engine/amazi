@@ -1,17 +1,19 @@
 class Api::V1::LocationsController < ApplicationController
 
   def index
-    if params[:swLat] && (params[:water_type] != "")
-      @locations = []
+    if params[:swLat] && (params[:water_type] && params[:water_type] != "" && params[:water_type] != "0,0,0,0")
+      locations = false
       water_types = params[:water_type][1..-1].split(',').collect! {|n| n.to_i}
       water_types.each do |type|
         unless type == 0
-          @locations << WaterType.find(type).locations.where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
+          if locations
+            locations += WaterType.find(type).locations.where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong]).pluck(:id)
+          else
+            locations = WaterType.find(type).locations.where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong]).pluck(:id)
+          end
         end
       end
-      if @locations == []
-        @locations = Location.includes(:water_types).where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
-      end
+      @locations = Location.where(id: locations)
     elsif params[:swLat]
       @locations = Location.includes(:water_types).where(latitude: params[:swLat]..params[:neLat], longitude: params[:swLong]..params[:neLong])
     else

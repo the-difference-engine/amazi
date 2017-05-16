@@ -51,15 +51,18 @@
     <div class="jumbotron" id="share-jumbo" style="display:none">
       <p>LINK:</p>
       <p><%= request.original_url %></p>
-      <div class="col-sm-6 col-xs-12">
+      <div class="col-sm-4 col-xs-12">
         <div class="fb-share-button" data-href="http://localhost:3000/locations/1" data-layout="button" data-size="large" data-mobile-iframe="true">
           <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2Flocations%2F1&amp;src=sdkpreparse">Share</a>
         </div>
       </div>
-      <div class="col-sm-6 col-xs-12">
+      <div class="col-sm-4 col-xs-12">
         <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
         <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
+      <div class="col-sm-4 col-xs-12 sms-btn">
+      </div>
+
       <button class="btn btn-default shareButton">Close</button>
     </div>
   <div>
@@ -81,11 +84,10 @@
 
       <% if current_user %>
 
-        $(document).ready(function() {
-          $(".addimage").on("click", function() {
-            $(".js-image-upload").click();
-          });
+        $(".addimage").on("click", function() {
+          $(".js-image-upload").click();
         });
+
 
         $(".js-favorite-btn").click(function() {
           if($(".js-border-heart").is(":visible")) {
@@ -117,18 +119,16 @@
         });
       <% end %>
 
-      $(document).ready(function() {
-        $(".shareButton").on("click", function() {
-          var share = document.getElementById("share-jumbo");
-          if (share.style.display === 'none') {
-            share.style.display = '';
-          } else {
-            share.style.display = "none";
-          }
-        })
-      })
+      $(".shareButton").on("click", function() {
+        var share = document.getElementById("share-jumbo");
+        if (share.style.display === 'none') {
+          share.style.display = '';
+        } else {
+          share.style.display = "none";
+        }
+      });
 
-    })
+    });
   </script>
 
   <!-- Map Section -->
@@ -186,14 +186,6 @@
       <%= form.hidden_field :user_id, :value => current_user.id %>
     <% end %>
   <% end %>
-
-  <% if current_user %>
-  <%= form_tag("/feedback", method: "post") do %>
-    <%= label_tag(:message, "Enter your message here:") %>
-    <%= text_field_tag(:message) %>
-    <%= submit_tag ("Send") %>
-  <% end %>
-<% end %>
 
 
 <script>
