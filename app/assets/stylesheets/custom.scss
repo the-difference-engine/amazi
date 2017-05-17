@@ -7,6 +7,7 @@
 
 #mapControls {
 	margin-bottom: 10px;
+	background-color: $top-bar-color;
 
 	.col-xs-6, .col-xs-3 {
 		padding-left: 3px;
@@ -43,6 +44,7 @@
 	padding-left: 0px;
 	padding-right: 0px;
 	height: 80%;
+	background-color: $top-bar-color;
 
 	#mapView {
 		position:relative;
@@ -54,7 +56,6 @@
 
 html, body {
   height: 100%;
-  background-color: $top-bar-color;
 }
 
 .hidden {

@@ -31,8 +31,6 @@ h1, h3 {
   font-size: auto;
 
   #cntm-topbar {
-    background-color: $top-bar-color;
-    color: $top-bar-text-color;
     padding: 0;
     margin: 0;
 
@@ -121,7 +119,6 @@ h1, h3 {
       }
     }
 
-    background-color : $top-bar-color;
     position: absolute;
     width: 100%;
     bottom: 0;
@@ -202,10 +199,10 @@ h1, h3 {
 	}
 }
 .reviewtitle {
-  color: white;
+  color: black;
 }
 .review {
-	background-color: #ffffff;
+	background-color: $bottom-container-color;
 	padding: 7px;
 	border-radius: 10px;
 	border-solid: 10;
@@ -274,7 +271,7 @@ h1, h3 {
 	justify-content: center;
 	margin-top: 7px;
 	text-align: center;
-	background-color: #ffffff;
+	background-color: $bottom-container-color;
 	width: 90%;
 	height: 50px;
 	font-size: 12px;
