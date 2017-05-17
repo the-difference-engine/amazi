@@ -6,17 +6,21 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
 
-  <div class="item active">
+  <% count = 0 %>
+
+  <div class="item active full-image">
     <center><img class="d-block img-fluid pic" src=<%= @allpictures.first %>></center>
   </div>
 
-<% @allpictures[1..-1].each do |picture| %>
+  <% @allpictures[1..-1].each do |picture| %>
 
-    <div class="item">
+    <% count += 1 %>
+
+    <div class="item full-image">
       <center><img class="d-block img-fluid pic" src=<%= picture %>></center>
     </div>
 
-<%end%>
+  <%end%>
 
 
 
