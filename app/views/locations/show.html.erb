@@ -163,14 +163,14 @@
   <div class="row container-fluid content-sm">
     <div class="col-sm-12 col-xs-12 ">
       <div class="col-xs-6">
-        <button type="button" class="btn btn-default narrowbtnlft ">
-        <%= @c.instance_variable_get(:@formatted_phone_number) %>
-        </button>
+        <a href="tel:<%= @c.instance_variable_get(:@formatted_phone_number)%>" class="btn btn-default narrowbtnlft">
+        <span class="glyphicon glyphicon-phone"></span> Call
+        </a>
       </div>
       <div class="col-xs-6">
-        <button type="button" class="btn btn-default narrowbtnright">
-        <%= link_to "Website", "#{@c.instance_variable_get(:@website)}" %>
-        </button>
+        <a href="<%=@c.instance_variable_get(:@website)%>" target="_blank" class="btn btn-default narrowbtnright">
+        <span class="glyphicon glyphicon-globe"></span> Website
+        </a>
       </div>
     </div>
   </div>
@@ -198,14 +198,13 @@
 
 
   <h4 class="reviewtitle"> Reviews </h4>
+  <div class="review well">
     <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
-      <div class="review well"> <p> <b><%= review.author_name %></b><br>
+      <p> <b><%= review.author_name %></b><br>
       <%= review.text %> </p>
-      </div>
       <br>
     <%end%>
   </div>
-</div>
 
 
 <script>
