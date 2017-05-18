@@ -46,11 +46,15 @@ html { height: 100%;}
 #wrapper.toggled #sidebar-wrapper {
     width: 100%;
 }
+.container-fluid {
+  background-color: $bottom-container-color;
 
+}
 #page-content-wrapper {
     width: 100%;
     padding-top: 20px;
     background-color: $top-bar-color;
+
 }
 
 #wrapper.toggled #page-content-wrapper {
