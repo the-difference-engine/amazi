@@ -33,14 +33,13 @@
         initMap().then( function(map) {
           $scope.map = map;
           google.maps.event.addListener($scope.map, 'zoom_changed', function() {
-          $scope.bounds = $scope.map.getBounds();
-
-          getLocations($scope.bounds);
+            $scope.bounds = $scope.map.getBounds();
+            getLocations($scope.bounds);
           });
-          google.maps.event.addListener($scope.map, 'dragend', function() {
-          $scope.bounds = $scope.map.getBounds();
 
-          getLocations($scope.bounds);
+          google.maps.event.addListener($scope.map, 'dragend', function() {
+            $scope.bounds = $scope.map.getBounds();
+            getLocations($scope.bounds);
           });
         });
       });
@@ -56,7 +55,7 @@
       };
       var map = new google.maps.Map(document.getElementById('mapView'), {
         center: {lat: $scope.mapCenter.lat, lng: $scope.mapCenter.lng},
-        zoom: 16,
+        zoom: 14,
         streetViewControl: false
       });
       deferred.resolve(map);
@@ -118,7 +117,7 @@
 
       $scope.mapFilter = showing;
 
-      getLocations($scope.bounds)
+      getLocations($scope.bounds);
     };
 
     $scope.findCity = function(input) {
@@ -133,6 +132,19 @@
           lat: searchLat,
           lng: searchLng
         };
+
+        google.maps.event.addListener($scope.map, 'center_changed', function() {
+          $scope.bounds = $scope.map.getBounds();
+          getLocations($scope.bounds);
+        });
+
+        $scope.map.setCenter($scope.mapCenter);
+
+        // google.maps.removeEventListener($scope.map, 'center_changed', function() {
+        //   $scope.bounds = $scope.map.getBounds();
+        //   getLocations($scope.bounds);
+        // });
+
       })
     };
 
