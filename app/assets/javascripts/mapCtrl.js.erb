@@ -28,22 +28,22 @@
         deferred.resolve();
         return deferred.promise;
       };
-        geoLocation().then( function(response){
-          initMap().then( function(map) {
-            $scope.map = map;
-            google.maps.event.addListener($scope.map, 'zoom_changed', function() {
-            $scope.bounds = $scope.map.getBounds();
 
-            getLocations($scope.bounds);
-            });
-            google.maps.event.addListener($scope.map, 'dragend', function() {
-            $scope.bounds = $scope.map.getBounds();
+      geoLocation().then( function(response){
+        initMap().then( function(map) {
+          $scope.map = map;
+          google.maps.event.addListener($scope.map, 'zoom_changed', function() {
+          $scope.bounds = $scope.map.getBounds();
 
-            getLocations($scope.bounds);
-            });
+          getLocations($scope.bounds);
+          });
+          google.maps.event.addListener($scope.map, 'dragend', function() {
+          $scope.bounds = $scope.map.getBounds();
+
+          getLocations($scope.bounds);
           });
         });
-
+      });
     };
 
 
@@ -115,26 +115,26 @@
       } else {
         showing[waterType] = waterType;
       }
-      
 
       $scope.mapFilter = showing;
-      // if (type === "all") {
-      //   $scope.locations.forEach(function(location) {
-      //     showing.push(location)
-      //   });
-      // } else {
-      //   $scope.locations.forEach(function(location) {
-      //     location["water_types"].forEach(function(water_type){
-      //       if (water_type["name"] === type) {
-      //         showing.push(location)
-      //       }
-      //     })
-      //   })
-      // };
-      // createMarkers(showing);
+
       getLocations($scope.bounds)
     };
 
+    $scope.findCity = function(input) {
+      $scope.place = input.replace(" ","+");
+      $http.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+$scope.place+"&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>").then(function(response) {
+
+        $scope.searchBounds = response.data
+        var searchLat  = $scope.searchBounds["results"][0]["geometry"]["location"]["lat"];
+        var searchLng = $scope.searchBounds["results"][0]["geometry"]["location"]["lng"];
+
+        $scope.mapCenter = {
+          lat: searchLat,
+          lng: searchLng
+        };
+      })
+    };
 
 
     window.$scope = $scope;
