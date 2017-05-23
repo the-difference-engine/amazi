@@ -133,12 +133,10 @@
           lng: searchLng
         };
 
-        google.maps.event.addListener($scope.map, 'center_changed', function() {
-          $scope.bounds = $scope.map.getBounds();
-          getLocations($scope.bounds);
-        });
-
         $scope.map.setCenter($scope.mapCenter);
+
+        $scope.bounds = $scope.map.getBounds();
+        getLocations($scope.bounds);
 
         // google.maps.removeEventListener($scope.map, 'center_changed', function() {
         //   $scope.bounds = $scope.map.getBounds();
