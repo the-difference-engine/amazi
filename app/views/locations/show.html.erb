@@ -200,7 +200,7 @@
 
   <h4 class="reviewtitle"> Reviews </h4>
   <div class="review well">
-  <a href="<%=@c.url%>" target="_blank" class="reviewbutton" style="text-decoration:none;">
+  <a href="<%=@c.url%>" target="_blank" class="reviewbutton">
     <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
       <p> <b><%= review.author_name %></b><br>
       <%= review.text %> </p>
