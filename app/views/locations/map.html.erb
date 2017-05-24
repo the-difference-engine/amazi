@@ -15,8 +15,12 @@
 				</div>
 			</div>
 			<div class="col-xs-6">
-				<input ng-model="search" class="form-control" placeholder="Find a city">
-				<button ng-click="findCity(search)">Search</button>
+				<div class="input-group">
+					<input ng-model="search" class="form-control" placeholder="Find a city">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" ng-click="findCity(search)">Search</button>
+					</span>
+				</div>
 			</div>
 			<div class="col-xs-3">
 				<a class="btn btn-default" href="/locations">
