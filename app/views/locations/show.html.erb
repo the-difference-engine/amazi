@@ -1,4 +1,5 @@
 <div id="fb-root"></div>
+<h2 class="showheader"><%=@c.name%></h2>
 <script>
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -199,11 +200,13 @@
 
   <h4 class="reviewtitle"> Reviews </h4>
   <div class="review well">
+  <a href="<%=@c.url%>" target="_blank" class="reviewbutton">
     <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
       <p> <b><%= review.author_name %></b><br>
       <%= review.text %> </p>
       <br>
     <%end%>
+    </a>
   </div>
 
 
