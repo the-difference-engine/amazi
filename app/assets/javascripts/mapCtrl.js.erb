@@ -121,12 +121,12 @@
     };
 
     $scope.findCity = function(input) {
-      $scope.place = input.replace(" ","+");
-      $http.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+$scope.place+"&key=<%=ENV['GOOGLE_PLACES_API_KEY']%>").then(function(response) {
+      $scope.place = input.replace(" ","_");
+      $http.get("/api/v1/locations/search.json/?input=" + $scope.place).then(function(response) {
 
         $scope.searchBounds = response.data
-        var searchLat  = $scope.searchBounds["results"][0]["geometry"]["location"]["lat"];
-        var searchLng = $scope.searchBounds["results"][0]["geometry"]["location"]["lng"];
+        var searchLat  = $scope.searchBounds[0];
+        var searchLng = $scope.searchBounds[1];
 
         $scope.mapCenter = {
           lat: searchLat,

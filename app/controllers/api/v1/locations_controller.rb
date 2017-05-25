@@ -57,6 +57,12 @@ class Api::V1::LocationsController < ApplicationController
     end
   end
 
+  def search
+    @input = params[:input]
+    @input.gsub!("_", " ")
+    render json: Geocoder.coordinates(@input)
+  end
+
   private
 
   def location_params
