@@ -111,14 +111,12 @@ class LocationsController < ApplicationController
 
 def send_sms
   if params[:phone_number] != ""
-    account_sid = 'AC0a5c16e3a48bc2116f7211c97e968647'
-    auth_token = '3aa291a5704ce33d05e9022d6d4bfd12'
 
     # set up a client to talk to the Twilio REST API
-    @client = Twilio::REST::Client.new account_sid, auth_token
+    @client = Twilio::REST::Client.new(ENV["ACCOUNT_SID"], ENV["AUTH_TOKEN"])
 
     @client.account.messages.create(
-      from: '+18057281585',
+      from: ENV["PHONE"],
       to: "+1#{params[:phone_number]}",
       body: "Your friend wanted to share the location of this water bottle refill station at #{params[:location_name].squish} with you: #{request.original_url}",
     )
