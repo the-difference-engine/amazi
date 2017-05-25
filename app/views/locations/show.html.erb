@@ -1,4 +1,5 @@
 <div id="fb-root"></div>
+<h2 class="showheader"><%=@c.name%></h2>
 <script>
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -239,14 +240,14 @@
   <div class="row container-fluid content-sm">
     <div class="col-sm-12 col-xs-12 ">
       <div class="col-xs-6">
-        <button type="button" class="btn btn-default narrowbtnlft ">
-        <%= @c.instance_variable_get(:@formatted_phone_number) %>
-        </button>
+        <a href="tel:<%= @c.instance_variable_get(:@formatted_phone_number)%>" class="btn btn-default narrowbtnlft">
+        <span class="glyphicon glyphicon-phone"></span> Call
+        </a>
       </div>
       <div class="col-xs-6">
-        <button type="button" class="btn btn-default narrowbtnright">
-        <%= link_to "Website", "#{@c.instance_variable_get(:@website)}" %>
-        </button>
+        <a href="<%=@c.instance_variable_get(:@website)%>" target="_blank" class="btn btn-default narrowbtnright">
+        <span class="glyphicon glyphicon-globe"></span> Website
+        </a>
       </div>
     </div>
   </div>
@@ -263,14 +264,6 @@
     <% end %>
   <% end %>
 
-  <% if current_user %>
-  <%= form_tag("/feedback", method: "post") do %>
-    <%= label_tag(:message, "Enter your message here:") %>
-    <%= text_field_tag(:message) %>
-    <%= submit_tag ("Send") %>
-  <% end %>
-<% end %>
-
 
 <script>
   $(document).ready(function() {
@@ -282,14 +275,15 @@
 
 
   <h4 class="reviewtitle"> Reviews </h4>
+  <div class="review well">
+  <a href="<%=@c.url%>" target="_blank" class="reviewbutton">
     <% @c.instance_variable_get(:@reviews)[0..2].each do |review| %>
-      <div class="review well"> <p> <b><%= review.author_name %></b><br>
+      <p> <b><%= review.author_name %></b><br>
       <%= review.text %> </p>
-      </div>
       <br>
     <%end%>
+    </a>
   </div>
-</div>
 
 
 <script>

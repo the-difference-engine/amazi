@@ -28,22 +28,21 @@
         deferred.resolve();
         return deferred.promise;
       };
-        geoLocation().then( function(response){
-          initMap().then( function(map) {
-            $scope.map = map;
-            google.maps.event.addListener($scope.map, 'zoom_changed', function() {
-            $scope.bounds = $scope.map.getBounds();
 
-            getLocations($scope.bounds);
-            });
-            google.maps.event.addListener($scope.map, 'dragend', function() {
+      geoLocation().then( function(response){
+        initMap().then( function(map) {
+          $scope.map = map;
+          google.maps.event.addListener($scope.map, 'zoom_changed', function() {
             $scope.bounds = $scope.map.getBounds();
-
             getLocations($scope.bounds);
-            });
+          });
+
+          google.maps.event.addListener($scope.map, 'dragend', function() {
+            $scope.bounds = $scope.map.getBounds();
+            getLocations($scope.bounds);
           });
         });
-
+      });
     };
 
 
@@ -56,7 +55,7 @@
       };
       var map = new google.maps.Map(document.getElementById('mapView'), {
         center: {lat: $scope.mapCenter.lat, lng: $scope.mapCenter.lng},
-        zoom: 16,
+        zoom: 14,
         streetViewControl: false
       });
       deferred.resolve(map);
@@ -109,31 +108,43 @@
     var showing = [0, 0, 0, 0];
 
     $scope.filterByWaterType = function(type) {
-
-      if (showing[type] === type) {
-        showing[type] = 0;
+      var waterType = parseInt(type);
+      if (showing[waterType] === waterType) {
+        showing[waterType] = 0;
       } else {
-        showing[type] = type;
+        showing[waterType] = waterType;
       }
 
       $scope.mapFilter = showing;
-      // if (type === "all") {
-      //   $scope.locations.forEach(function(location) {
-      //     showing.push(location)
-      //   });
-      // } else {
-      //   $scope.locations.forEach(function(location) {
-      //     location["water_types"].forEach(function(water_type){
-      //       if (water_type["name"] === type) {
-      //         showing.push(location)
-      //       }
-      //     })
-      //   })
-      // };
-      // createMarkers(showing);
-      getLocations($scope.bounds)
+
+      getLocations($scope.bounds);
     };
 
+    $scope.findCity = function(input) {
+      $scope.place = input.replace(" ","_");
+      $http.get("/api/v1/locations/search.json/?input=" + $scope.place).then(function(response) {
+
+        $scope.searchBounds = response.data
+        var searchLat  = $scope.searchBounds[0];
+        var searchLng = $scope.searchBounds[1];
+
+        $scope.mapCenter = {
+          lat: searchLat,
+          lng: searchLng
+        };
+
+        $scope.map.setCenter($scope.mapCenter);
+
+        $scope.bounds = $scope.map.getBounds();
+        getLocations($scope.bounds);
+
+        // google.maps.removeEventListener($scope.map, 'center_changed', function() {
+        //   $scope.bounds = $scope.map.getBounds();
+        //   getLocations($scope.bounds);
+        // });
+
+      })
+    };
 
 
     window.$scope = $scope;

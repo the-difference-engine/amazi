@@ -17,7 +17,7 @@
 
 .filter-buttons {
   height: 34px;
-  width: 570px;
+  width: 450px;
   margin-top: 10px;
   margin-left: -12px;
 }
@@ -36,16 +36,32 @@
 .butn-fountain {
   background-color: #79aefe;
 }
+.butn-fountain-on {
+  background-color: #3f649b;
+  border: solid white 1px;
+}
 .butn-filtered {
   background-color: #ec1b5a;
+}
+.butn-filtered-on {
+  background-color: #a0113c;
+  border: solid white 1px;
 }
 .butn-eco-alternative {
   background-color: #279636;
 }
-.butn-reset {
-  background-color: #7d5d81;
+.butn-eco-alternative-on {
+  background-color: #175920;
+  border: solid white 1px;
 }
-@media (max-width: 570px) {
+.butn-natural {
+  background-color: #a937dd;
+}
+.butn-natural-on {
+  background-color: #441659;
+  border: solid white 1px;
+}
+@media (max-width: 465px) {
   .homepage-buttons {
     overflow-x: scroll;
     padding-bottom: 5px;
