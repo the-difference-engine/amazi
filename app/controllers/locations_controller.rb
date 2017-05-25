@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:show, :map, :create, :new, :new_image, :search, :select]
+  before_action :authenticate_admin!, except: [:send_sms, :show, :map, :create, :new, :new_image, :search, :select]
   before_action :authenticate_user!, only:[:new, :create, :new_image, :search, :select]
 
   def show
@@ -107,6 +107,26 @@ class LocationsController < ApplicationController
 
     end
   end
+
+
+def send_sms
+  if params[:phone_number] != ""
+
+    # set up a client to talk to the Twilio REST API
+    @client = Twilio::REST::Client.new(ENV["ACCOUNT_SID"], ENV["AUTH_TOKEN"])
+
+    @client.account.messages.create(
+      from: ENV["PHONE"],
+      to: "+1#{params[:phone_number]}",
+      body: "Your friend wanted to share the location of this water bottle refill station at #{params[:location_name].squish} with you: #{request.original_url}",
+    )
+
+    respond_to do |format|
+      format.json { render :json => {"success" =>  "Message Sent!"} }
+    end
+  end
+end
+
 
   private
 
