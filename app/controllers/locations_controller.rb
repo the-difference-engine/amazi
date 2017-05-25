@@ -111,8 +111,7 @@ class LocationsController < ApplicationController
 
 def send_sms
   if params[:phone_number] != ""
-    account_sid = 'AC0a5c16e3a48bc2116f7211c97e968647'
-    auth_token = '3aa291a5704ce33d05e9022d6d4bfd12'
+
 
     # set up a client to talk to the Twilio REST API
     @client = Twilio::REST::Client.new account_sid, auth_token
