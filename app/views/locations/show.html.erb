@@ -26,7 +26,7 @@
   <div class="loc-header-buttons-container">
     <div class ="locheader">
       <% if @c.instance_variable_get(:@name) %>
-        <h1>
+        <h1 class="js-location-name">
           <%= @c.instance_variable_get(:@name) %>
         </h1>
       <% else %>
@@ -49,23 +49,52 @@
   </div>
   <div class= "jumbo-wrapper">
     <div class="jumbotron" id="share-jumbo" style="display:none">
+      <p class= "message-sent-success js-message-sent-success"> </p>
       <p>LINK:</p>
       <p><%= request.original_url %></p>
-      <div class="col-sm-4 col-xs-12">
-        <div class="fb-share-button" data-href="http://localhost:3000/locations/1" data-layout="button" data-size="large" data-mobile-iframe="true">
-          <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2Flocations%2F1&amp;src=sdkpreparse">Share</a>
+
+      <div class="js-share-btn">
+        <div class="col-sm-4 col-xs-12 share-btn">
+          <div class="fb-share-button" data-href="http://localhost:3000/locations/1" data-layout="button" data-size="large" data-mobile-iframe="true">
+            <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2Flocations%2F1&amp;src=sdkpreparse">Share</a>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-xs-12 share-btn">
+          <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
+          <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+
+        <div class="col-sm-4 col-xs-12 js-share-btn-sms share-btn">
+          <button type="button" class="btn sms-btn">
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  <span class="sms-text"> SMS </span>
+          </button>
         </div>
       </div>
-      <div class="col-sm-4 col-xs-12">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
-        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div>
-      <div class="col-sm-4 col-xs-12 sms-btn">
+
+      <div class="js-share-enter-sms phone-box share-btn">
+        <%= text_field_tag :phone_number, "", class: "js_phone_number" %>
+
+        <!-- <%= form_tag "/locations", method: :post do %> -->
+
+        <%= submit_tag "Send location to a friend", class:"js-send-sms-btn phone-submit btn btn-primary"%>
+
+        <!-- <% end %> -->
+
+        <span class="js-back-btn back-btn"> <button class="btn btn-default">Back</button></span>
       </div>
 
-      <button class="btn btn-default shareButton">Close</button>
-    </div>
-  <div>
+
+
+      <div class="col-sm-4 col-xs-12 share-btn">
+
+        <span class="close-btn js-close-btn"> <button class="btn btn-default shareButton">Close</button></span>
+      </div>
+
+  </div>
+
+  </div>
+</div>
 
   <!-- add favorite button -->
   <!-- <div>
@@ -128,7 +157,54 @@
         }
       });
 
+      $(".js-share-btn-sms").click(function() {
+
+        if($(".js-share-btn").is(":visible")) {
+
+          $(".js-share-btn").hide();
+          $(".js-share-enter-sms").show();
+        };
+      });
+
+      $(".js-back-btn").click(function() {
+
+        if($(".js-back-btn").is(":visible")) {
+
+          $(".js-share-enter-sms").hide();
+          $(".js-share-btn").show();
+        };
+      });
+
+    $(".js-send-sms-btn").click(function() {
+      var data = {
+          location_id: "<%= @location.id %>",
+          user_id: "<%= current_user.id %>",
+          phone_number: $(".js_phone_number").val(),
+          location_name: $(".js-location-name").html(),
+          };
+
+      $.ajax({
+       url: "/locations",
+       method: 'POST',
+       data: data,
+       dataType: "json",
+       success: function( result ) {
+         $(".js-message-sent-success").html(result.success);
+         $(".js-share-enter-sms").hide();
+         $(".js-share-btn").show();
+       }
+      });
+      });
+
+      $(".js-close-btn").click(function() {
+        $(".js-message-sent-success").html(" ");
+        $(".js-share-enter-sms").hide();
+        $(".js-share-btn").show();
+      });
+
+
     });
+
   </script>
 
   <!-- Map Section -->

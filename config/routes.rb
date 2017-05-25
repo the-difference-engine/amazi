@@ -1,5 +1,6 @@
 
 Rails.application.routes.draw do
+  post "/locations", to: "locations#send_sms"
   devise_for :users
 	get '/admin', to:'home#admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -47,5 +48,7 @@ Rails.application.routes.draw do
   get "/slick", to: "home#slick"
   post "/uploaded_images", to: "images#create_image"
   post "/feedback", to: "mailers#send_feedback"
+
+
 
 end
