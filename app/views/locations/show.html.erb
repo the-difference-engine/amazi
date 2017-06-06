@@ -179,7 +179,6 @@
     $(".js-send-sms-btn").click(function() {
       var data = {
           location_id: "<%= @location.id %>",
-          user_id: "<%= current_user.id %>",
           phone_number: $(".js_phone_number").val(),
           location_name: $(".js-location-name").html(),
           };
