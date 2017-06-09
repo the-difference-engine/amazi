@@ -9,15 +9,25 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 </script>
-
+<script>
+  $(function() {
+    $("#more-dropdown").click(function() {
+      $("#more-list").toggle();
+    });
+  });
+</script>
 <div class="container-show">
-
-<% if current_user %>
-  <%= link_to "Flag", "/problems/new?location_id=#{@location.id}"%>
-<% end %>
-
-<br>
-
+  <div style="position:absolute;top:0;right:0%;text-align:right;z-index:1000;width:100%;height:0px;">
+    <a id="more-dropdown" style="font-size:40px;font-weight:bold;color:white;text-decoration:none;" href="#">...</a>
+    <div id="more-list" style="display:none;background-color:black;text-align:center;">
+      <ul style="padding:0px 10px;">
+        <li style="border-bottom:1px solid darkblue;height:100px;font-size:30px;color:white;list-style-type:none;padding-top:30px;"><a href="#" class="addimage" style="text-decoration:none;color:white;">Add a Photo</a></li>
+        <% if current_user %>
+        <li style="border-bottom:1px solid darkblue;height:100px;font-size:30px;color:white;list-style-type:none;padding-top:30px;"><a href="<%= "/problems/new?location_id=#{@location.id}" %>" style="text-decoration:none;color:white;">Report a Problem</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
   <% if @allpictures %>
     <%= render partial: "carousel" %>
   <% else %>
@@ -43,7 +53,7 @@
 
   <div class= "btn-container-outer">
     <div class= "btn-container">
-      <div class="js-favorite-btn"> <div class="btn-item-icon topbutton-save" data-favoriteId="<%= @favorite_id %>"> <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> <div class="spacing"> SAVE</div></div></div>
+      <div class="js-favorite-btn"> <div class="btn-item-icon topbutton-save" data-favoriteId="<%= @favorite_id %>"> <div> <i class="js-border-heart material-icons">favorite_border</i> <i class="js-filled-heart material-icons ">favorite</i> </div> <div class="spacing">SAVE</div></div></div>
       <div class="topbutton-add addimage"> <div> <i class="material-icons">wallpaper</i> </div> <div class="spacing"> ADD PHOTO </div> </div>
       <div class="topbutton-share shareButton"> <div> <i class="material-icons">group_add</i> </div> <div class="spacing"> SHARE </div> </div>
     </div>
