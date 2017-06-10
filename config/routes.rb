@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :users
       resources :saved_locations
       resources :problems
+      get "locations/:id/place_name", to: 'locations#place_name'
     end
   end
 

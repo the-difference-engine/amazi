@@ -19,6 +19,14 @@ class Api::V1::LocationsController < ApplicationController
     else
       @locations = Location.all
     end
+    if params[:open_now] != "false"
+      location_ids = []
+      @locations.each do |location|
+        google_place = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{location.google_place}&key=#{ENV['GOOGLE_PLACES_API_KEY']}").body
+        location_ids << location.id if google_place["result"]["opening_hours"] && google_place["result"]["opening_hours"]["open_now"]
+      end
+      @locations = Location.where(id: location_ids)
+    end
     render json: @locations.as_json(include: :water_types)
   end
 
@@ -63,6 +71,11 @@ class Api::V1::LocationsController < ApplicationController
     render json: Geocoder.coordinates(@input)
   end
 
+  def place_name
+    @location = Location.find(params[:id])
+    google_place = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@location.google_place}&key=#{ENV['GOOGLE_PLACES_API_KEY']}").body
+    render json: {name: google_place["result"]["name"]}
+  end
   private
 
   def location_params

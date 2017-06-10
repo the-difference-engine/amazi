@@ -4,6 +4,7 @@
   angular.module("app").controller("mapCtrl", function($scope, $http, $q) {
 
     $scope.setUp = function() {
+      $scope.open_now = false;
       $scope.markers = [];
       initMap();
       $scope.mapFilter = "";
@@ -45,7 +46,6 @@
       });
     };
 
-
     function initMap() {
       var deferred = $q.defer();
 
@@ -67,7 +67,7 @@
       var swLong = bounds.getSouthWest().lng();
       var neLat  = bounds.getNorthEast().lat();
       var neLong = bounds.getNorthEast().lng();
-      $http.get('/api/v1/locations.json/?swLat=' + swLat + '&swLong=' + swLong + '&neLat=' + neLat + '&neLong=' + neLong + "&water_type=" + $scope.mapFilter).then(function(response) {
+      $http.get('/api/v1/locations.json/?swLat=' + swLat + '&swLong=' + swLong + '&neLat=' + neLat + '&neLong=' + neLong + "&open_now=" + $scope.open_now + "&water_type=" + $scope.mapFilter).then(function(response) {
         $scope.locations = response.data;
         createMarkers($scope.locations);
       });
@@ -89,18 +89,20 @@
         infowindow.close();
       });
       locations.forEach(function(location) {
-        var marker = new google.maps.Marker({
-          position: {lat: location.latitude, lng: location.longitude},
-          map: $scope.map,
-          title: location.address,
-          water_types: location.water_types
-        });
-        $scope.markers.push(marker)
-        marker.addListener('click', function() {
-        var content = "<a href=/locations/" + location.id + '>' + location.address + "</a>";
-        infowindow.setContent(content);
-        infowindow.open($scope.map, marker);
-
+        $http.get("/api/v1/locations/" + location.id + "/place_name").then(function(response){
+          var location_name = response.data["name"]
+          var marker = new google.maps.Marker({
+            position: {lat: location.latitude, lng: location.longitude},
+            map: $scope.map,
+            title: location.address,
+            water_types: location.water_types
+          });
+          $scope.markers.push(marker)
+          marker.addListener('click', function() {
+            var content = "<a href=/locations/" + location.id + '>' + location_name + "</a>";
+            infowindow.setContent(content);
+            infowindow.open($scope.map, marker);
+          });
         });
       });
     };
@@ -145,7 +147,10 @@
 
       })
     };
-
+    $scope.toggle_open_now = function() {
+      $scope.open_now = !$scope.open_now;
+      getLocations($scope.bounds);
+    }
 
     window.$scope = $scope;
   });
