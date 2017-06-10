@@ -391,7 +391,7 @@ h2 {
 .loc-header-buttons-container {
 	position: absolute;
 	width: 100%;
-	top: 100px;
+	top: 95px;
   z-index: 1;
 }
 
@@ -461,4 +461,26 @@ h2 {
 }
 .back-btn{
 	padding: 5px;
+}
+.water-type {
+  display: inline-block;
+  height: 19px;
+  border-radius:3px;
+  padding: 0px 3px;
+}
+ // fountain
+.water-type-1 {
+  background-color: #79aefe;
+}
+ // filtered
+.water-type-2 {
+  background-color: #ec1b5a;
+}
+//  eco-alternative
+.water-type-3 {
+  background-color: #279636;
+}
+// natural
+.water-type-4 {
+  background-color: #a937dd;
 }

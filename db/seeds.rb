@@ -22,16 +22,16 @@
 #   new_product.save
 # end
 
-# water_types = ["fountain", "filtered", "eco-alternative", "natural"]
-# water_types.each do |watertype|
-#   new_water = WaterType.new(name: watertype)
-#   new_water.save
-# end
+water_types = ["fountain", "filtered", "eco-alternative", "natural"]
+water_types.each do |watertype|
+  new_water = WaterType.new(name: watertype)
+  new_water.save
+end
 
-# locations = Location.all
-# locations.each do |location|
-#   LocationWaterType.create(location_id: location.id, water_type_id: rand(1..4))
-# end
+locations = Location.all
+locations.each do |location|
+  LocationWaterType.create(location_id: location.id, water_type_id: rand(1..4))
+end
 
 
 

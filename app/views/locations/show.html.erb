@@ -48,6 +48,9 @@
           <%= word.capitalize %>
         <% end %></h3>
       <% end %>
+      <% @location.water_types.each do |wt| %>
+        <div class="water-type water-type-<%= wt.id %>"><%= wt.name.upcase %></div>
+      <% end %>
     </div>
   </div>
 
