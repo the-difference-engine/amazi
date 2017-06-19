@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-
+  before_action :authenticate_admin!, only: [:admin]
   # def index
   #   @home = Home.all
   # end

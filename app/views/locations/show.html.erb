@@ -25,6 +25,10 @@
         <% if current_user %>
         <li style="border-bottom:1px solid darkblue;height:100px;font-size:30px;color:white;list-style-type:none;padding-top:30px;"><a href="<%= "/problems/new?location_id=#{@location.id}" %>" style="text-decoration:none;color:white;">Report a Problem</a></li>
         <% end %>
+        <% if current_user && current_user.admin? %>
+        <li style="border-bottom:1px solid darkblue;height:100px;font-size:30px;color:white;list-style-type:none;padding-top:30px;"><a href="<%= "/admin/location/#{@location.id}" %>" style="text-decoration:none;color:white;">Go To Location Admin Page</a></li>
+        <li style="border-bottom:1px solid darkblue;height:100px;font-size:30px;color:white;list-style-type:none;padding-top:30px;"><a href="<%= "/admin/locations" %>" style="text-decoration:none;color:white;">See All Locations Problems</a></li>
+        <% end %>
       </ul>
     </div>
   </div>

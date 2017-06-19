@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   post "/locations", to: "locations#send_sms"
   devise_for :users
 	get '/admin', to:'home#admin'
+  get '/admin/locations/:id', to: 'admin#location'
+  patch '/admin/locations/:id', to: 'admin#save_location'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do

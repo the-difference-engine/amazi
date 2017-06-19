@@ -1,8 +1,0 @@
-<%= @chemical_category.name %>
-<% @water_qualities.each do |wq| %>
-<div>
-  <a href="<%= chemical_url(wq.chemical.slug) %>"><%= wq.chemical.name %>: <%= sprintf( '%.4f' , (wq.chemical_amount - wq.chemical.maximum)) %> <%= wq.unit.name %></a>
-  <p></p>
-</div>
-
-<% end %>

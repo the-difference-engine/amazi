@@ -1,8 +1,0 @@
-<div>
-  <p><%= @water_provider.name %></p>
-  <ul>
-    <% ChemicalCategory.all.each do |cc| %>
-    <li><a href="<%= water_provider_url(@water_provider.id) %>/<%= cc.slug %>"><%= cc.name %></li></a>
-    <% end %>
-  </ul>
-</div>

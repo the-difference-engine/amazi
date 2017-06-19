@@ -1,0 +1,15 @@
+<h1 style="line-height: initial;">Add or Remove Water Types from <%= @location_name %> at<br> <%= @location.full_street_address %></h1>
+<%= form_tag "/admin/locations/#{@location.id}", method: :patch do %>
+  <% WaterType.all.each do |wt| %>
+    <% checked = false %>
+    <% @location.water_types.each do |lwt| %>
+      <% if wt.id == lwt.id %>
+        <% checked = true %>
+      <% end %>
+    <% end %>
+    <%= "#{wt.name}:" %><%= check_box_tag "water_types[#{wt.id}]", true, checked %>
+  <% end %>
+  <div style="color:black;">
+    <%= submit_tag %>
+  </div>
+<% end %>
